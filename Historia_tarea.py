@@ -41,6 +41,7 @@ if pregunta== "1"    or pregunta == "2":
         
 else:
     print("\nOpcion no valida. Te quedaste paralizado del susto en la oscuridad y te atacaron los zombis por la espalda y te mueres, fin del juego, gracias por jugar :)")
+    sys.exit()
           
 print(":\nIntentas ayudarlo pero es demasiado tarde, el agente muere, y escuchas cosas cayendose.....")
 time.sleep(3)
@@ -52,7 +53,7 @@ print("\nLlegas a la comisaria, pero el porton principal está cerrado, y escuch
 time.sleep(3)
 
 #Pregunta al usuario que hacer
-1
+
 print("\nComo entras a la comisaria?")
 time.sleep(3)
 print("\n1. Entras escalando la reja principa")
@@ -116,4 +117,3 @@ else:
      time.sleep(3)
      print("\nGAME OVER")
      sys.exit()
-
