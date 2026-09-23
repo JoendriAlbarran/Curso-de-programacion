@@ -43,7 +43,7 @@ else:
     print("\nOpcion no valida. Te quedaste paralizado del susto en la oscuridad y te atacaron los zombis por la espalda y te mueres, fin del juego, gracias por jugar :)")
     sys.exit()
           
-print(":\nIntentas ayudarlo pero es demasiado tarde, el agente muere, y escuchas cosas cayendose.....")
+print("\nIntentas ayudarlo pero es demasiado tarde, el agente muere, y escuchas cosas cayendose.....")
 time.sleep(3)
 print("\nEmpiezan a salir zombis y no tienes armas, solo tu radio y una linterna, empiezas a correr y sales ileso")
 time.sleep(3)
@@ -93,27 +93,52 @@ if sub_decision1 == "1":
     time.sleep(3)
     print("\nTe diriges al segundo piso, y encuentras una pc, es la pc de tu jefe Irons,ves, que tiene un pendrive en un puerto USB, dice que el virus T se salió de control y la cura está un pendrive de la PC")
     time.sleep(3)
-    print("\nEscapas y te llevas el pendrive")
+    print("\nSales y te llevas el pendrive")
     time.sleep(3)
-    print("\nSaliendo de la R.P.D te encuentras con un peloton del ejercito y les dices que en ese pendrive está la cura.....")
-    time.sleep(3)
-    print("\nLos militares te sacan ileso de Raccon City")
-    time.sleep(3)
-    print("\nFELICIDADES SOBREVIVISTE AL INCIDENTE Y EL GOBIERNO TE RECLUTA EN UN PROGRAMA SECRETO DE LA D.S.O")
-    time.sleep(3)
-    print("\n================GRACIAS POR JUGAR!! ==============")
-    print("Atentamente el alumno Joendri Albarran :)")
 
-elif sub_decision1 == "2":
-        print("\nLe golpeas con la linterna y lo matas, pero empiezan a salir mas zombis y te rodean, empiezan a salir perros tambien...")
+#reincorporarcion de mr x
+
+    print("\n Al salir de la oficina escuchas unos pasos pesados que te dan miedo, y fuertes en todo el pasillo.......")
+    time.sleep(3)
+    print("\nDe la nada un gigante de dos metros con chaqueta blindada y gorrito (Mr. X) rompe la pared y te tapa la salida...")
+    time.sleep(3)
+    print("\nQue haces frente a esta amenaza?")
+    print("\n1. Lanzarle una granada cegadora y correr por el hueco que abrió")
+    print("\n2. Dispararle con la pistola y rezar")
+
+    pregunta_mrx = input("\nElige una opcion (1 o 2): ")
+
+    if pregunta_mrx== "1":
+        print("\nLOGRAS ATURDIRLO!! huyes por el hueco que abrió")
+        print("\nSaliendo de la R.P.D te encuentras con un peloton del ejercito y les dices que en ese pendrive está la cura.....")
         time.sleep(3)
-        print("\nTe rodean y te comen entre todos, festin para los zombis")
-        time.sleep(2)
-        print("\nGAME OVER")
+        print("\nLos militares te sacan ileso de Raccon City y se encargan de Mr. X con lanzacohetes y lo matan")
+        time.sleep(3)
+        print("\nFELICIDADES SOBREVIVISTE AL INCIDENTE Y EL GOBIERNO TE RECLUTA EN UN PROGRAMA SECRETO DE LA D.S.O")
+        time.sleep(3)
+        print("\n================GRACIAS POR JUGAR!! ==============")
+        print("Atentamente el alumno Joendri Albarran :)")
+
+    elif pregunta_mrx== "2":
+        print("\nLas balas no le hacen ni cosquillas y camina rápido hacía ti y te agarró del cuello y te revienta la cara contra el piso")
+        time.sleep(3)
+        print("\nGame over")
         sys.exit()
 
+    else:
+        print("\nTe quedaste congelado y el Mr. X te aplastó como una papa")
+        sys.exit()
+
+elif sub_decision1 == "2":
+    print("\nLe golpeas con la linterna y lo matas, pero empiezan a salir mas zombis y te rodean, empiezan a salir perros tambien...")
+    time.sleep(3)
+    print("\nTe rodean y te comen entre todos, festin para los zombis")
+    time.sleep(2)
+    print("\nGAME OVER")
+    sys.exit()
+
 else:
-     print("\nLo piensas mucho y el zombi te agarra y te muerde el cuello.... Mueres")
-     time.sleep(3)
-     print("\nGAME OVER")
-     sys.exit()
+    print("\nLo piensas mucho y el zombi te agarra y te muerde el cuello.... Mueres")
+    time.sleep(3)
+    print("\nGAME OVER")
+    sys.exit()
