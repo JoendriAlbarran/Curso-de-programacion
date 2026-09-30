@@ -40,7 +40,7 @@ time.sleep(3)
 print("\nOpciones: RADIO | HUIR | GASOLINERA")
 time.sleep(2)
 
-#pide que escriba una opcion #.lower() para las minisculas, y el .strip() para omitir los espacios fanstasmas
+#la opcion #.lower() para las minisculas, y el .strip() para omitir los espacios fanstasmas
 
 pregunta = input("Escribe tu opcion:").lower().strip()
 
