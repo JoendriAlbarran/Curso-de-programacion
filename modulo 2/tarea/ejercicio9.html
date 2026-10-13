@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>ejercicio nine</title>
+</head>
+<body>
+
+    <form method="POST">
+        <fieldset>
+            <legend>datos</legend>
+            <p>
+                ciudad: 
+                <input list="ciudades" name="ciudad">
+                <datalist id="ciudades">
+                    <option value="maracaibo">
+                    <option value="gotham city">
+                </datalist>
+            </p>
+            <p>
+                opcion: 
+                <select name="opcion">
+                    <option>Opcion 1</option>
+                    <option>Opcion 2</option>
+                </select>
+            </p>
+            <p>
+                comentario: <br>
+                <textarea name="mensaje"></textarea>
+            </p>
+        </fieldset>
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>

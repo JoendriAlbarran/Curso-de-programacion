@@ -1,0 +1,7 @@
+.tarjeta {
+    width: 200px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px gray;
+    background-image: linear-gradient(red, yellow);
+}
