@@ -1,0 +1,13 @@
+.normal {
+    font-family: sans-serif;
+}
+
+.destacado {
+    color: red;
+    font-weight: bold;
+    font-style: italic;
+}
+
+a {
+    text-decoration: underline;
+}
