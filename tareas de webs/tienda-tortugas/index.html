@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TortuVzla 🐢 | Venta de Tortugas y Accesorios en Venezuela</title>
+  <meta name="description" content="Tienda especializada en tortugas domésticas de criadero legal, terrarios, alimentos y accesorios en Venezuela. Envíos seguros y pagos en Pago Móvil, Binance y Zelle.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Notification Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <div class="top-bar-left">
+        <span class="badge-vzla">🇻🇪 VENEZUELA</span>
+        <span>Envíos seguros a Caracas, Valencia, Maracay, Maracaibo y todo el país</span>
+      </div>
+      <div class="top-bar-right">
+        <div class="rate-indicator">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Tasa BCV/Ref: <strong id="rate-display">50.00 Bs/$</strong></span>
+        </div>
+        <div class="currency-toggle">
+          <button id="curr-usd" class="curr-btn active" title="Mostrar en Dólares">$ USD</button>
+          <button id="curr-ves" class="curr-btn" title="Mostrar en Bolívares">Bs. VES</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-content">
+      <a href="#" class="logo">
+        <div class="logo-icon">🐢</div>
+        <div class="logo-text">
+          <span class="brand-name">Tortu<span class="accent-text">Vzla</span></span>
+          <span class="brand-tagline">Criadero & Tienda Online</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#catalogo" class="nav-link active">Catálogo</a>
+        <a href="#beneficios" class="nav-link">¿Por qué nosotros?</a>
+        <a href="#cuidados" class="nav-link">Guía de Cuidados</a>
+        <a href="#pagos" class="nav-link">Métodos de Pago</a>
+        <a href="#faq" class="nav-link">Preguntas</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="cart-trigger-btn" id="open-cart-btn" aria-label="Abrir carrito">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="cart-label">Carrito</span>
+          <span class="cart-badge" id="cart-counter">0</span>
+        </button>
+        <a href="https://wa.me/584120000000?text=Hola%20TortuVzla!%20Deseo%20información%20sobre%20las%20tortugas%20disponibles" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp-nav">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-bg-glow"></div>
+    <div class="container hero-container">
+      <div class="hero-text-col">
+        <div class="pill-chip">
+          <i class="fa-solid fa-certificate"></i> Especies Autorizadas & Criadero Responsable
+        </div>
+        <h1 class="hero-title">
+          Tu Nueva Compañera <span class="gradient-text">Verde y Saludable</span> en Venezuela
+        </h1>
+        <p class="hero-description">
+          Venta de tortugas terrestres y acuáticas nacidas en cautiverio, aclimatadas a nuestro clima. Incluye certificado de origen, kit de bienvenida y asesoría veterinaria por WhatsApp.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#catalogo" class="btn btn-primary btn-lg">
+            <i class="fa-solid fa-paw"></i> Ver Tortugas Disponibles
+          </a>
+          <button class="btn btn-secondary btn-lg" id="btn-quick-contact">
+            <i class="fa-brands fa-whatsapp"></i> Asesoría Inmediata
+          </button>
+        </div>
+
+        <div class="hero-features-list">
+          <div class="feature-item">
+            <i class="fa-solid fa-shield-heart text-success"></i>
+            <span>Garantía de Salud 15 días</span>
+          </div>
+          <div class="feature-item">
+            <i class="fa-solid fa-truck-fast text-success"></i>
+            <span>Entregas personales & MRW/Zoom</span>
+          </div>
+          <div class="feature-item">
+            <i class="fa-solid fa-money-bill-transfer text-success"></i>
+            <span>Pago Móvil / Binance / Zelle</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual-col">
+        <div class="hero-card-main">
+          <img src="https://images.unsplash.com/photo-1518467166778-b88f373ffec7?auto=format&fit=crop&w=900&q=80" 
+               alt="Tortuga bebé en hábitat natural" 
+               class="hero-img" 
+               onerror="this.src='https://images.unsplash.com/photo-1508873696983-2df5703bc20d?auto=format&fit=crop&w=900&q=80'">
+          <div class="hero-floating-card top-float">
+            <div class="float-icon">🌟</div>
+            <div class="float-info">
+              <strong>100% Criadero Legal</strong>
+              <small>No tráfico de fauna silvestre</small>
+            </div>
+          </div>
+          <div class="hero-floating-card bottom-float">
+            <div class="float-icon">📦</div>
+            <div class="float-info">
+              <strong>Kit de Inicio Gratis</strong>
+              <small>Con tu primera tortuga</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Legal & Responsible Care Notice -->
+  <section class="notice-banner">
+    <div class="container">
+      <div class="notice-box">
+        <div class="notice-icon"><i class="fa-solid fa-leaf"></i></div>
+        <div class="notice-content">
+          <strong>Compromiso Ecológico Venezolano:</strong> Todas nuestras especies provienen de reproducción controlada en zoocriaderos autorizados. Fomentamos la tenencia responsable y repudiamos la extracción ilegal de morrocoyes o tortugas silvestres.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catalog Section -->
+  <section class="catalog-section" id="catalogo">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">CATÁLOGO DISPONIBLE</div>
+        <h2 class="section-title">Elige tu Tortuga o Hábitat</h2>
+        <p class="section-subtitle">Precios transparentes en Dólares ($) y Bolívares (Bs.). Todos los ejemplares han pasado chequeo veterinario.</p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="filter-bar">
+        <button class="filter-btn active" data-category="todos">
+          <i class="fa-solid fa-boxes-stacked"></i> Todos los Productos
+        </button>
+        <button class="filter-btn" data-category="terrestres">
+          <i class="fa-solid fa-mountain-sun"></i> Tortugas Terrestres
+        </button>
+        <button class="filter-btn" data-category="acuaticas">
+          <i class="fa-solid fa-water"></i> Tortugas Acuáticas
+        </button>
+        <button class="filter-btn" data-category="habitats">
+          <i class="fa-solid fa-house-chimney"></i> Terrarios & Acuarios
+        </button>
+        <button class="filter-btn" data-category="nutricion">
+          <i class="fa-solid fa-bowl-food"></i> Alimento & Vitaminas
+        </button>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="product-grid" id="product-grid">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us / Benefits -->
+  <section class="benefits-section" id="beneficios">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-tag">BENEFICIOS TORTUVZLA</div>
+        <h2 class="section-title">¿Por Qué Comprar Con Nosotros?</h2>
+        <p class="section-subtitle">Hacemos que tener una tortuga en Venezuela sea una experiencia segura, fácil y educativa.</p>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon bg-emerald">
+            <i class="fa-solid fa-notes-medical"></i>
+          </div>
+          <h3>Chequeo Veterinario</h3>
+          <p>Cada ejemplar se entrega desparasitado, con caparazón firme y activo para garantizar su longevidad.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon bg-blue">
+            <i class="fa-solid fa-box-open"></i>
+          </div>
+          <h3>Embalaje Térmico Especial</h3>
+          <p>Cajas de transporte con control de temperatura, ventilación oxigenada y material absorbente para envíos sin estrés.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon bg-amber">
+            <i class="fa-brands fa-whatsapp"></i>
+          </div>
+          <h3>Grupo VIP de Asesoría</h3>
+          <p>Acceso directo a nuestro equipo para resolver dudas de alimentación, cambio de agua o iluminación.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon bg-purple">
+            <i class="fa-solid fa-hand-holding-dollar"></i>
+          </div>
+          <h3>Pagos Adaptados a Venezuela</h3>
+          <p>Aceptamos Pago Móvil a tasa del día, Binance Pay USDT sin comisiones, Zelle y divisas en efectivo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Care Guide Summary -->
+  <section class="care-section" id="cuidados">
+    <div class="container">
+      <div class="care-wrapper">
+        <div class="care-info">
+          <div class="section-tag">GUÍA RÁPIDA</div>
+          <h2 class="section-title">Los 4 Pilares del Cuidado de tu Tortuga</h2>
+          <p>Tener una tortuga es fácil cuando conoces los fundamentos. Aquí tienes lo esencial:</p>
+          
+          <div class="care-steps">
+            <div class="care-step">
+              <div class="step-num">01</div>
+              <div class="step-desc">
+                <strong>Luz Solar o Lámpara UVB:</strong>
+                <p>Necesitan rayos UVB para sintetizar la vitamina D3 y asimilar el calcio en su caparazón.</p>
+              </div>
+            </div>
+
+            <div class="care-step">
+              <div class="step-num">02</div>
+              <div class="step-desc">
+                <strong>Temperatura y Calor:</strong>
+                <p>Zona de asoleamiento a 28°C - 32°C. El clima de Venezuela es ideal, pero evita corrientes de aire frío.</p>
+              </div>
+            </div>
+
+            <div class="care-step">
+              <div class="step-num">03</div>
+              <div class="step-desc">
+                <strong>Alimentación Variada:</strong>
+                <p>Vegetales frescos (diente de león, hojas de mostaza, calabacín), pellets balanceados y bloque de calcio.</p>
+              </div>
+            </div>
+
+            <div class="care-step">
+              <div class="step-num">04</div>
+              <div class="step-desc">
+                <strong>Agua Limpia:</strong>
+                <p>Tanto para beber como para nadar. En acuáticas, usa un filtro potente para mantener el agua cristalina.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="care-card-quote">
+          <div class="quote-header">
+            <i class="fa-solid fa-book-open"></i>
+            <h4>¿Quieres la Guía Completa en PDF?</h4>
+          </div>
+          <p>Te enviamos gratis por WhatsApp nuestro manual de 20 páginas con tablas nutricionales y armado de hábitats.</p>
+          <a href="https://wa.me/584120000000?text=Hola,%20quisiera%20recibir%20la%20guía%20gratuita%20en%20PDF%20de%20cuidado%20de%20tortugas" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light">
+            <i class="fa-solid fa-download"></i> Solicitar Guía PDF Gratis
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Payment Methods Venezuela Section -->
+  <section class="payments-section" id="pagos">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-tag">PAGOS & ENVÍOS</div>
+        <h2 class="section-title">Métodos de Pago Cómodos y Rápidos</h2>
+        <p class="section-subtitle">Elige la forma de pago que más te convenga sin complicaciones.</p>
+      </div>
+
+      <div class="payment-methods-grid">
+        <div class="payment-card">
+          <div class="payment-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+          <h4>Pago Móvil</h4>
+          <p>Banesco, Mercantil, Venezuela y Bancamiga. Conversión automática según tasa de referencia.</p>
+          <span class="pay-badge">Instantáneo</span>
+        </div>
+
+        <div class="payment-card highlight-payment">
+          <div class="payment-icon"><i class="fa-brands fa-bitcoin"></i></div>
+          <h4>Binance Pay (USDT)</h4>
+          <p>Paga directo por Binance Pay ID o correo sin pagar fee de red. Rápido y seguro.</p>
+          <span class="pay-badge popular">0% Comisión</span>
+        </div>
+
+        <div class="payment-card">
+          <div class="payment-icon"><i class="fa-solid fa-dollar-sign"></i></div>
+          <h4>Zelle & Zinli</h4>
+          <p>Transferencias directas en USD desde tu cuenta Zelle o tarjeta virtual Zinli / Wally.</p>
+          <span class="pay-badge">En Dólares</span>
+        </div>
+
+        <div class="payment-card">
+          <div class="payment-icon"><i class="fa-solid fa-handshake"></i></div>
+          <h4>Efectivo en Entrega</h4>
+          <p>Divisas en efectivo al momento de retiro personal acordado en puntos seguros de Caracas.</p>
+          <span class="pay-badge">Personal</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-tag">DUDAS COMUNES</div>
+        <h2 class="section-title">Preguntas Frecuentes</h2>
+        <p class="section-subtitle">Todo lo que necesitas saber antes de ordenar tu tortuga.</p>
+      </div>
+
+      <div class="faq-accordion">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>¿Cómo se realiza el envío de las tortugas de forma segura?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Utilizamos cajas térmicas especiales acolchadas con sustrato húmedo e hidratación previa. Coordinamos despachos express a través de encomiendas autorizadas (MRW / Zoom) los días lunes a miércoles para evitar que queden varadas el fin de semana. En Caracas realizamos entregas personales directas.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>¿Es legal tener estas tortugas en casa?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Sí. Trabajamos exclusivamente con ejemplares nacidos en zoocriaderos registrados y especies permitidas para tenencia doméstica como mascotas (Tortugas Rusas, Orejas Amarillas/Rojas de granja, Sulcatas de criadero). Entregamos recibo y ficha de procedencia.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>¿Qué incluye el Kit de Inicio para principiantes?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Con cualquier tortuga recibes una ración de comida balanceada para 1 mes, bloque de calcio con minerales, guía digital de cuidados veterinarios y acceso a nuestro canal privado de WhatsApp para dudas durante el crecimiento.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>¿Cómo finalizo la compra y confirmo el pago?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Puedes agregar los productos al carrito y hacer clic en <strong>"Pedir por WhatsApp"</strong>. Se generará un resumen automático con tu lista, total en $ o Bs. y tus datos. Un asesor te responderá de inmediato para suministrarte los datos bancarios y coordinar el envío.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col">
+        <div class="logo footer-logo">
+          <div class="logo-icon">🐢</div>
+          <div class="logo-text">
+            <span class="brand-name">Tortu<span class="accent-text">Vzla</span></span>
+            <span class="brand-tagline">Tienda de Quelonios y Accesorios</span>
+          </div>
+        </div>
+        <p class="footer-desc">
+          Líderes en cría responsable, asesoramiento integral y bienestar de quelonios en Venezuela.
+        </p>
+        <div class="social-links">
+          <a href="#" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" class="social-btn" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" class="social-btn" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Enlaces Rápidos</h4>
+        <ul class="footer-list">
+          <li><a href="#catalogo">Catálogo de Tortugas</a></li>
+          <li><a href="#catalogo">Terrarios y Filtros</a></li>
+          <li><a href="#cuidados">Guía de Alimentación</a></li>
+          <li><a href="#pagos">Datos de Pago Móvil</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Cobertura de Envíos</h4>
+        <ul class="footer-list text-muted">
+          <li>📍 Caracas (Entregas Personales)</li>
+          <li>📍 Valencia, Maracay y Barquisimeto</li>
+          <li>📍 Maracaibo, Pto. La Cruz, San Cristóbal</li>
+          <li>🚚 Envíos Nacionales vía MRW y Zoom</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Atención al Cliente</h4>
+        <p class="text-sm">Horario: Lunes a Sábado de 8:30 AM a 7:00 PM</p>
+        <a href="https://wa.me/584120000000" target="_blank" rel="noopener noreferrer" class="footer-wa-btn">
+          <i class="fa-brands fa-whatsapp"></i> +58 412-0000000
+        </a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© <span id="current-year"></span> TortuVzla - Todos los derechos reservados. Creado con pasión por la fauna y tenencia responsable.</p>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp CTA Button -->
+  <a href="https://wa.me/584120000000?text=Hola%20TortuVzla!%20Tengo%20interés%20en%20una%20tortuga" 
+     class="floating-whatsapp" 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     aria-label="Contactar por WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="floating-tooltip">¿Dudas? ¡Escríbenos al WhatsApp!</span>
+  </a>
+
+  <!-- Cart Modal Drawer -->
+  <div class="cart-backdrop" id="cart-backdrop"></div>
+  <aside class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <div class="cart-header-title">
+        <i class="fa-solid fa-basket-shopping text-success"></i>
+        <h3>Tu Carrito de Compra</h3>
+      </div>
+      <button class="cart-close-btn" id="close-cart-btn" aria-label="Cerrar carrito">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="cart-items" id="cart-items-container">
+      <!-- Items dynamically rendered by JS -->
+    </div>
+
+    <div class="cart-footer" id="cart-footer">
+      <div class="cart-total-box">
+        <div class="total-row">
+          <span>Total en USD:</span>
+          <strong id="cart-total-usd">$0.00</strong>
+        </div>
+        <div class="total-row ves-row">
+          <span>Total en Bolívares (VES):</span>
+          <strong id="cart-total-ves">0.00 Bs.</strong>
+        </div>
+      </div>
+
+      <!-- Quick Checkout Form -->
+      <form class="checkout-form" id="checkout-form">
+        <label for="client-name" class="form-label">Tu Nombre:</label>
+        <input type="text" id="client-name" class="form-input" placeholder="Ej: María González" required>
+
+        <label for="client-city" class="form-label">Ciudad / Estado en Venezuela:</label>
+        <input type="text" id="client-city" class="form-input" placeholder="Ej: Caracas, El Hatillo" required>
+
+        <label for="client-payment" class="form-label">Método de Pago Preferido:</label>
+        <select id="client-payment" class="form-select">
+          <option value="Pago Móvil">Pago Móvil (Bolívares)</option>
+          <option value="Binance Pay (USDT)">Binance Pay (USDT)</option>
+          <option value="Zelle">Zelle ($ USD)</option>
+          <option value="Efectivo en Entrega">Efectivo en Entrega (Caracas)</option>
+          <option value="Zinli / Wally">Zinli / Wally</option>
+        </select>
+
+        <button type="submit" class="btn btn-whatsapp-order">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>Pedir y Coordinar por WhatsApp</span>
+        </button>
+
+        <button type="button" class="btn btn-pagomovil-info" id="btn-show-bank-info">
+          <i class="fa-solid fa-qrcode"></i> Ver Datos de Pago Móvil & Binance
+        </button>
+      </form>
+    </div>
+  </aside>
+
+  <!-- Product Details Modal -->
+  <div class="modal-backdrop" id="product-modal-backdrop"></div>
+  <div class="modal-card" id="product-modal">
+    <button class="modal-close-btn" id="close-product-modal" aria-label="Cerrar ventana">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="modal-body" id="product-modal-content">
+      <!-- Content populated by JS -->
+    </div>
+  </div>
+
+  <!-- Bank / Payment Details Modal -->
+  <div class="modal-backdrop" id="bank-modal-backdrop"></div>
+  <div class="modal-card bank-modal" id="bank-modal">
+    <button class="modal-close-btn" id="close-bank-modal" aria-label="Cerrar datos de pago">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="modal-header">
+      <i class="fa-solid fa-wallet text-success modal-icon-lg"></i>
+      <h3>Datos de Pago en Venezuela</h3>
+      <p class="text-muted">Copia los datos con un clic para realizar tu transferencia</p>
+    </div>
+    
+    <div class="bank-details-grid">
+      <div class="bank-card">
+        <div class="bank-card-title">
+          <span><i class="fa-solid fa-mobile-screen"></i> Pago Móvil Banesco</span>
+          <button class="btn-copy" onclick="copyData('0134, 04121234567, V-25123456', this)">Copiar</button>
+        </div>
+        <ul>
+          <li><strong>Banco:</strong> Banesco (0134)</li>
+          <li><strong>Teléfono:</strong> 0412-1234567</li>
+          <li><strong>Cédula:</strong> V-25.123.456</li>
+          <li><strong>Beneficiario:</strong> TortuVzla Criadero C.A.</li>
+        </ul>
+      </div>
+
+      <div class="bank-card">
+        <div class="bank-card-title">
+          <span><i class="fa-brands fa-bitcoin"></i> Binance Pay (USDT)</span>
+          <button class="btn-copy" onclick="copyData('987654321', this)">Copiar Pay ID</button>
+        </div>
+        <ul>
+          <li><strong>Pay ID:</strong> 987654321</li>
+          <li><strong>Nickname:</strong> TortuVzla_Oficial</li>
+          <li><strong>Moneda:</strong> USDT</li>
+        </ul>
+      </div>
+
+      <div class="bank-card">
+        <div class="bank-card-title">
+          <span><i class="fa-solid fa-envelope"></i> Zelle</span>
+          <button class="btn-copy" onclick="copyData('pagos@tortuvzla.com', this)">Copiar Correo</button>
+        </div>
+        <ul>
+          <li><strong>Correo:</strong> pagos@tortuvzla.com</li>
+          <li><strong>Titular:</strong> TortuVzla LLC</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bank-modal-footer">
+      <button class="btn btn-primary" id="btn-done-bank-modal">Entendido</button>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

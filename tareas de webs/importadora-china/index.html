@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChinaDirecto Vzla 🇨🇳🇻🇪 | Importadora Mayor y Detal en Venezuela</title>
+  <meta name="description" content="La mayor importadora de productos chinos directo a Venezuela. Tecnología, gadgets, hogar, herramientas y moda a precios de fábrica de Shenzhen y Yiwu. Pagos en Pago Móvil, Binance y Zelle.">
+  
+  <!-- Modern Typography (Outfit + Plus Jakarta Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6.4 Pro Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar (Tasa de Cambio en Vivo & Beneficios) -->
+  <div class="top-announcement-bar">
+    <div class="container announcement-wrapper">
+      <div class="ticker-left">
+        <span class="badge-flag">🇨🇳 ➔ 🇻🇪 IMPORTACIONES DIRECTAS</span>
+        <span class="ticker-text"><i class="fa-solid fa-ship text-amber"></i> <strong>Contenedor Marítimo recién desaduanado en Puerto Cabello</strong> | Despachos inmediatos a todo el país</span>
+      </div>
+
+      <div class="ticker-right">
+        <div class="bcv-rate-pill">
+          <i class="fa-solid fa-arrow-trend-up"></i>
+          <span>Tasa Ref: <strong id="current-rate-label">50.00 Bs/$</strong></span>
+        </div>
+
+        <div class="currency-switch-box">
+          <button id="btn-curr-usd" class="curr-pill active" title="Ver en Dólares">$ USD</button>
+          <button id="btn-curr-ves" class="curr-pill" title="Ver en Bolívares">Bs. VES</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navbar -->
+  <header class="main-header" id="navbar">
+    <div class="container header-container">
+      <!-- Logo -->
+      <a href="#" class="brand-logo">
+        <div class="logo-badge">
+          <i class="fa-solid fa-box-open"></i>
+        </div>
+        <div class="brand-info">
+          <span class="brand-title">China<span class="text-gradient">Directo</span> <span class="badge-vzla">Vzla</span></span>
+          <span class="brand-sub">Precios de Fábrica Shenzhen • Mayor y Detal</span>
+        </div>
+      </a>
+
+      <!-- Search Bar with Live Filter -->
+      <div class="header-search-bar">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="global-search-input" placeholder="Buscar smartwatches, mini proyectores, herramientas..." autocomplete="off">
+        <button class="clear-search-btn" id="clear-search-btn" title="Limpiar"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="header-actions">
+        <a href="#calculadora" class="nav-shortcut-btn" title="Calcular Flete China-Vzla">
+          <i class="fa-solid fa-calculator"></i>
+          <span>Cotizar Flete</span>
+        </a>
+
+        <a href="#tracking" class="nav-shortcut-btn" title="Rastrear Guía">
+          <i class="fa-solid fa-location-crosshairs"></i>
+          <span>Rastreo</span>
+        </a>
+
+        <!-- Cart Button -->
+        <button class="header-cart-btn" id="open-cart-btn" aria-label="Abrir carrito de compras">
+          <div class="cart-icon-wrapper">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="cart-count-badge" id="cart-counter">0</span>
+          </div>
+          <div class="cart-btn-text">
+            <small>Mi Carrito</small>
+            <strong id="header-cart-total">$0.00</strong>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Category Quick Links Bar -->
+    <nav class="subnav-categories">
+      <div class="container subnav-container">
+        <button class="category-quick-link active" data-cat="todos">
+          <i class="fa-solid fa-fire text-amber"></i> Todos los Productos
+        </button>
+        <button class="category-quick-link" data-cat="tecnologia">
+          <i class="fa-solid fa-mobile-screen-button"></i> Tecnología & Gadgets
+        </button>
+        <button class="category-quick-link" data-cat="hogar">
+          <i class="fa-solid fa-couch"></i> Hogar & Cocina Inteligente
+        </button>
+        <button class="category-quick-link" data-cat="herramientas">
+          <i class="fa-solid fa-screwdriver-wrench"></i> Herramientas & Auto
+        </button>
+        <button class="category-quick-link" data-cat="moda">
+          <i class="fa-solid fa-bag-shopping"></i> Moda & Bolsos
+        </button>
+        <button class="category-quick-link" data-cat="belleza">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Belleza & Salud
+        </button>
+        <a href="#mayoristas" class="category-quick-link wholesale-highlight">
+          <i class="fa-solid fa-truck-ramp-box"></i> Compras al Mayor (Bultos)
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section with Countdown Offer -->
+  <section class="hero-section">
+    <div class="hero-backdrop-effects">
+      <div class="glow-orb orb-red"></div>
+      <div class="glow-orb orb-amber"></div>
+    </div>
+
+    <div class="container hero-grid">
+      <div class="hero-text-content">
+        <div class="hero-tag-pill">
+          <span class="pulse-dot"></span> DIRECTO DESDE FÁBRICAS DE SHENZHEN Y YIWU
+        </div>
+        <h1 class="hero-headline">
+          Los Productos de <span class="text-highlight">China que son Tendencia</span> en Venezuela al Mejor Precio
+        </h1>
+        <p class="hero-subtext">
+          Olvídate de pagar comisiones exageradas. Productos en <strong>stock físico en Caracas</strong> para entrega en 24 horas y servicio de <strong>importación puerta a puerta</strong> aérea y marítima con flete garantizado.
+        </p>
+
+        <!-- Flash Sale Timer Box -->
+        <div class="flash-sale-box">
+          <div class="flash-sale-header">
+            <div class="flash-title">
+              <i class="fa-solid fa-bolt text-amber"></i> OFERTAS DEL CONTENEDOR SEMANAL:
+            </div>
+            <span class="flash-badge">-40% A -60% DTO</span>
+          </div>
+          <div class="countdown-timer" id="countdown-timer">
+            <div class="time-unit">
+              <span class="number" id="timer-hours">14</span>
+              <span class="label">Horas</span>
+            </div>
+            <span class="timer-colon">:</span>
+            <div class="time-unit">
+              <span class="number" id="timer-minutes">32</span>
+              <span class="label">Minutos</span>
+            </div>
+            <span class="timer-colon">:</span>
+            <div class="time-unit">
+              <span class="number" id="timer-seconds">50</span>
+              <span class="label">Segundos</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-cta-btns">
+          <a href="#catalogo" class="btn btn-primary btn-xl">
+            <i class="fa-solid fa-basket-shopping"></i> Explorar Catálogo con Descuento
+          </a>
+          <a href="https://wa.me/584120000000?text=Hola%20ChinaDirecto%20Vzla!%20Deseo%20cotizar%20compras%20al%20mayor%20o%20detal" target="_blank" rel="noopener noreferrer" class="btn btn-outline-amber btn-xl">
+            <i class="fa-brands fa-whatsapp"></i> Asesoría Mayorista
+          </a>
+        </div>
+
+        <!-- Trust Features Row -->
+        <div class="trust-features-row">
+          <div class="trust-item">
+            <i class="fa-solid fa-shield-halved text-success"></i>
+            <div>
+              <strong>Garantía de Calidad</strong>
+              <small>Probado antes de despachar</small>
+            </div>
+          </div>
+          <div class="trust-item">
+            <i class="fa-solid fa-truck-fast text-amber"></i>
+            <div>
+              <strong>Despacho en 24 Horas</strong>
+              <small>MRW, Zoom, Tealca o Retiro</small>
+            </div>
+          </div>
+          <div class="trust-item">
+            <i class="fa-solid fa-wallet text-blue"></i>
+            <div>
+              <strong>Pago Móvil & Binance</strong>
+              <small>Tasa BCV o USDT sin fee</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual Interactive Card -->
+      <div class="hero-visual-content">
+        <div class="hero-featured-card">
+          <div class="featured-ribbon">🔥 MÁS VENDIDO DE LA SEMANA</div>
+          <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=80" 
+               alt="Smartwatch Ultra 9 Serie Pro" 
+               class="featured-hero-img"
+               onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80'">
+          
+          <div class="featured-card-body">
+            <div class="featured-rating">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <span>4.9 (240+ clientes en Vzla)</span>
+            </div>
+            <h3>Smartwatch Ultra 9 Pro AMOLED + 2 Correas</h3>
+            <p>Resistente al agua, recibe llamadas, monitor cardíaco y batería para 5 días.</p>
+            
+            <div class="featured-pricing-row">
+              <div class="price-stack">
+                <span class="old-price">$38.00 USD</span>
+                <span class="current-price" id="hero-card-price">$18.00 USD</span>
+                <small class="bs-price" id="hero-card-bs">≈ 900.00 Bs.</small>
+              </div>
+              <button class="btn btn-add-hero" onclick="addToCart('smartwatch-ultra9')">
+                <i class="fa-solid fa-cart-plus"></i> Lo Quiero
+              </button>
+            </div>
+          </div>
+
+          <!-- Floating Badges -->
+          <div class="hero-float-badge float-top-left">
+            <span class="icon">📦</span>
+            <div>
+              <strong>Stock en Caracas</strong>
+              <small>Entrega Hoy Mismo</small>
+            </div>
+          </div>
+
+          <div class="hero-float-badge float-bottom-right">
+            <span class="icon">⚡</span>
+            <div>
+              <strong>Ahorras el 52%</strong>
+              <small>Precio de Fábrica</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Shipping Calculator (China ➔ Venezuela) -->
+  <section class="calculator-section" id="calculadora">
+    <div class="container">
+      <div class="calculator-card">
+        <div class="calculator-header">
+          <div class="header-icon-box">
+            <i class="fa-solid fa-plane-departure"></i>
+          </div>
+          <div>
+            <span class="calc-tag">HERRAMIENTA EXCLUSIVA</span>
+            <h2>Calculadora de Envíos Puerta a Puerta (China ➔ Venezuela)</h2>
+            <p>Calcula al instante cuánto te cuesta importar tu propia carga desde Guangzhou / Yiwu a cualquier rincón de Venezuela.</p>
+          </div>
+        </div>
+
+        <div class="calculator-body-grid">
+          <div class="calc-form-col">
+            <div class="form-row-calc">
+              <label for="shipping-method"><i class="fa-solid fa-route"></i> Modalidad de Transporte:</label>
+              <select id="shipping-method" class="styled-select">
+                <option value="aereo">Aéreo Express (7 a 12 días continuos) - $14/Kg</option>
+                <option value="maritimo">Marítimo Consolidado (25 a 35 días) - $22/Pie Cúbico (Cft)</option>
+              </select>
+            </div>
+
+            <div class="form-row-calc" id="weight-input-container">
+              <label for="shipping-weight"><i class="fa-solid fa-weight-hanging"></i> Peso estimado (Kilogramos):</label>
+              <div class="input-unit-group">
+                <input type="number" id="shipping-weight" min="1" max="500" value="3" step="0.5">
+                <span class="unit-addon">Kg</span>
+              </div>
+            </div>
+
+            <div class="form-row-calc" id="volume-input-container" style="display:none;">
+              <label for="shipping-volume"><i class="fa-solid fa-box-archive"></i> Volumen en Pies Cúbicos (Cft):</label>
+              <div class="input-unit-group">
+                <input type="number" id="shipping-volume" min="1" max="200" value="2" step="0.5">
+                <span class="unit-addon">Cft</span>
+              </div>
+            </div>
+
+            <div class="form-row-calc">
+              <label for="shipping-destination"><i class="fa-solid fa-location-dot"></i> Ciudad de Destino en Venezuela:</label>
+              <select id="shipping-destination" class="styled-select">
+                <option value="caracas">Caracas / Gran Caracas (Retiro en Almacén o Delivery)</option>
+                <option value="valencia">Valencia / Carabobo</option>
+                <option value="maracay">Maracay / Aragua</option>
+                <option value="maracaibo">Maracaibo / Zulia</option>
+                <option value="barquisimeto">Barquisimeto / Lara</option>
+                <option value="oriente">Puerto La Cruz / Barcelona / Maturín</option>
+                <option value="andes">San Cristóbal / Mérida</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="calc-result-col">
+            <div class="result-box-inner">
+              <span class="res-title">COTIZACIÓN ESTIMADA DE FLETE</span>
+              <div class="result-price-big" id="calc-total-usd">$42.00 USD</div>
+              <div class="result-price-bs" id="calc-total-bs">≈ 2,100.00 Bs. (Tasa Oficial)</div>
+              
+              <ul class="result-breakdown">
+                <li><i class="fa-solid fa-circle-check text-success"></i> Seguro de carga contra pérdidas incluido</li>
+                <li><i class="fa-solid fa-circle-check text-success"></i> Desaduanaje nacional garantizado (Sin pagos sorpresa)</li>
+                <li><i class="fa-solid fa-circle-check text-success"></i> Recepción gratis en almacén de Shenzhen / Yiwu</li>
+              </ul>
+
+              <button class="btn btn-calc-action" id="btn-request-shipping-quote">
+                <i class="fa-brands fa-whatsapp"></i> Traer mi Carga con Esta Tarifa
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Catalog Section -->
+  <section class="catalog-section" id="catalogo">
+    <div class="container">
+      <div class="catalog-header-flex">
+        <div>
+          <span class="section-tag-gold"><i class="fa-solid fa-gem"></i> STOCK DISPONIBLE EN VENEZUELA Y BAJO PEDIDO</span>
+          <h2 class="section-title-white">Catálogo de Productos Más Populares</h2>
+          <p class="section-sub-muted">Garantía local de cambio inmediato por defectos de fábrica. Compras al detal o precio de bulto cerrado.</p>
+        </div>
+
+        <!-- Filter Availability Toggles -->
+        <div class="availability-filter-pills">
+          <button class="avail-pill active" data-avail="all">Todos los Productos</button>
+          <button class="avail-pill" data-avail="stock"><i class="fa-solid fa-truck-fast text-success"></i> En Stock Caracas</button>
+          <button class="avail-pill" data-avail="order"><i class="fa-solid fa-ship text-amber"></i> Por Encargo China (-30%)</button>
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="category-tabs-row" id="category-filter-tabs">
+        <button class="cat-tab active" data-category="todos">
+          <i class="fa-solid fa-layer-group"></i> Todos (<span id="count-todos">12</span>)
+        </button>
+        <button class="cat-tab" data-category="tecnologia">
+          <i class="fa-solid fa-mobile-screen"></i> Tecnología (<span id="count-tecnologia">4</span>)
+        </button>
+        <button class="cat-tab" data-category="hogar">
+          <i class="fa-solid fa-blender"></i> Hogar & Cocina (<span id="count-hogar">3</span>)
+        </button>
+        <button class="cat-tab" data-category="herramientas">
+          <i class="fa-solid fa-wrench"></i> Herramientas & Auto (<span id="count-herramientas">3</span>)
+        </button>
+        <button class="cat-tab" data-category="moda">
+          <i class="fa-solid fa-bag-shopping"></i> Moda & Accesorios (<span id="count-moda">1</span>)
+        </button>
+        <button class="cat-tab" data-category="belleza">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Belleza & Salud (<span id="count-belleza">1</span>)
+        </button>
+      </div>
+
+      <!-- Live Sort and Counter -->
+      <div class="catalog-toolbar">
+        <div class="toolbar-left">
+          Mostrando <strong id="displayed-products-count">12</strong> productos encontrados
+        </div>
+        <div class="toolbar-right">
+          <label for="sort-select">Ordenar por:</label>
+          <select id="sort-select" class="sort-select">
+            <option value="featured">Más Populares (Destacados)</option>
+            <option value="price-asc">Menor Precio primero</option>
+            <option value="price-desc">Mayor Precio primero</option>
+            <option value="rating">Mejor Calificados ⭐</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="products-grid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Container & Package Tracker Simulator -->
+  <section class="tracking-section" id="tracking">
+    <div class="container">
+      <div class="tracking-card">
+        <div class="tracking-top">
+          <div class="tracking-info-col">
+            <span class="section-tag-gold"><i class="fa-solid fa-satellite-dish"></i> RASTREO EN VIVO</span>
+            <h2>¿Tienes una guía en tránsito con nosotros?</h2>
+            <p>Ingresa tu número de guía aérea o marítima para ver la posición exacta del contenedor o envío express.</p>
+            
+            <form class="tracking-input-form" id="tracking-form">
+              <div class="tracking-search-wrap">
+                <i class="fa-solid fa-barcode"></i>
+                <input type="text" id="tracking-code-input" placeholder="Ej: CN-VZLA-8921 o MRW-49201" value="CN-VZLA-8921" required>
+                <button type="submit" class="btn btn-track-submit">
+                  <i class="fa-solid fa-magnifying-glass"></i> Consultar Estado
+                </button>
+              </div>
+            </form>
+            <div class="demo-guides-hint">
+              <span>Guías de prueba para probar el sistema:</span>
+              <button type="button" class="btn-demo-code" onclick="fillTracking('CN-VZLA-8921')">CN-VZLA-8921 (En Aduana La Guaira)</button>
+              <button type="button" class="btn-demo-code" onclick="fillTracking('AERO-9042')">AERO-9042 (En Vuelo Shenzhen-Caracas)</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tracking Visual Timeline -->
+        <div class="tracking-timeline-box" id="tracking-results-box">
+          <div class="tracking-status-header">
+            <div>
+              <span class="tracking-code-badge" id="track-id-display">Guía #CN-VZLA-8921</span>
+              <h3 id="track-status-title">Contenedor en Inspección Aduanal - Puerto de La Guaira</h3>
+            </div>
+            <div class="status-date" id="track-eta-display">
+              <i class="fa-solid fa-calendar-check text-amber"></i> Entrega estimada: En 48 horas
+            </div>
+          </div>
+
+          <div class="timeline-steps-container">
+            <div class="timeline-step completed">
+              <div class="step-circle"><i class="fa-solid fa-warehouse"></i></div>
+              <div class="step-label">Bodega Shenzhen</div>
+              <div class="step-sub">Recibido & Clasificado</div>
+            </div>
+
+            <div class="timeline-step completed">
+              <div class="step-circle"><i class="fa-solid fa-ship"></i></div>
+              <div class="step-label">Tránsito Marítimo</div>
+              <div class="step-sub">Ruta Océano Atlántico</div>
+            </div>
+
+            <div class="timeline-step active">
+              <div class="step-circle"><i class="fa-solid fa-stamp"></i></div>
+              <div class="step-label">Aduana Venezuela</div>
+              <div class="step-sub">Revisión & Desaduanaje</div>
+            </div>
+
+            <div class="timeline-step">
+              <div class="step-circle"><i class="fa-solid fa-truck-ramp-box"></i></div>
+              <div class="step-label">Centro de Distribución</div>
+              <div class="step-sub">Despacho MRW / Retiro</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wholesale / Mayoristas VIP Section -->
+  <section class="wholesale-section" id="mayoristas">
+    <div class="container">
+      <div class="wholesale-card">
+        <div class="wholesale-grid">
+          <div class="wholesale-text">
+            <span class="wholesale-pill">💼 ZONA DE EMPRENDEDORES & TIENDAS FÍSICAS</span>
+            <h2>¿Tienes una tienda o vendes por Instagram en Venezuela?</h2>
+            <p>
+              Importa al mayor con márgenes de ganancia del <strong>100% al 250%</strong>. Te suministramos precios especiales por caja máster cerrada, bultos y cotizaciones personalizadas directamente desde las fábricas de Yiwu y Shenzhen.
+            </p>
+            <ul class="wholesale-perks">
+              <li><i class="fa-solid fa-check-double text-success"></i> Catálogo VIP en Excel con precios FOB y flete incluido a Venezuela</li>
+              <li><i class="fa-solid fa-check-double text-success"></i> Factura comercial y soporte para registro de inventario</li>
+              <li><i class="fa-solid fa-check-double text-success"></i> Inspección de calidad con video en directo antes del embarque en China</li>
+              <li><i class="fa-solid fa-check-double text-success"></i> Crédito y facilidades para clientes recurrentes</li>
+            </ul>
+
+            <div class="wholesale-cta-box">
+              <a href="https://wa.me/584120000000?text=Hola!%20Tengo%20un%20negocio%20en%20Venezuela%20y%20quiero%20el%20catálogo%20mayorista%20por%20bultos" target="_blank" rel="noopener noreferrer" class="btn btn-wholesale-wa">
+                <i class="fa-brands fa-whatsapp"></i> Hablar con Gerente de Cuentas Mayoristas
+              </a>
+            </div>
+          </div>
+
+          <div class="wholesale-stats">
+            <div class="stat-box">
+              <span class="stat-number">+12,500</span>
+              <span class="stat-label">Bultos entregados con éxito en Venezuela</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-number">48 Hrs</span>
+              <span class="stat-label">Tiempo récord de despacho nacional</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-number">350+</span>
+              <span class="stat-label">Tiendas surtidas mensualmente en Caracas, Valencia y Maracaibo</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-number">0%</span>
+              <span class="stat-label">Riesgo: mercancía 100% asegurada contra extravío</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Payment Methods Venezuela Section -->
+  <section class="payments-section" id="pagos">
+    <div class="container">
+      <div class="text-center-header">
+        <span class="section-tag-gold"><i class="fa-solid fa-shield-halved"></i> PAGOS FÁCILES Y CONFIABLES</span>
+        <h2>Aceptamos Todos los Métodos Populares en Venezuela</h2>
+        <p>Paga como prefieras, sin trabas ni comisiones ocultas.</p>
+      </div>
+
+      <div class="payment-grid-cards">
+        <div class="pay-card">
+          <div class="pay-badge-corner">MÁS USADO</div>
+          <div class="pay-card-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+          <h3>Pago Móvil</h3>
+          <p>Banesco, Mercantil, Venezuela, Bancamiga y Provincial. Calculado exactamente a la tasa oficial del día.</p>
+          <span class="pay-tag-instant">Confirmación Inmediata</span>
+        </div>
+
+        <div class="pay-card card-binance">
+          <div class="pay-badge-corner gold-badge">0% COMISIÓN</div>
+          <div class="pay-card-icon"><i class="fa-brands fa-bitcoin"></i></div>
+          <h3>Binance Pay (USDT)</h3>
+          <p>Transfiere criptoactivos al instante sin comisiones de red usando nuestro Pay ID o código QR.</p>
+          <span class="pay-tag-instant">Acreditación en 60 Segundos</span>
+        </div>
+
+        <div class="pay-card">
+          <div class="pay-card-icon"><i class="fa-solid fa-dollar-sign"></i></div>
+          <h3>Zelle & Zinli</h3>
+          <p>Aceptamos pagos directos desde cuentas Zelle bancarias estadounidenses y tarjetas prepagadas Zinli o Wally Tech.</p>
+          <span class="pay-tag-instant">100% Seguro</span>
+        </div>
+
+        <div class="pay-card">
+          <div class="pay-card-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+          <h3>Efectivo Divisas ($ USD)</h3>
+          <p>Cancela en efectivo en divisas al momento de retirar en nuestra sede de Caracas o con delivery motorizado.</p>
+          <span class="pay-tag-instant">Contra-Entrega</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials from Venezuelan Clients -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="text-center-header">
+        <span class="section-tag-gold"><i class="fa-solid fa-star"></i> REPUTACIÓN COMPROBADA</span>
+        <h2>Lo que Dicen Nuestros Clientes en Toda Venezuela</h2>
+        <p>Emprendedores y compradores que confían en ChinaDirecto cada semana.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testi-card">
+          <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+          <p>"Pedí 10 smartwatches para revender en mi negocio en Barquisimeto. Llegaron por MRW en 24 horas y con los mejores precios que he conseguido. El margen de ganancia fue genial."</p>
+          <div class="testi-user">
+            <div class="user-avatar">CG</div>
+            <div>
+              <strong>Carlos Gutiérrez</strong>
+              <small>Barquisimeto, Edo. Lara</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+          <p>"Excelente servicio. Compré el mini proyector portátil y me asesoraron por WhatsApp para pagar con Binance Pay. Al día siguiente lo retiré en persona en Caracas. 100% recomendado."</p>
+          <div class="testi-user">
+            <div class="user-avatar">AR</div>
+            <div>
+              <strong>Andreína Rojas</strong>
+              <small>Caracas, El Hatillo</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+          <p>"Traje una caja de 12 kilos de repuestos y herramientas desde China con su flete aéreo. Llegó en 10 días exactos sin líos de aduanas. Súper serios y responsables con el seguimiento."</p>
+          <div class="testi-user">
+            <div class="user-avatar">ML</div>
+            <div>
+              <strong>Manuel Lugo</strong>
+              <small>Valencia, Edo. Carabobo</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="text-center-header">
+        <span class="section-tag-gold"><i class="fa-solid fa-circle-question"></i> DUDAS FRECUENTES</span>
+        <h2>Preguntas Frecuentes sobre Compras e Importación</h2>
+        <p>Resolvemos todas tus dudas antes de realizar tu compra.</p>
+      </div>
+
+      <div class="faq-accordion-box">
+        <div class="faq-item">
+          <button class="faq-toggle">
+            <span>¿Cuál es la diferencia entre los productos "En Stock" y "Por Encargo"?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-content">
+            <p>Los productos <strong>En Stock</strong> ya se encuentran físicamente en nuestro almacén de Caracas y se despachan en menos de 24 horas. Los productos <strong>Por Encargo</strong> vienen directo de fábrica en China en nuestro contenedor semanal, permitiéndote ahorrar entre 30% y 50% con un tiempo de espera de 15 a 22 días.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-toggle">
+            <span>¿Cómo se coordina el envío en Venezuela?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-content">
+            <p>Realizamos despachos a nivel nacional a través de <strong>MRW, Zoom y Tealca</strong> (cobro en destino o prepagado). En Caracas disponemos de retiros personales en nuestro showroom en Chacao y servicio de delivery motorizado para entrega inmediata.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-toggle">
+            <span>¿Debo pagar aranceles o aduana si traigo carga con ustedes?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-content">
+            <p>No. Nuestras tarifas de flete marítimo y aéreo son <strong>puerta a puerta todo incluido</strong> (desaduanaje, impuestos de nacionalización y manejo). La tarifa que cotizas en nuestra calculadora es el precio final que pagas.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-toggle">
+            <span>¿Tienen garantía los productos electrónicos?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-content">
+            <p>Todos nuestros productos electrónicos cuentan con <strong>garantía de 30 días continuos</strong> contra defectos de fábrica. Si el equipo presenta alguna falla técnica, realizamos el cambio inmediato por una unidad nueva.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container footer-grid">
+      <div class="footer-col brand-col">
+        <div class="brand-logo footer-logo">
+          <div class="logo-badge"><i class="fa-solid fa-box-open"></i></div>
+          <span class="brand-title">China<span class="text-gradient">Directo</span> <span class="badge-vzla">Vzla</span></span>
+        </div>
+        <p class="footer-desc">
+          Líderes en consolidación de carga e importaciones mayoristas desde los centros industriales de China hacia Venezuela. Conectando fábricas asiáticas con el consumidor venezolano.
+        </p>
+        <div class="footer-social-icons">
+          <a href="#" class="social-circle" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-circle" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" class="social-circle" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          <a href="#" class="social-circle" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Categorías</h4>
+        <ul class="footer-menu">
+          <li><a href="#catalogo" onclick="filterByCategory('tecnologia')">Tecnología & Gadgets</a></li>
+          <li><a href="#catalogo" onclick="filterByCategory('hogar')">Hogar Inteligente</a></li>
+          <li><a href="#catalogo" onclick="filterByCategory('herramientas')">Herramientas & Automotriz</a></li>
+          <li><a href="#catalogo" onclick="filterByCategory('moda')">Moda & Morrales</a></li>
+          <li><a href="#catalogo" onclick="filterByCategory('belleza')">Belleza & Cuidado</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Servicios</h4>
+        <ul class="footer-menu">
+          <li><a href="#calculadora">Calculadora de Flete Aéreo/Marítimo</a></li>
+          <li><a href="#tracking">Rastreo de Guía en Vivo</a></li>
+          <li><a href="#mayoristas">Compras al Mayor por Bulto</a></li>
+          <li><a href="#pagos">Datos de Pago Móvil & Binance</a></li>
+          <li><a href="#faq">Políticas de Garantía</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Contacto & Almacén</h4>
+        <p class="footer-contact-item"><i class="fa-solid fa-location-dot text-amber"></i> Av. Francisco de Miranda, Chacao, Caracas, Venezuela</p>
+        <p class="footer-contact-item"><i class="fa-solid fa-clock text-amber"></i> Lun a Sáb: 8:30 AM a 6:00 PM</p>
+        <a href="https://wa.me/584120000000" target="_blank" rel="noopener noreferrer" class="footer-wa-card">
+          <i class="fa-brands fa-whatsapp"></i>
+          <div>
+            <strong>+58 412-0000000</strong>
+            <small>Atención por WhatsApp 24/7</small>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom-bar">
+      <p>© <span id="current-year"></span> ChinaDirecto Venezuela C.A. - RIF J-40981234-5. Todos los derechos reservados.</p>
+      <div class="footer-badges">
+        <span>🔒 Pagos Seguros</span>
+        <span>✈️ Flete Consolidado</span>
+        <span>🇻🇪 Envíos Nacionales</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Action -->
+  <a href="https://wa.me/584120000000?text=Hola%20ChinaDirecto%20Vzla!%20Deseo%20hacer%20una%20consulta" 
+     class="floating-wa-btn" 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     aria-label="Atención al cliente por WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="wa-tooltip">¿Buscas algún producto específico de China? ¡Escríbenos!</span>
+  </a>
+
+  <!-- Cart Drawer Component -->
+  <div class="drawer-backdrop" id="cart-backdrop"></div>
+  <aside class="cart-drawer-panel" id="cart-drawer">
+    <div class="drawer-header">
+      <div class="drawer-header-title">
+        <i class="fa-solid fa-cart-shopping text-amber"></i>
+        <h3>Bolsa de Compras</h3>
+      </div>
+      <button class="btn-close-drawer" id="close-cart-btn" aria-label="Cerrar bolsa">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Items container -->
+    <div class="drawer-items-list" id="cart-items-wrapper">
+      <!-- Injected by JS -->
+    </div>
+
+    <!-- Drawer Footer Checkout -->
+    <div class="drawer-footer" id="cart-footer-wrapper">
+      <div class="drawer-totals-box">
+        <div class="total-line">
+          <span>Subtotal en Divisas:</span>
+          <strong id="cart-usd-total">$0.00 USD</strong>
+        </div>
+        <div class="total-line ves-highlight">
+          <span>Total en Bolívares (VES):</span>
+          <strong id="cart-ves-total">0.00 Bs.</strong>
+        </div>
+      </div>
+
+      <!-- Quick Checkout Form -->
+      <form class="drawer-checkout-form" id="checkout-form">
+        <div class="input-field">
+          <label for="order-name">Nombre y Apellido:</label>
+          <input type="text" id="order-name" placeholder="Ej: Jesús Pérez" required>
+        </div>
+
+        <div class="input-field">
+          <label for="order-city">Ciudad / Estado (Venezuela):</label>
+          <input type="text" id="order-city" placeholder="Ej: Caracas, Valencia, Maracaibo" required>
+        </div>
+
+        <div class="input-field">
+          <label for="order-shipping">Método de Envío o Entrega:</label>
+          <select id="order-shipping">
+            <option value="Retiro Personal en Tienda (Caracas)">Retiro Personal en Tienda (Chacao, Caracas)</option>
+            <option value="Delivery Motorizado en Caracas">Delivery Express en Caracas</option>
+            <option value="Envío Nacional MRW">Envío Nacional MRW (Cobro en Destino)</option>
+            <option value="Envío Nacional Zoom">Envío Nacional Zoom (Asegurado)</option>
+            <option value="Envío Nacional Tealca">Envío Nacional Tealca</option>
+          </select>
+        </div>
+
+        <div class="input-field">
+          <label for="order-payment">Método de Pago:</label>
+          <select id="order-payment">
+            <option value="Pago Móvil">Pago Móvil (Tasa Oficial)</option>
+            <option value="Binance Pay (USDT)">Binance Pay (USDT)</option>
+            <option value="Zelle">Zelle ($ USD)</option>
+            <option value="Zinli / Wally">Zinli / Wally</option>
+            <option value="Efectivo en Entrega">Efectivo en Divisas (Caracas)</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-finish-whatsapp">
+          <i class="fa-brands fa-whatsapp"></i> Completar Pedido por WhatsApp
+        </button>
+
+        <button type="button" class="btn btn-outline-bank" id="btn-open-payment-modal">
+          <i class="fa-solid fa-qrcode"></i> Ver Cuentas de Pago Móvil & Binance
+        </button>
+      </form>
+    </div>
+  </aside>
+
+  <!-- Product Detail Modal -->
+  <div class="modal-overlay" id="product-detail-backdrop"></div>
+  <div class="modal-dialog" id="product-detail-modal">
+    <button class="modal-close" id="close-detail-modal" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-content-slot" id="product-detail-body">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+
+  <!-- Bank / Payment Accounts Modal -->
+  <div class="modal-overlay" id="bank-overlay"></div>
+  <div class="modal-dialog bank-dialog" id="bank-modal">
+    <button class="modal-close" id="close-bank-modal" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+    <div class="bank-modal-inner">
+      <div class="bank-title-center">
+        <i class="fa-solid fa-wallet text-amber modal-icon"></i>
+        <h3>Datos para Pagos en Venezuela</h3>
+        <p>Copia los datos con un solo clic para transferir fácilmente.</p>
+      </div>
+
+      <div class="bank-cards-stack">
+        <!-- Pago Móvil -->
+        <div class="bank-copy-card">
+          <div class="card-head">
+            <span><i class="fa-solid fa-mobile-screen"></i> Pago Móvil (Banesco)</span>
+            <button class="copy-pill-btn" onclick="copyToClipboard('0134, 04129876543, J-409812345', this)">Copiar Datos</button>
+          </div>
+          <div class="card-data-rows">
+            <div><strong>Banco:</strong> Banesco (0134)</div>
+            <div><strong>Teléfono:</strong> 0412-9876543</div>
+            <div><strong>RIF:</strong> J-40981234-5</div>
+            <div><strong>Beneficiario:</strong> ChinaDirecto Venezuela C.A.</div>
+          </div>
+        </div>
+
+        <!-- Binance Pay -->
+        <div class="bank-copy-card">
+          <div class="card-head">
+            <span><i class="fa-brands fa-bitcoin text-amber"></i> Binance Pay (USDT)</span>
+            <button class="copy-pill-btn" onclick="copyToClipboard('748392015', this)">Copiar Pay ID</button>
+          </div>
+          <div class="card-data-rows">
+            <div><strong>Binance Pay ID:</strong> 748392015</div>
+            <div><strong>Nickname:</strong> ChinaDirecto_Vzla</div>
+            <div><strong>Moneda:</strong> USDT</div>
+          </div>
+        </div>
+
+        <!-- Zelle -->
+        <div class="bank-copy-card">
+          <div class="card-head">
+            <span><i class="fa-solid fa-dollar-sign"></i> Zelle</span>
+            <button class="copy-pill-btn" onclick="copyToClipboard('pagos@chinadirectovzla.com', this)">Copiar Correo</button>
+          </div>
+          <div class="card-data-rows">
+            <div><strong>Correo Zelle:</strong> pagos@chinadirectovzla.com</div>
+            <div><strong>Nombre del Titular:</strong> China Import Logistics LLC</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-action-center">
+        <button class="btn btn-primary" id="btn-close-bank-screen">Entendido, ya tengo los datos</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toasts-wrapper" id="toasts-wrapper"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
