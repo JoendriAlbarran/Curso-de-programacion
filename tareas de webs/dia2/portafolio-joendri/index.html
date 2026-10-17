@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="cyan">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO & Meta Tags -->
+  <title>Joendri Albarran | Desarrollador Web & Creador Digital</title>
+  <meta name="description" content="Portafolio oficial de Joendri Albarran, Desarrollador Web Frontend & Diseñador de Interfaces. Descubre proyectos modernos, aplicaciones interactivas y cotiza tu próximo desarrollo digital.">
+  <meta name="keywords" content="Joendri Albarran, Desarrollador Web, Frontend Developer, JavaScript, CSS, HTML5, Portafolio, Venezuela, UI UX, Programador">
+  <meta name="author" content="Joendri Albarran">
+  <meta name="theme-color" content="#0a0f1d">
+  
+  <!-- Open Graph / Redes Sociales -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Joendri Albarran | Desarrollador Web & Creador Digital">
+  <meta property="og:description" content="Portafolio interactivo con proyectos web modernos, cotizador en vivo y terminal de desarrollador.">
+  <meta property="og:locale" content="es_LA">
+
+  <!-- Google Fonts: Syne, Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Estilos Principales -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Fondo Interactivo de Canvas para Partículas -->
+  <canvas id="bg-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- Efecto de Luz Ambiental del Cursor -->
+  <div id="cursor-glow" class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- Barra de Notificación / Estado en Vivo -->
+  <div class="top-status-bar" id="top-status-bar">
+    <div class="container top-status-container">
+      <div class="status-indicator">
+        <span class="pulsing-dot" aria-hidden="true"></span>
+        <span class="status-text">Disponible para nuevos proyectos y colaboraciones freelance</span>
+      </div>
+      <div class="status-quick-info">
+        <span class="location-badge"><i class="fa-solid fa-location-dot"></i> Venezuela</span>
+        <span class="time-badge" id="local-time-badge"><i class="fa-regular fa-clock"></i> Hora local: <strong id="current-time">--:--:--</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navegación Principal -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-content">
+      <a href="#hero" class="brand-logo" id="brand-logo" aria-label="Ir al inicio">
+        <div class="logo-symbol">
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-initials">JA</span>
+          <span class="logo-bracket">/&gt;</span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Joendri<span class="accent-color">.Albarran</span></span>
+          <span class="brand-role">Web Developer</span>
+        </div>
+      </a>
+
+      <!-- Menú Desktop -->
+      <nav class="nav-menu" id="nav-menu">
+        <ul class="nav-list">
+          <li><a href="#hero" class="nav-link active" data-nav="hero"><i class="fa-solid fa-house"></i> Inicio</a></li>
+          <li><a href="#about" class="nav-link" data-nav="about"><i class="fa-solid fa-user-astronaut"></i> Sobre Mí</a></li>
+          <li><a href="#skills" class="nav-link" data-nav="skills"><i class="fa-solid fa-code"></i> Habilidades</a></li>
+          <li><a href="#projects" class="nav-link" data-nav="projects"><i class="fa-solid fa-laptop-code"></i> Proyectos</a></li>
+          <li><a href="#estimator" class="nav-link" data-nav="estimator"><i class="fa-solid fa-calculator"></i> Cotizador</a></li>
+          <li><a href="#terminal-section" class="nav-link" data-nav="terminal-section"><i class="fa-solid fa-terminal"></i> Consola</a></li>
+          <li><a href="#contact" class="nav-link" data-nav="contact"><i class="fa-solid fa-paper-plane"></i> Contacto</a></li>
+        </ul>
+      </nav>
+
+      <!-- Acciones de Cabecera (Temas, Audio, Botón) -->
+      <div class="nav-actions">
+        <!-- Selector de Acento de Color -->
+        <div class="theme-picker" title="Cambiar color de acento">
+          <button class="theme-dot dot-cyan active" data-color="cyan" aria-label="Tema Cyan"></button>
+          <button class="theme-dot dot-purple" data-color="purple" aria-label="Tema Púrpura"></button>
+          <button class="theme-dot dot-emerald" data-color="emerald" aria-label="Tema Esmeralda"></button>
+          <button class="theme-dot dot-orange" data-color="orange" aria-label="Tema Naranja"></button>
+        </div>
+
+        <!-- Botón de Efectos de Sonido -->
+        <button id="sound-toggle-btn" class="icon-btn" aria-label="Alternar efectos de sonido" title="Efectos de sonido (Activado)">
+          <i class="fa-solid fa-volume-high" id="sound-icon"></i>
+        </button>
+
+        <!-- CTA Rápido -->
+        <a href="#contact" class="btn btn-primary btn-sm nav-cta">
+          <span>Hablemos</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+        <!-- Botón Hamburguesa Móvil -->
+        <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Abrir menú de navegación" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-text-content">
+          <div class="hero-badge animate-fade-in">
+            <span class="sparkle-icon">✨</span>
+            <span>Innovación, Diseño & Arquitectura Web</span>
+          </div>
+
+          <h1 class="hero-title animate-fade-in delay-1">
+            Hola, soy <span class="gradient-text">Joendri Albarran</span>
+          </h1>
+
+          <div class="typing-container animate-fade-in delay-2">
+            <span class="typing-prefix">Especializado en</span>
+            <span class="typing-text" id="typing-text">Desarrollo Web Frontend</span>
+            <span class="cursor-blink">|</span>
+          </div>
+
+          <p class="hero-description animate-fade-in delay-3">
+            Creo experiencias digitales de alto impacto que combinan código limpio, 
+            diseño responsivo y micro-interacciones dinámicas. Transformo ideas en aplicaciones web 
+            robustas, atractivas y optimizadas para el mundo real.
+          </p>
+
+          <div class="hero-cta-group animate-fade-in delay-4">
+            <a href="#projects" class="btn btn-primary btn-lg">
+              <i class="fa-solid fa-layer-group"></i>
+              <span>Explorar Proyectos</span>
+            </a>
+            <a href="#estimator" class="btn btn-outline btn-lg">
+              <i class="fa-solid fa-calculator"></i>
+              <span>Calcular Presupuesto</span>
+            </a>
+            <a href="#contact" class="btn btn-ghost btn-lg">
+              <i class="fa-regular fa-envelope"></i>
+              <span>Contactar</span>
+            </a>
+          </div>
+
+          <!-- Social Quick Links -->
+          <div class="hero-socials animate-fade-in delay-5">
+            <span class="socials-label">Conéctate conmigo:</span>
+            <div class="social-icons-wrapper">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub">
+                <i class="fa-brands fa-github"></i>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon" title="LinkedIn">
+                <i class="fa-brands fa-linkedin-in"></i>
+              </a>
+              <a href="https://wa.me/?text=Hola%20Joendri,%20vi%20tu%20portafolio%20y%20me%20gustaría%20conversar." target="_blank" rel="noopener noreferrer" class="social-icon" title="WhatsApp Directo">
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+              <button id="copy-email-hero-btn" class="social-icon" title="Copiar correo electrónico">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta de Código Interactiva / Hero Card 3D -->
+        <div class="hero-visual animate-fade-in delay-2">
+          <div class="interactive-card-3d" id="hero-3d-card">
+            <div class="code-window">
+              <div class="code-window-header">
+                <div class="window-buttons">
+                  <span class="btn-dot close"></span>
+                  <span class="btn-dot minimize"></span>
+                  <span class="btn-dot expand"></span>
+                </div>
+                <div class="window-title">
+                  <i class="fa-brands fa-js accent-color"></i>
+                  <span>developer_profile.js</span>
+                </div>
+                <button class="copy-code-btn" id="copy-profile-code-btn" title="Copiar código">
+                  <i class="fa-regular fa-clone"></i>
+                </button>
+              </div>
+
+              <pre class="code-body"><code><span class="code-keyword">const</span> <span class="code-variable">developer</span> = {
+  <span class="code-prop">name</span>: <span class="code-string">"Joendri Albarran"</span>,
+  <span class="code-prop">role</span>: <span class="code-string">"Frontend Developer & Creator"</span>,
+  <span class="code-prop">location</span>: <span class="code-string">"Venezuela 🇻🇪"</span>,
+  <span class="code-prop">coreStack</span>: [
+    <span class="code-string">"HTML5 Semántico"</span>,
+    <span class="code-string">"CSS3 Moderno / Glassmorphism"</span>,
+    <span class="code-string">"JavaScript ES6+"</span>,
+    <span class="code-string">"Python & Lógica"</span>
+  ],
+  <span class="code-prop">passion</span>: <span class="code-string">"Interfaces atractivas & soluciones útiles"</span>,
+  <span class="code-prop">status</span>: <span class="code-string">"🚀 Siempre aprendiendo y construyendo"</span>,
+  <span class="code-function">buildDreamProject</span>: <span class="code-keyword">function</span>(idea) {
+    <span class="code-keyword">return</span> <span class="code-keyword">new</span> <span class="code-type">DigitalMasterpiece</span>({
+      speed: <span class="code-string">"Ultra rápido"</span>,
+      design: <span class="code-string">"Aesthetic & Responsive"</span>,
+      satisfaction: <span class="code-number">100</span>
+    });
+  }
+};</code></pre>
+
+              <div class="code-window-footer">
+                <div class="git-branch">
+                  <i class="fa-solid fa-code-branch"></i>
+                  <span>main*</span>
+                </div>
+                <div class="code-meta">
+                  <span>UTF-8</span>
+                  <span>JavaScript</span>
+                  <span class="live-tag">● Live</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Badges alrededor de la tarjeta -->
+            <div class="floating-badge badge-1">
+              <i class="fa-brands fa-html5"></i>
+              <span>HTML5 & CSS3 Pro</span>
+            </div>
+            <div class="floating-badge badge-2">
+              <i class="fa-brands fa-js"></i>
+              <span>JavaScript Moderno</span>
+            </div>
+            <div class="floating-badge badge-3">
+              <i class="fa-brands fa-python"></i>
+              <span>Lógica en Python</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Métricas / Contadores Rápidos -->
+      <div class="container hero-stats-container">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-code-commit"></i></div>
+            <div class="stat-content">
+              <span class="stat-number" data-target="15">0</span><span class="stat-plus">+</span>
+              <span class="stat-title">Proyectos & Módulos</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-bolt"></i></div>
+            <div class="stat-content">
+              <span class="stat-number" data-target="100">0</span><span class="stat-plus">%</span>
+              <span class="stat-title">Dedicación & Pasión</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-mug-hot"></i></div>
+            <div class="stat-content">
+              <span class="stat-number" data-target="450">0</span><span class="stat-plus">+</span>
+              <span class="stat-title">Horas de Práctica</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+            <div class="stat-content">
+              <span class="stat-number" data-target="100">0</span><span class="stat-plus">%</span>
+              <span class="stat-title">Diseño Adaptable</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ABOUT SECTION ==================== -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle"><i class="fa-regular fa-compass"></i> Conóceme Más</span>
+          <h2 class="section-title">Pasión por el Código, <span class="gradient-text">Enfoque en Resultados</span></h2>
+          <p class="section-desc">Mi meta es crear software y sitios web que no solo funcionen a la perfección, sino que provoquen una sonrisa al usarlos.</p>
+        </div>
+
+        <div class="about-grid">
+          <!-- Columna Izquierda: Historia y Filosofía -->
+          <div class="about-story-card">
+            <div class="card-glow"></div>
+            <div class="story-header">
+              <div class="avatar-placeholder">
+                <div class="avatar-inner">
+                  <span class="avatar-letters">JA</span>
+                </div>
+                <span class="online-indicator" title="En línea"></span>
+              </div>
+              <div>
+                <h3 class="story-name">Joendri Albarran</h3>
+                <span class="story-role">Desarrollador de Software en Crecimiento Continuo</span>
+              </div>
+            </div>
+
+            <p class="story-text">
+              Comencé mi camino en el mundo del desarrollo impulsado por la curiosidad de entender cómo se construyen las herramientas que usamos a diario. Desde la creación de scripts en <strong>Python</strong> para automatizar tareas y lógica computacional, hasta el dominio de <strong>HTML5, CSS3 y JavaScript</strong> para diseñar interfaces visualmente deslumbrantes.
+            </p>
+
+            <p class="story-text">
+              Me enfoco en la <strong>arquitectura limpia</strong>, la <strong>accesibilidad</strong>, el rendimiento en dispositivos móviles y la estética visual moderna con micro-interacciones fluidas.
+            </p>
+
+            <div class="story-highlights">
+              <div class="highlight-item">
+                <i class="fa-solid fa-check-circle accent-color"></i>
+                <span>Código estructurado y mantenible</span>
+              </div>
+              <div class="highlight-item">
+                <i class="fa-solid fa-check-circle accent-color"></i>
+                <span>Sensibilidad por el diseño UI/UX</span>
+              </div>
+              <div class="highlight-item">
+                <i class="fa-solid fa-check-circle accent-color"></i>
+                <span>Capacidad resolutiva ante problemas reales</span>
+              </div>
+              <div class="highlight-item">
+                <i class="fa-solid fa-check-circle accent-color"></i>
+                <span>Mentalidad proactiva y aprendizaje ágil</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Línea de Tiempo y Pilares -->
+          <div class="about-pillars-wrapper">
+            <div class="pillar-card">
+              <div class="pillar-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+              <div class="pillar-body">
+                <h4>Diseño Moderno & Glassmorphism</h4>
+                <p>Uso paletas de colores armoniosas, tipografías legibles y efectos translúcidos que elevan cualquier marca personal o empresarial.</p>
+              </div>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon"><i class="fa-solid fa-gauge-high"></i></div>
+              <div class="pillar-body">
+                <h4>Velocidad & Optimización</h4>
+                <p>Carga instantánea sin sobrecarga innecesaria. Código nativo eficiente respetando las mejores prácticas web.</p>
+              </div>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <div class="pillar-body">
+                <h4>Estructura Sólida & Responsive</h4>
+                <p>Diseños probados en teléfonos móviles, tabletas y monitores de alta resolución con semántica HTML5 estricta.</p>
+              </div>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon"><i class="fa-solid fa-comments"></i></div>
+              <div class="pillar-body">
+                <h4>Comunicación Transparente</h4>
+                <p>Atención directa, actualización constante del avance del proyecto y enfoque en las metas del cliente.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SKILLS & TECH STACK ==================== -->
+    <section class="section skills-section" id="skills">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle"><i class="fa-solid fa-layer-group"></i> Caja de Herramientas</span>
+          <h2 class="section-title">Habilidades & <span class="gradient-text">Tecnologías Dominadas</span></h2>
+          <p class="section-desc">Conjunto de tecnologías y herramientas que aplico en cada desarrollo para crear experiencias memorables.</p>
+        </div>
+
+        <!-- Filtros de Categoría de Skills -->
+        <div class="skills-filter-nav" role="tablist">
+          <button class="skill-tab-btn active" data-filter="all" role="tab" aria-selected="true">
+            <i class="fa-solid fa-cubes"></i> Todas
+          </button>
+          <button class="skill-tab-btn" data-filter="frontend" role="tab" aria-selected="false">
+            <i class="fa-brands fa-html5"></i> Frontend
+          </button>
+          <button class="skill-tab-btn" data-filter="backend" role="tab" aria-selected="false">
+            <i class="fa-brands fa-python"></i> Lógica & Backend
+          </button>
+          <button class="skill-tab-btn" data-filter="tools" role="tab" aria-selected="false">
+            <i class="fa-solid fa-screwdriver-wrench"></i> Herramientas
+          </button>
+        </div>
+
+        <!-- Grid de Tarjetas de Tecnologías -->
+        <div class="skills-grid" id="skills-grid">
+          <!-- Skill: HTML5 -->
+          <div class="skill-card" data-category="frontend">
+            <div class="skill-card-top">
+              <div class="skill-icon html-icon"><i class="fa-brands fa-html5"></i></div>
+              <span class="skill-level-badge">Avanzado</span>
+            </div>
+            <h3 class="skill-name">HTML5 Semántico</h3>
+            <p class="skill-desc">Estructura limpia, SEO on-page, accesibilidad ARIA y estándares modernos de la W3C.</p>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" style="width: 95%;"></div>
+            </div>
+            <span class="skill-percent">95% Dominio</span>
+          </div>
+
+          <!-- Skill: CSS3 -->
+          <div class="skill-card" data-category="frontend">
+            <div class="skill-card-top">
+              <div class="skill-icon css-icon"><i class="fa-brands fa-css3-alt"></i></div>
+              <span class="skill-level-badge">Avanzado</span>
+            </div>
+            <h3 class="skill-name">CSS3 & Diseño UI</h3>
+            <p class="skill-desc">Flexbox, CSS Grid, Custom Properties, Glassmorphism, animaciones fluidas y Responsive Design.</p>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" style="width: 90%;"></div>
+            </div>
+            <span class="skill-percent">90% Dominio</span>
+          </div>
+
+          <!-- Skill: JavaScript -->
+          <div class="skill-card" data-category="frontend">
+            <div class="skill-card-top">
+              <div class="skill-icon js-icon"><i class="fa-brands fa-js"></i></div>
+              <span class="skill-level-badge">Intermedio-Alto</span>
+            </div>
+            <h3 class="skill-name">JavaScript ES6+</h3>
+            <p class="skill-desc">Manipulación del DOM, Asincronismo (Promises, Async/Await), APIs del navegador y LocalStorage.</p>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" style="width: 85%;"></div>
+            </div>
+            <span class="skill-percent">85% Dominio</span>
+          </div>
+
+          <!-- Skill: Python -->
+          <div class="skill-card" data-category="backend">
+            <div class="skill-card-top">
+              <div class="skill-icon python-icon"><i class="fa-brands fa-python"></i></div>
+              <span class="skill-level-badge">Intermedio</span>
+            </div>
+            <h3 class="skill-name">Python & Algoritmos</h3>
+            <p class="skill-desc">Lógica de programación, POO, estructuras de datos, scripts de consola y procesamiento de datos.</p>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" style="width: 80%;"></div>
+            </div>
+            <span class="skill-percent">80% Dominio</span>
+          </div>
+
+          <!-- Skill: Responsive & Mobile First -->
+          <div class="skill-card" data-category="frontend">
+            <div class="skill-card-top">
+              <div class="skill-icon mobile-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+              <span class="skill-level-badge">Experto</span>
+            </div>
+            <h3 class="skill-name">Responsive & UX</h3>
+            <p class="skill-desc">Diseño adaptado a cualquier pantalla sin saltos ni desbordamientos horizontales.</p>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" style="width: 95%;"></div>
+            </div>
+            <span class="skill-percent">95% Dominio</span>
+          </div>
+
+          <!-- Skill: Git & GitHub -->
+          <div class="skill-card" data-category="tools">
+            <div class="skill-card-top">
+              <div class="skill-icon git-icon"><i class="fa-brands fa-git-alt"></i></div>
+              <span class="skill-level-badge">Intermedio</span>
+            </div>
+            <h3 class="skill-name">Git & Control de Versiones</h3>
+            <p class="skill-desc">Commits organizados, ramas, repositorios remotos en GitHub y flujo de trabajo colaborativo.</p>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" style="width: 82%;"></div>
+            </div>
+            <span class="skill-percent">82% Dominio</span>
+          </div>
+
+          <!-- Skill: VS Code & DevTools -->
+          <div class="skill-card" data-category="tools">
+            <div class="skill-card-top">
+              <div class="skill-icon vscode-icon"><i class="fa-solid fa-terminal"></i></div>
+              <span class="skill-level-badge">Avanzado</span>
+            </div>
+            <h3 class="skill-name">DevTools & Optimización</h3>
+            <p class="skill-desc">Depuración en consola, inspección de red, métricas de rendimiento y accesibilidad en navegador.</p>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" style="width: 88%;"></div>
+            </div>
+            <span class="skill-percent">88% Dominio</span>
+          </div>
+
+          <!-- Skill: Web Architecture -->
+          <div class="skill-card" data-category="tools">
+            <div class="skill-card-top">
+              <div class="skill-icon api-icon"><i class="fa-solid fa-network-wired"></i></div>
+              <span class="skill-level-badge">En Foco</span>
+            </div>
+            <h3 class="skill-name">Consumo de APIs REST</h3>
+            <p class="skill-desc">Peticiones HTTP con Fetch API, manejo de respuestas JSON, integración de tasas y datos externos.</p>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" style="width: 80%;"></div>
+            </div>
+            <span class="skill-percent">80% Dominio</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PROJECTS SHOWCASE ==================== -->
+    <section class="section projects-section" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle"><i class="fa-solid fa-briefcase"></i> Portafolio de Proyectos</span>
+          <h2 class="section-title">Trabajos Destacados & <span class="gradient-text">Casos de Éxito</span></h2>
+          <p class="section-desc">Una selección de desarrollos web reales y prototipos funcionales construidos por Joendri Albarran.</p>
+        </div>
+
+        <!-- Filtros de Proyectos -->
+        <div class="projects-filter-bar">
+          <button class="project-filter-btn active" data-filter="all">Todos los Proyectos</button>
+          <button class="project-filter-btn" data-filter="ecommerce">E-Commerce & Tiendas</button>
+          <button class="project-filter-btn" data-filter="webapp">Web Apps Interactivas</button>
+          <button class="project-filter-btn" data-filter="python">Lógica & Python</button>
+        </div>
+
+        <!-- Grid de Proyectos -->
+        <div class="projects-grid" id="projects-grid">
+          <!-- Proyecto 1: TortuVzla E-commerce -->
+          <article class="project-card" data-category="ecommerce">
+            <div class="project-visual">
+              <div class="project-mockup ecom-gradient">
+                <div class="mockup-screen">
+                  <div class="mockup-header">
+                    <span class="mockup-circle"></span>
+                    <span class="mockup-circle"></span>
+                    <span class="mockup-circle"></span>
+                    <span class="mockup-url">tortuvzla.store</span>
+                  </div>
+                  <div class="mockup-content">
+                    <div class="mockup-badge">🐢 TortuVzla</div>
+                    <div class="mockup-title">Tienda Especializada en Tortugas</div>
+                    <div class="mockup-tags-row">
+                      <span>Carrito Reactivo</span>
+                      <span>Tasa BCV/VES</span>
+                      <span>Pagos Móviles</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="project-overlay">
+                <button class="btn btn-primary btn-sm view-project-btn" data-project-id="tortuvzla">
+                  <i class="fa-solid fa-eye"></i> Ver Detalles
+                </button>
+              </div>
+            </div>
+
+            <div class="project-info">
+              <div class="project-category-tag">E-Commerce & Catálogo</div>
+              <h3 class="project-title">TortuVzla — Tienda & Criadero Online</h3>
+              <p class="project-description">
+                Plataforma de comercio electrónico completa con catálogo interactivo, conversión en tiempo real de USD a Bolívares (VES), carrito de compras con persistencia y checkout directo a WhatsApp.
+              </p>
+              <div class="project-tech-tags">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3 Moderno</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">LocalStorage</span>
+              </div>
+              <div class="project-footer">
+                <button class="link-btn view-project-btn" data-project-id="tortuvzla">
+                  <span>Conocer más</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Proyecto 2: MaracaiNet ISP Portal -->
+          <article class="project-card" data-category="webapp">
+            <div class="project-visual">
+              <div class="project-mockup isp-gradient">
+                <div class="mockup-screen">
+                  <div class="mockup-header">
+                    <span class="mockup-circle"></span>
+                    <span class="mockup-circle"></span>
+                    <span class="mockup-circle"></span>
+                    <span class="mockup-url">maracainet.fibra.com</span>
+                  </div>
+                  <div class="mockup-content">
+                    <div class="mockup-badge">⚡ MaracaiNet</div>
+                    <div class="mockup-title">Portal de Fibra Óptica & Planes</div>
+                    <div class="mockup-tags-row">
+                      <span>Test de Velocidad</span>
+                      <span>Planes Dinámicos</span>
+                      <span>Zona Clientes</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="project-overlay">
+                <button class="btn btn-primary btn-sm view-project-btn" data-project-id="maracainet">
+                  <i class="fa-solid fa-eye"></i> Ver Detalles
+                </button>
+              </div>
+            </div>
+
+            <div class="project-info">
+              <div class="project-category-tag">Web Corporativa & Telecomunicaciones</div>
+              <h3 class="project-title">MaracaiNet — Portal de Servicios de Internet</h3>
+              <p class="project-description">
+                Landing page corporativa para proveedor de internet con cotizador dinámico de planes de fibra óptica, verificador de cobertura por zonas y diseño ultra moderno.
+              </p>
+              <div class="project-tech-tags">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS Flex/Grid</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">UI/UX</span>
+              </div>
+              <div class="project-footer">
+                <button class="link-btn view-project-btn" data-project-id="maracainet">
+                  <span>Conocer más</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Proyecto 3: Python Shopping Engine & Story Quest -->
+          <article class="project-card" data-category="python">
+            <div class="project-visual">
+              <div class="project-mockup python-gradient">
+                <div class="mockup-screen">
+                  <div class="mockup-header">
+                    <span class="mockup-circle"></span>
+                    <span class="mockup-circle"></span>
+                    <span class="mockup-circle"></span>
+                    <span class="mockup-url">python-app.py</span>
+                  </div>
+                  <div class="mockup-content">
+                    <div class="mockup-badge">🐍 Python Core</div>
+                    <div class="mockup-title">Motor de Carrito & Aventura Interactiva</div>
+                    <div class="mockup-tags-row">
+                      <span>Algoritmos POO</span>
+                      <span>Manejo de Estados</span>
+                      <span>Consola CLI</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="project-overlay">
+                <button class="btn btn-primary btn-sm view-project-btn" data-project-id="python-suite">
+                  <i class="fa-solid fa-eye"></i> Ver Detalles
+                </button>
+              </div>
+            </div>
+
+            <div class="project-info">
+              <div class="project-category-tag">Lógica de Backend & Scripts</div>
+              <h3 class="project-title">Suite de Lógica en Python & Story Engine</h3>
+              <p class="project-description">
+                Desarrollo de módulos computacionales en Python que integran carritos de compras con cálculo de impuestos, descuentos, control de inventario y motores de narración interactiva.
+              </p>
+              <div class="project-tech-tags">
+                <span class="tech-tag">Python 3</span>
+                <span class="tech-tag">POO</span>
+                <span class="tech-tag">Estructuras de Datos</span>
+                <span class="tech-tag">Algoritmos</span>
+              </div>
+              <div class="project-footer">
+                <button class="link-btn view-project-btn" data-project-id="python-suite">
+                  <span>Conocer más</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ESTIMATOR / COTIZADOR INTERACTIVO ==================== -->
+    <section class="section estimator-section" id="estimator">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle"><i class="fa-solid fa-calculator"></i> Herramienta Interactiva</span>
+          <h2 class="section-title">Calculadora de <span class="gradient-text">Presupuesto Web</span></h2>
+          <p class="section-desc">Selecciona las características de tu proyecto ideal y obtén una cotización estimada al instante con tiempo de entrega.</p>
+        </div>
+
+        <div class="estimator-container">
+          <!-- Opciones del Proyecto -->
+          <div class="estimator-options">
+            <!-- Paso 1: Tipo de Proyecto -->
+            <div class="option-block">
+              <label class="option-label">
+                <span class="step-num">1</span>
+                <span>Tipo de Plataforma Digital:</span>
+              </label>
+              <div class="options-radio-grid">
+                <label class="radio-card selected">
+                  <input type="radio" name="project-type" value="landing" checked>
+                  <div class="radio-content">
+                    <i class="fa-solid fa-file-lines radio-icon"></i>
+                    <span class="radio-title">Landing Page</span>
+                    <span class="radio-sub">Una sola página de alto impacto</span>
+                  </div>
+                </label>
+
+                <label class="radio-card">
+                  <input type="radio" name="project-type" value="corporate">
+                  <div class="radio-content">
+                    <i class="fa-solid fa-building radio-icon"></i>
+                    <span class="radio-title">Sitio Corporativo</span>
+                    <span class="radio-sub">3 a 5 páginas bien estructuradas</span>
+                  </div>
+                </label>
+
+                <label class="radio-card">
+                  <input type="radio" name="project-type" value="ecommerce">
+                  <div class="radio-content">
+                    <i class="fa-solid fa-cart-shopping radio-icon"></i>
+                    <span class="radio-title">Tienda / E-Commerce</span>
+                    <span class="radio-sub">Catálogo, carrito y pagos</span>
+                  </div>
+                </label>
+
+                <label class="radio-card">
+                  <input type="radio" name="project-type" value="custom">
+                  <div class="radio-content">
+                    <i class="fa-solid fa-wand-magic-sparkles radio-icon"></i>
+                    <span class="radio-title">Web App a Medida</span>
+                    <span class="radio-sub">Lógica interactiva especializada</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Paso 2: Funcionalidades Adicionales (Checkboxes) -->
+            <div class="option-block">
+              <label class="option-label">
+                <span class="step-num">2</span>
+                <span>Módulos y Funcionalidades Adicionales:</span>
+              </label>
+              <div class="checkboxes-grid">
+                <label class="feature-checkbox-card">
+                  <input type="checkbox" name="feature" value="seo" data-price="25" data-time="1">
+                  <span class="checkmark"></span>
+                  <div class="feature-info">
+                    <span class="feature-title"><i class="fa-solid fa-magnifying-glass"></i> SEO & Metadatos Avanzados</span>
+                    <span class="feature-meta">Optimización para Google</span>
+                  </div>
+                  <span class="feature-badge">+ $25</span>
+                </label>
+
+                <label class="feature-checkbox-card">
+                  <input type="checkbox" name="feature" value="darkmode" data-price="20" data-time="1" checked>
+                  <span class="checkmark"></span>
+                  <div class="feature-info">
+                    <span class="feature-title"><i class="fa-solid fa-moon"></i> Modo Oscuro / Selector de Temas</span>
+                    <span class="feature-meta">Estética moderna y personalizable</span>
+                  </div>
+                  <span class="feature-badge">+ $20</span>
+                </label>
+
+                <label class="feature-checkbox-card">
+                  <input type="checkbox" name="feature" value="whatsapp" data-price="15" data-time="1" checked>
+                  <span class="checkmark"></span>
+                  <div class="feature-info">
+                    <span class="feature-title"><i class="fa-brands fa-whatsapp"></i> Integración WhatsApp Directo</span>
+                    <span class="feature-meta">Pedidos o mensajes prediseñados</span>
+                  </div>
+                  <span class="feature-badge">+ $15</span>
+                </label>
+
+                <label class="feature-checkbox-card">
+                  <input type="checkbox" name="feature" value="animations" data-price="30" data-time="2">
+                  <span class="checkmark"></span>
+                  <div class="feature-info">
+                    <span class="feature-title"><i class="fa-solid fa-sparkles"></i> Micro-Animaciones & Efectos 3D</span>
+                    <span class="feature-meta">Interactividad visual que sorprende</span>
+                  </div>
+                  <span class="feature-badge">+ $30</span>
+                </label>
+
+                <label class="feature-checkbox-card">
+                  <input type="checkbox" name="feature" value="bcv" data-price="25" data-time="1">
+                  <span class="checkmark"></span>
+                  <div class="feature-info">
+                    <span class="feature-title"><i class="fa-solid fa-money-bill-transfer"></i> Conversor de Divisas / Tasa BCV</span>
+                    <span class="feature-meta">Muestra precios en USD y VES</span>
+                  </div>
+                  <span class="feature-badge">+ $25</span>
+                </label>
+
+                <label class="feature-checkbox-card">
+                  <input type="checkbox" name="feature" value="express" data-price="45" data-time="-2">
+                  <span class="checkmark"></span>
+                  <div class="feature-info">
+                    <span class="feature-title"><i class="fa-solid fa-bolt"></i> Entrega Rápida Prioritaria</span>
+                    <span class="feature-meta">Reducción del tiempo estimado</span>
+                  </div>
+                  <span class="feature-badge">+ $45</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Resumen de Cotización en Vivo -->
+          <div class="estimator-summary-card">
+            <div class="summary-header">
+              <span class="summary-badge"><i class="fa-solid fa-receipt"></i> Cotización Estimada</span>
+              <h3 class="summary-title">Resumen de Inversión</h3>
+            </div>
+
+            <div class="summary-breakdown">
+              <div class="summary-row">
+                <span class="summary-label" id="summary-base-title">Landing Page</span>
+                <span class="summary-val" id="summary-base-price">$60 USD</span>
+              </div>
+              <div class="summary-row" id="summary-addons-row">
+                <span class="summary-label">Extras seleccionados (<span id="addons-count">2</span>)</span>
+                <span class="summary-val" id="summary-addons-price">+$35 USD</span>
+              </div>
+              <div class="summary-divider"></div>
+              <div class="summary-total-row">
+                <span>Total Estimado:</span>
+                <div class="total-price-block">
+                  <span class="currency-sign">$</span>
+                  <span class="total-amount" id="total-usd-amount">95</span>
+                  <span class="currency-code">USD</span>
+                </div>
+              </div>
+              <div class="summary-ves-row">
+                <i class="fa-solid fa-coins"></i>
+                <span>Aprox. en Bolívares: <strong id="total-ves-amount">4,750.00 Bs</strong></span>
+              </div>
+              <div class="summary-delivery-row">
+                <i class="fa-regular fa-calendar-check"></i>
+                <span>Tiempo de Entrega Estimado: <strong id="estimated-days">4 a 6 días hábiles</strong></span>
+              </div>
+            </div>
+
+            <div class="summary-guarantees">
+              <div class="guarantee-item"><i class="fa-solid fa-check"></i> 100% Responsivo en Celulares</div>
+              <div class="guarantee-item"><i class="fa-solid fa-check"></i> Código Limpio y Sin Errores</div>
+              <div class="guarantee-item"><i class="fa-solid fa-check"></i> Soporte Post-Entrega</div>
+            </div>
+
+            <div class="summary-actions">
+              <a href="#" id="send-quote-whatsapp-btn" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-block">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>Enviar Esta Cotización a Joendri</span>
+              </a>
+              <button id="reset-estimator-btn" class="btn btn-ghost btn-sm btn-block">
+                <i class="fa-solid fa-rotate-left"></i> Restablecer Valores
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== DEVELOPER TERMINAL INTERACTIVA ==================== -->
+    <section class="section terminal-section" id="terminal-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle"><i class="fa-solid fa-terminal"></i> Modo Hacker / Desarrollador</span>
+          <h2 class="section-title">Consola Interactiva <span class="gradient-text">Joendri-CLI</span></h2>
+          <p class="section-desc">¿Prefieres la línea de comandos? Escribe comandos reales para interactuar con el portafolio.</p>
+        </div>
+
+        <div class="terminal-wrapper" id="terminal-wrapper">
+          <div class="terminal-bar">
+            <div class="terminal-dots">
+              <span class="term-dot dot-red"></span>
+              <span class="term-dot dot-yellow"></span>
+              <span class="term-dot dot-green"></span>
+            </div>
+            <div class="terminal-title">
+              <i class="fa-solid fa-user-gear"></i>
+              <span>joendri@terminal-v2.5: ~</span>
+            </div>
+            <div class="terminal-actions">
+              <button id="term-clear-btn" class="term-action-btn" title="Limpiar terminal">
+                <i class="fa-solid fa-eraser"></i> Limpiar
+              </button>
+            </div>
+          </div>
+
+          <div class="terminal-body" id="terminal-body" role="log" aria-live="polite">
+            <div class="terminal-welcome">
+              <pre class="ascii-art">
+   ██╗ ██████╗ ███████╗███╗   ██╗██████╗ ██████╗ ██╗
+   ██║██╔═══██╗██╔════╝████╗  ██║██╔══██╗██╔══██╗██║
+   ██║██║   ██║█████╗  ██╔██╗ ██║██║  ██║██████╔╝██║
+██   ██║██║   ██║██╔══╝  ██║╚██╗██║██║  ██║██╔══██╗██║
+╚█████╔╝╚██████╔╝███████╗██║ ╚████║██████╔╝██║  ██║██║
+ ╚════╝  ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═╝╚═╝
+              </pre>
+              <p class="term-info">Bienvenido a la consola interactiva de <strong>Joendri Albarran</strong> [Versión 2.5.0].</p>
+              <p class="term-hint">💡 Escribe <span class="term-cmd">help</span> y presiona Enter para ver los comandos disponibles.</p>
+            </div>
+            <div id="terminal-history"></div>
+            
+            <div class="terminal-input-line">
+              <span class="term-prompt">joendri@portfolio:~$</span>
+              <input type="text" id="terminal-input" class="term-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Escribe un comando (ej: help, skills, contact)..." aria-label="Línea de comando">
+            </div>
+          </div>
+
+          <div class="terminal-quick-buttons">
+            <span class="quick-label">Comandos sugeridos:</span>
+            <button class="quick-cmd-btn" data-cmd="help">help</button>
+            <button class="quick-cmd-btn" data-cmd="skills">skills</button>
+            <button class="quick-cmd-btn" data-cmd="projects">projects</button>
+            <button class="quick-cmd-btn" data-cmd="contact">contact</button>
+            <button class="quick-cmd-btn" data-cmd="matrix">matrix</button>
+            <button class="quick-cmd-btn" data-cmd="clear">clear</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CONTACT SECTION ==================== -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle"><i class="fa-regular fa-paper-plane"></i> Inicia una Conversación</span>
+          <h2 class="section-title">¿Tienes una Idea en Mente? <span class="gradient-text">Hagámosla Realidad</span></h2>
+          <p class="section-desc">Escríbeme para colaborar en un proyecto, contratarme como freelance o simplemente compartir conocimientos de desarrollo.</p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Columna Información de Contacto -->
+          <div class="contact-info-panel">
+            <div class="info-card">
+              <div class="info-icon"><i class="fa-brands fa-whatsapp"></i></div>
+              <div class="info-text">
+                <span class="info-label">WhatsApp Directo</span>
+                <span class="info-val">Respuesta rápida</span>
+                <a href="https://wa.me/?text=Hola%20Joendri,%20te%20contacto%20desde%20tu%20sitio%20web." target="_blank" rel="noopener noreferrer" class="info-link">
+                  <span>Abrir chat de WhatsApp</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-icon"><i class="fa-regular fa-envelope"></i></div>
+              <div class="info-text">
+                <span class="info-label">Correo Electrónico</span>
+                <span class="info-val" id="email-address-text">joendrialbarran.dev@gmail.com</span>
+                <button id="copy-email-contact-btn" class="info-action-btn">
+                  <i class="fa-regular fa-copy"></i> Copiar Dirección
+                </button>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-icon"><i class="fa-solid fa-earth-americas"></i></div>
+              <div class="info-text">
+                <span class="info-label">Ubicación & Modalidad</span>
+                <span class="info-val">Venezuela (UTC-4)</span>
+                <span class="info-sub">Disponible para trabajo Remoto a nivel mundial</span>
+              </div>
+            </div>
+
+            <div class="availability-status-box">
+              <div class="status-glow-icon"><i class="fa-solid fa-shield-heart"></i></div>
+              <div>
+                <span class="box-title">Garantía de Compromiso</span>
+                <p class="box-desc">Atención cercana, entrega puntual de avances y código bien comentado y organizado.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna Formulario de Contacto -->
+          <div class="contact-form-panel">
+            <form id="contact-form" class="modern-form" novalidate>
+              <div class="form-group-row">
+                <div class="form-group">
+                  <label for="contact-name" class="form-label">Tu Nombre *</label>
+                  <div class="input-wrapper">
+                    <i class="fa-regular fa-user input-icon"></i>
+                    <input type="text" id="contact-name" name="name" class="form-input" placeholder="Ej: Carlos Silva" required>
+                  </div>
+                  <span class="error-msg" id="name-error"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="contact-email" class="form-label">Tu Correo Electrónico *</label>
+                  <div class="input-wrapper">
+                    <i class="fa-regular fa-envelope input-icon"></i>
+                    <input type="email" id="contact-email" name="email" class="form-input" placeholder="carlos@correo.com" required>
+                  </div>
+                  <span class="error-msg" id="email-error"></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-subject" class="form-label">Asunto del Mensaje</label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-tag input-icon"></i>
+                  <input type="text" id="contact-subject" name="subject" class="form-input" placeholder="Ej: Nuevo sitio web para mi negocio">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message" class="form-label">¿En qué puedo ayudarte? *</label>
+                <div class="input-wrapper">
+                  <textarea id="contact-message" name="message" class="form-textarea" rows="4" placeholder="Cuéntame sobre tu proyecto, objetivos, plazos..." required></textarea>
+                </div>
+                <span class="error-msg" id="message-error"></span>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary btn-lg" id="submit-btn">
+                  <i class="fa-solid fa-paper-plane"></i>
+                  <span>Enviar Mensaje</span>
+                </button>
+                <button type="button" class="btn btn-outline btn-lg" id="whatsapp-direct-send-btn">
+                  <i class="fa-brands fa-whatsapp"></i>
+                  <span>Enviar por WhatsApp</span>
+                </button>
+              </div>
+
+              <div id="form-feedback" class="form-feedback" role="alert"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== MODAL DE DETALLE DE PROYECTOS ==================== -->
+  <div class="project-modal-backdrop" id="project-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="project-modal-content">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Cerrar modal">&times;</button>
+      
+      <div class="modal-body" id="modal-body-content">
+        <!-- Inyectado dinámicamente con JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CONTENEDOR DE TOAST NOTIFICATIONS ==================== -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="logo-symbol">
+              <span class="logo-bracket">&lt;</span>
+              <span class="logo-initials">JA</span>
+              <span class="logo-bracket">/&gt;</span>
+            </div>
+            <span class="brand-name">Joendri<span class="accent-color">.Albarran</span></span>
+          </div>
+          <p class="footer-tagline">Construyendo el futuro de la web con pasión, código y diseño vanguardista.</p>
+        </div>
+
+        <div class="footer-links-group">
+          <h4 class="footer-heading">Navegación</h4>
+          <ul class="footer-nav">
+            <li><a href="#hero">Inicio</a></li>
+            <li><a href="#about">Sobre Mí</a></li>
+            <li><a href="#skills">Habilidades</a></li>
+            <li><a href="#projects">Proyectos</a></li>
+            <li><a href="#estimator">Cotizador</a></li>
+            <li><a href="#contact">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-group">
+          <h4 class="footer-heading">Especialidades</h4>
+          <ul class="footer-nav">
+            <li><span>Landing Pages</span></li>
+            <li><span>E-Commerce Stores</span></li>
+            <li><span>Interfaces Modernas</span></li>
+            <li><span>Lógica en Python</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          © <span id="copyright-year">2026</span> <strong>Joendri Albarran</strong>. Todos los derechos reservados.
+        </div>
+        <div class="footer-made-with">
+          <span>Diseñado y programado con</span>
+          <i class="fa-solid fa-heart heart-beat"></i>
+          <span>en Venezuela</span>
+        </div>
+        <button id="back-to-top-btn" class="back-to-top" title="Volver arriba" aria-label="Volver arriba">
+          <i class="fa-solid fa-arrow-up"></i>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,2117 @@
+/* ==========================================================================
+   ALBARRAN AVIATION PRESTIGE — HOJA DE ESTILOS DE MÁXIMO LUJO
+   Fundado por Joendri Albarran
+   Estética: Ultra-Lujo, Obsidian Black, Oro Champán 24K, Carbono & Titanio
+   Tratamiento: Fotografía Real de Alta Definición
+   ========================================================================== */
+
+/* --- 1. Variables de Diseño & Sistema Cromático --- */
+:root {
+  /* Fondos Obsidiana Profundos */
+  --bg-void: #05070a;
+  --bg-deep: #080a10;
+  --bg-surface: #0f131d;
+  --bg-card: rgba(16, 21, 32, 0.78);
+  --bg-card-hover: rgba(22, 29, 45, 0.92);
+  --bg-input: rgba(10, 14, 22, 0.85);
+
+  /* Oro Champán & Platino */
+  --gold: #dfb15b;
+  --gold-light: #f7d88e;
+  --gold-dark: #b88b39;
+  --gold-glow: rgba(223, 177, 91, 0.35);
+  --gold-tint: rgba(223, 177, 91, 0.1);
+
+  --platinum: #e2e8f0;
+  --silver-muted: #94a3b8;
+  --dark-dim: #64748b;
+
+  /* Bordes & Vidrio */
+  --border-gold: rgba(223, 177, 91, 0.25);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(223, 177, 91, 0.5);
+
+  /* Radios & Sombras */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 9999px;
+
+  /* Tipografías */
+  --font-serif: 'Cinzel', Georgia, serif;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Transiciones */
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- 2. Reseteo y Tipografía Global --- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-void);
+  color: var(--platinum);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar Dorada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-void);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(223, 177, 91, 0.3);
+  border-radius: var(--radius-pill);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+.container {
+  width: 100%;
+  max-width: 1260px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.section {
+  padding: 7rem 0;
+  position: relative;
+}
+
+/* Acentos Dorados */
+.gold-accent {
+  color: var(--gold);
+}
+
+.gold-gradient, .gold-shimmer {
+  background: linear-gradient(135deg, #f7d88e 0%, #dfb15b 50%, #c59b43 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Encabezados Soberanos con Cresta */
+.section-crest-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 3.75rem auto;
+}
+
+.crest-subtitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-pill);
+  background: var(--gold-tint);
+  border: 1px solid var(--border-gold);
+  color: var(--gold);
+  font-family: var(--font-serif);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 1.25rem;
+}
+
+.section-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.section-lead {
+  color: var(--silver-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* --- 3. Botones y Llamados a la Acción --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.9rem 1.85rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition);
+  border: none;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, #f7d88e 0%, #dfb15b 100%);
+  color: #07080d;
+  box-shadow: 0 4px 25px var(--gold-glow);
+}
+
+.btn-gold:hover {
+  background: linear-gradient(135deg, #fff 0%, #f7d88e 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px var(--gold-glow);
+}
+
+.btn-platinum {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--platinum);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(10px);
+}
+
+.btn-platinum:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: var(--gold-tint);
+  transform: translateY(-2px);
+}
+
+.btn-outline-gold {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+}
+
+.btn-outline-gold:hover {
+  background: var(--gold);
+  color: #07080d;
+  box-shadow: 0 4px 20px var(--gold-glow);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--silver-muted);
+  border: 1px solid var(--border-subtle);
+}
+
+.btn-ghost:hover {
+  color: var(--platinum);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-sm {
+  padding: 0.55rem 1.15rem;
+  font-size: 0.8rem;
+}
+
+.btn-lg {
+  padding: 1.15rem 2.4rem;
+  font-size: 0.98rem;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* --- 4. Cinta Superior VIP --- */
+.vip-top-ribbon {
+  background: #040508;
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+}
+
+.ribbon-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.ribbon-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--silver-muted);
+}
+
+.security-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #10b981;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.ribbon-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.currency-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.currency-label {
+  color: var(--dark-dim);
+  font-size: 0.75rem;
+  margin-right: 0.2rem;
+}
+
+.curr-pill {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  color: var(--silver-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.curr-pill.active {
+  background: var(--gold);
+  color: #07080d;
+  border-color: var(--gold);
+}
+
+.founder-badge {
+  font-size: 0.75rem;
+  color: var(--silver-muted);
+  padding-left: 1rem;
+  border-left: 1px solid var(--border-subtle);
+}
+
+.founder-badge strong {
+  color: var(--gold);
+  font-family: var(--font-heading);
+}
+
+/* --- 5. Navbar Principal --- */
+.luxury-navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: rgba(8, 10, 16, 0.88);
+  backdrop-filter: blur(25px);
+  border-bottom: 1px solid var(--border-subtle);
+  z-index: 100;
+  transition: all var(--transition);
+}
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 82px;
+}
+
+/* Logotipo / Emblema */
+.brand-crest {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  text-decoration: none;
+  color: #fff;
+}
+
+.crest-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, rgba(223, 177, 91, 0.15) 0%, rgba(223, 177, 91, 0.03) 100%);
+  border: 1px solid var(--border-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-size: 1.4rem;
+  position: relative;
+  box-shadow: 0 0 20px rgba(223, 177, 91, 0.2);
+}
+
+.crown-sparkle {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  color: var(--gold-light);
+  font-size: 0.75rem;
+}
+
+.brand-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #fff;
+  line-height: 1;
+}
+
+.brand-class {
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.22em;
+  margin-top: 0.25rem;
+}
+
+/* Enlaces Desktop */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-link {
+  color: var(--silver-muted);
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: all var(--transition);
+}
+
+.nav-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.nav-link.active {
+  color: var(--gold);
+  background: var(--gold-tint);
+  border: 1px solid var(--border-gold);
+}
+
+.nav-link.highlight-gold {
+  color: var(--gold);
+}
+
+/* Acciones Navbar */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.icon-action-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  color: var(--silver-muted);
+  padding: 0.55rem 0.95rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: all var(--transition);
+}
+
+.icon-action-btn:hover {
+  color: var(--gold);
+  border-color: var(--border-gold);
+}
+
+.icon-action-btn.active {
+  background: var(--gold);
+  color: #07080d;
+  border-color: var(--gold);
+  box-shadow: 0 0 15px var(--gold-glow);
+}
+
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.mobile-toggle span {
+  width: 100%;
+  height: 2px;
+  background: var(--platinum);
+}
+
+/* --- 6. HERO SECTION CON FOTO REAL --- */
+.hero-section {
+  padding: 5.5rem 0 6.5rem 0;
+  position: relative;
+}
+
+.hero-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.mesh-glow {
+  position: absolute;
+  top: -150px;
+  right: -100px;
+  width: 650px;
+  height: 650px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(223, 177, 91, 0.12) 0%, transparent 65%);
+  filter: blur(50px);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 3.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.sovereign-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: var(--radius-pill);
+  background: var(--gold-tint);
+  border: 1px solid var(--border-gold);
+  color: var(--gold);
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.gold-star {
+  color: var(--gold-light);
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 5.2vw, 4.3rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.hero-statement {
+  color: var(--silver-muted);
+  font-size: 1.12rem;
+  line-height: 1.7;
+  max-width: 580px;
+  margin-bottom: 2.5rem;
+}
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 3.5rem;
+}
+
+.hero-stats-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 2rem;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number {
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.stat-number small {
+  font-size: 0.9rem;
+  color: var(--silver-muted);
+}
+
+.stat-legend {
+  font-size: 0.78rem;
+  color: var(--dark-dim);
+  margin-top: 0.2rem;
+  max-width: 150px;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--border-subtle);
+}
+
+/* Tarjeta Destacada con Fotografía Real */
+.hero-featured-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  backdrop-filter: blur(25px);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), 0 0 40px rgba(223, 177, 91, 0.12);
+  position: relative;
+}
+
+.flagship-badge {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  background: var(--gold-tint);
+  border: 1px solid var(--border-gold);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+/* Contenedor de Fotografía Real del Hero */
+.flagship-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 230px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  border: 1px solid var(--border-subtle);
+}
+
+.flagship-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.hero-featured-card:hover .flagship-photo {
+  transform: scale(1.05);
+}
+
+.photo-gradient-vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(8,10,16,0.6) 100%);
+  pointer-events: none;
+}
+
+.photo-corner-tag {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--platinum);
+}
+
+.model-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.flagship-category {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.flagship-status {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #10b981;
+}
+
+.flagship-name {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #fff;
+}
+
+.flagship-desc {
+  font-size: 0.88rem;
+  color: var(--silver-muted);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+.flagship-specs-matrix {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 1.15rem;
+  margin-bottom: 1.25rem;
+}
+
+.spec-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.spec-cell i {
+  color: var(--gold);
+  font-size: 1.1rem;
+}
+
+.spec-cell small {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--dark-dim);
+  text-transform: uppercase;
+}
+
+.spec-cell strong {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  color: var(--platinum);
+}
+
+/* --- 7. CATÁLOGO DE FLOTA CON FOTOS REALES --- */
+.fleet-filter-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 3.5rem;
+}
+
+.fleet-filter-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--silver-muted);
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all var(--transition);
+}
+
+.fleet-filter-btn:hover {
+  border-color: var(--border-gold);
+  color: #fff;
+}
+
+.fleet-filter-btn.active {
+  background: var(--gold);
+  color: #07080d;
+  border-color: var(--gold);
+  box-shadow: 0 4px 20px var(--gold-glow);
+}
+
+.fleet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 2.25rem;
+}
+
+.fleet-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition);
+  backdrop-filter: blur(15px);
+}
+
+.fleet-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--border-gold);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px var(--gold-tint);
+}
+
+/* Contenedor de Fotografía Real de la Flota */
+.card-visual {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.aircraft-real-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fleet-card:hover .aircraft-real-photo {
+  transform: scale(1.08);
+}
+
+.aircraft-badge-top {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-sm);
+  color: var(--platinum);
+  z-index: 2;
+}
+
+.aircraft-badge-top i {
+  color: #10b981;
+  margin-right: 0.2rem;
+}
+
+.aircraft-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 7, 10, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition);
+  backdrop-filter: blur(4px);
+  z-index: 3;
+}
+
+.fleet-card:hover .aircraft-overlay {
+  opacity: 1;
+}
+
+.card-content {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.category-tag {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.4rem;
+}
+
+.aircraft-title {
+  font-family: var(--font-serif);
+  font-size: 1.28rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #fff;
+}
+
+.aircraft-summary {
+  font-size: 0.88rem;
+  color: var(--silver-muted);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.specs-mini-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.mini-spec {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.78rem;
+}
+
+.mini-spec .label {
+  color: var(--dark-dim);
+  font-size: 0.7rem;
+}
+
+.mini-spec .val {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--platinum);
+}
+
+.card-pricing-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1.25rem;
+}
+
+.price-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-label {
+  font-size: 0.7rem;
+  color: var(--dark-dim);
+  text-transform: uppercase;
+}
+
+.aircraft-price {
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+/* --- 8. CONFIGURADOR BESPOKE --- */
+.configurator-wrapper {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.config-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.config-step-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  backdrop-filter: blur(15px);
+}
+
+.step-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1.25rem;
+}
+
+.step-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #07080d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+/* Opciones de Radio para Modelo */
+.config-radio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.85rem;
+}
+
+.config-card-option {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 1.15rem;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.config-card-option input {
+  position: absolute;
+  opacity: 0;
+}
+
+.config-card-option:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.config-card-option.selected {
+  border-color: var(--gold);
+  background: var(--gold-tint);
+  box-shadow: 0 0 15px var(--gold-glow);
+}
+
+.opt-name {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.opt-sub {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--silver-muted);
+  margin-bottom: 0.5rem;
+}
+
+.opt-price {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+/* Acabados de Librea Exterior */
+.color-options-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+.livery-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  color: var(--silver-muted);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.livery-btn:hover {
+  border-color: var(--border-gold);
+  color: #fff;
+}
+
+.livery-btn.active {
+  border-color: var(--gold);
+  background: var(--gold-tint);
+  color: #fff;
+  font-weight: 700;
+}
+
+.color-circle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Checkbox Addons */
+.checkbox-addons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.85rem;
+}
+
+.addon-checkbox-card {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  position: relative;
+  transition: all var(--transition);
+}
+
+.addon-checkbox-card input {
+  position: absolute;
+  opacity: 0;
+}
+
+.addon-checkbox-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.addon-checkbox-card.checked {
+  border-color: var(--gold);
+  background: var(--gold-tint);
+}
+
+.addon-mark {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 2px solid var(--dark-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addon-checkbox-card.checked .addon-mark {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.addon-checkbox-card.checked .addon-mark::after {
+  content: "✓";
+  color: #07080d;
+  font-weight: 900;
+  font-size: 0.75rem;
+}
+
+.addon-text {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.addon-text strong {
+  font-size: 0.85rem;
+  color: #fff;
+}
+
+.addon-text small {
+  font-size: 0.72rem;
+  color: var(--silver-muted);
+}
+
+.addon-badge {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+/* Panel de Resumen de Cotización */
+.config-summary-panel {
+  position: sticky;
+  top: 100px;
+}
+
+.summary-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-md);
+  padding: 2.25rem;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+}
+
+.summary-top {
+  margin-bottom: 1.5rem;
+}
+
+.confidential-seal {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+}
+
+.summary-headline {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+/* Preview de la Aeronave Personalizada con Foto Real */
+.custom-jet-preview {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.jet-preview-canvas {
+  height: 130px;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-preview-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.5s ease;
+}
+
+.jet-custom-meta {
+  font-size: 0.8rem;
+  color: var(--silver-muted);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.6rem;
+  margin-top: 0.75rem;
+}
+
+.jet-custom-meta strong {
+  color: var(--gold);
+}
+
+.summary-line-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.line-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  color: var(--silver-muted);
+}
+
+.line-val {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: #fff;
+}
+
+.summary-divider-line {
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 0.5rem 0;
+}
+
+.total-row {
+  align-items: baseline;
+  color: #fff;
+  font-weight: 700;
+}
+
+.grand-total-box {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+}
+
+.total-currency-sym {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  color: var(--gold);
+}
+
+.total-number {
+  font-family: var(--font-mono);
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: var(--gold);
+}
+
+.total-m-tag {
+  font-size: 0.75rem;
+  color: var(--silver-muted);
+}
+
+.btc-equiv-row, .delivery-time-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+  color: var(--silver-muted);
+  padding: 0.5rem 0.75rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius-sm);
+}
+
+.btc-equiv-row strong, .delivery-time-row strong {
+  color: #fff;
+}
+
+.summary-actions-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.escrow-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  color: var(--dark-dim);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+/* --- 9. CALCULADORA DE ALCANCE --- */
+.range-calculator-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+}
+
+.route-selectors-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.selector-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.selector-box label {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--silver-muted);
+}
+
+.route-select {
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.95rem 1.2rem;
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  outline: none;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.route-select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 15px var(--gold-glow);
+}
+
+.swap-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--gold);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+}
+
+.swap-btn:hover {
+  background: var(--gold);
+  color: #07080d;
+  transform: rotate(180deg);
+}
+
+/* Telemetría de Navegación */
+.flight-telemetry-dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.telemetry-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.telemetry-label {
+  font-size: 0.75rem;
+  color: var(--dark-dim);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.telemetry-val {
+  font-family: var(--font-mono);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.telemetry-val.highlight {
+  color: var(--gold);
+}
+
+.telemetry-badge.non-stop {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #10b981;
+}
+
+/* Visualizador de Trayectoria Gráfica */
+.flight-path-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 1rem 0;
+}
+
+.flight-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--gold);
+}
+
+.flight-arc-track {
+  flex-grow: 1;
+  position: relative;
+  margin: 0 2rem;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.arc-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold) 0%, #38bdf8 100%);
+}
+
+.animated-flying-jet {
+  position: absolute;
+  top: -12px;
+  color: var(--gold);
+  font-size: 1.3rem;
+  animation: flyAlong 4s infinite linear;
+}
+
+@keyframes flyAlong {
+  0% { left: 0%; transform: rotate(0deg); }
+  50% { left: 50%; transform: rotate(-5deg); }
+  100% { left: 95%; transform: rotate(0deg); }
+}
+
+/* --- 10. EXPERIENCIA INTERIOR VIP CON FOTOS REALES --- */
+.experience-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.75rem;
+}
+
+.exp-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: all var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.exp-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-gold);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.exp-photo-box {
+  width: 100%;
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+}
+
+.exp-real-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.exp-card:hover .exp-real-photo {
+  transform: scale(1.08);
+}
+
+.exp-tag {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #07080d;
+  background: var(--gold);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.exp-body {
+  padding: 1.5rem;
+  flex-grow: 1;
+}
+
+.exp-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.exp-desc {
+  font-size: 0.88rem;
+  color: var(--silver-muted);
+  line-height: 1.6;
+}
+
+/* --- 11. ADVISORY & CONTACTO PRIVADO --- */
+.advisory-card-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  padding: 3.5rem;
+  backdrop-filter: blur(25px);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7);
+}
+
+.advisory-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 3.5rem;
+}
+
+.advisory-headline {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+}
+
+.advisory-lead {
+  color: var(--silver-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.advisory-credentials {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.cred-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.cred-item i {
+  font-size: 1.2rem;
+  margin-top: 0.2rem;
+}
+
+.cred-item strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.cred-item span {
+  font-size: 0.82rem;
+  color: var(--silver-muted);
+}
+
+.direct-phone-box {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem;
+}
+
+.direct-phone-box i {
+  font-size: 1.8rem;
+}
+
+.phone-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--dark-dim);
+  text-transform: uppercase;
+}
+
+.phone-val {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-decoration: none;
+}
+
+/* Formulario */
+.vip-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.form-group label {
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--silver-muted);
+}
+
+.form-group input, .form-group select, .form-group textarea {
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  outline: none;
+  transition: all var(--transition);
+}
+
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 15px var(--gold-glow);
+}
+
+.nda-checkbox-row {
+  margin: 0.5rem 0;
+}
+
+.nda-label {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.85rem;
+  color: var(--silver-muted);
+  cursor: pointer;
+}
+
+.nda-label input {
+  position: absolute;
+  opacity: 0;
+}
+
+.nda-custom-box {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nda-label input:checked + .nda-custom-box {
+  background: var(--gold);
+}
+
+.nda-label input:checked + .nda-custom-box::after {
+  content: "✓";
+  color: #07080d;
+  font-weight: 900;
+  font-size: 0.75rem;
+}
+
+.feedback-banner {
+  padding: 1.25rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  display: none;
+}
+
+.feedback-banner.success {
+  display: block;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid #10b981;
+  color: #34d399;
+}
+
+/* --- 12. MODAL DE DOSSIER TÉCNICO VIP --- */
+.luxury-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(3, 5, 8, 0.88);
+  backdrop-filter: blur(16px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition);
+}
+
+.luxury-modal-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.luxury-modal-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-md);
+  width: 100%;
+  max-width: 820px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95);
+  transform: scale(0.95);
+  transition: transform var(--transition);
+}
+
+.luxury-modal-backdrop.open .luxury-modal-card {
+  transform: scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all var(--transition);
+}
+
+.modal-close:hover {
+  background: var(--gold);
+  color: #07080d;
+}
+
+.modal-body-wrapper {
+  padding: 2.5rem;
+}
+
+.modal-photo-hero {
+  width: 100%;
+  height: 240px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-subtle);
+}
+
+.modal-photo-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dossier-header-seal {
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.dossier-title {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.dossier-specs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.88rem;
+}
+
+.dossier-specs-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.dossier-specs-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.dossier-specs-table td.col-prop {
+  color: var(--silver-muted);
+  width: 45%;
+}
+
+.dossier-specs-table td.col-val {
+  font-family: var(--font-mono);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* --- 13. TOAST NOTIFICATIONS --- */
+.toast-hub {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  pointer-events: none;
+}
+
+.toast-message {
+  background: #111522;
+  border: 1px solid var(--border-gold);
+  border-left: 4px solid var(--gold);
+  border-radius: var(--radius-sm);
+  padding: 0.9rem 1.4rem;
+  color: #fff;
+  font-size: 0.9rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  pointer-events: auto;
+  transform: translateX(120%);
+  transition: transform var(--transition);
+}
+
+.toast-message.show {
+  transform: translateX(0);
+}
+
+/* --- 14. FOOTER --- */
+.luxury-footer {
+  background: #040508;
+  border-top: 1px solid var(--border-subtle);
+  padding: 5rem 0 2rem 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.3fr;
+  gap: 3.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.footer-mission {
+  color: var(--silver-muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  margin: 1.25rem 0;
+  max-width: 420px;
+}
+
+.compliance-badges {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: var(--dark-dim);
+}
+
+.compliance-badges i {
+  color: var(--gold);
+}
+
+.footer-col-title {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: #fff;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer-links-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  font-size: 0.88rem;
+}
+
+.footer-links-list a {
+  color: var(--silver-muted);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.footer-links-list a:hover {
+  color: var(--gold);
+}
+
+.address-list li {
+  color: var(--silver-muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.address-list strong {
+  color: var(--platinum);
+}
+
+.footer-bottom-strip {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 2rem;
+  font-size: 0.82rem;
+  color: var(--dark-dim);
+}
+
+.bottom-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.bottom-links {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.back-top-arrow {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* --- 15. RESPONSIVE DESIGN --- */
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-statement {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-cta-group {
+    justify-content: center;
+  }
+
+  .hero-stats-row {
+    justify-content: center;
+  }
+
+  .configurator-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .config-summary-panel {
+    position: static;
+  }
+
+  .route-selectors-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .swap-icon-col {
+    display: flex;
+    justify-content: center;
+  }
+
+  .flight-telemetry-dashboard {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .advisory-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .mobile-toggle {
+    display: flex;
+  }
+
+  .ribbon-left {
+    display: none;
+  }
+
+  .ribbon-inner {
+    justify-content: center;
+  }
+
+  .hero-stats-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .stat-divider {
+    display: none;
+  }
+
+  .form-row-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .advisory-card-wrapper {
+    padding: 2rem 1.5rem;
+  }
+
+  .toast-hub {
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+  }
+}

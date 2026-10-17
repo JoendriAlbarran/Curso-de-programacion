@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO & Metadatos -->
+  <title>AstroBrew Coffee Lab ☕ | Café de Especialidad & Lounge por Joendri Albarran</title>
+  <meta name="description" content="AstroBrew Coffee Lab: Café de especialidad de origen, tostado artesanal, bebidas de autor personalizables en vivo y ambiente coworking. Creado por Joendri Albarran.">
+  <meta name="keywords" content="AstroBrew, Café de especialidad, Coffee Shop, Cafetería, Barista, Tostaduría, Joendri Albarran, Cold Brew, Espresso">
+  <meta name="author" content="Joendri Albarran">
+  <meta name="theme-color" content="#1a120b">
+
+  <!-- Google Fonts: Playfair Display, Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Estilos de la Cafetería -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Barra de Anuncio & Tasa de Divisas -->
+  <aside class="announcement-bar" aria-label="Información y promociones">
+    <div class="container announcement-content">
+      <div class="announcement-left">
+        <span class="badge-roast"><i class="fa-solid fa-fire-flame-curved"></i> LOTE FRESCO</span>
+        <span>Granos de origen Mérida & Huila recién tostados esta semana</span>
+      </div>
+      <div class="announcement-right">
+        <div class="rate-box">
+          <i class="fa-solid fa-coins"></i>
+          <span>Tasa del Día: <strong id="exchange-rate-display">50.00 Bs / USD</strong></span>
+        </div>
+        <div class="currency-switch">
+          <button id="curr-btn-usd" class="curr-switch-btn active" title="Mostrar precios en USD">$ USD</button>
+          <button id="curr-btn-ves" class="curr-switch-btn" title="Mostrar precios en Bolívares">Bs. VES</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Navegación Principal -->
+  <header class="header-nav" id="main-header">
+    <div class="container nav-wrapper">
+      <a href="#hero" class="brand-brand" aria-label="AstroBrew Coffee Lab">
+        <div class="brand-cup-icon">
+          <i class="fa-solid fa-mug-hot"></i>
+          <span class="steam-line steam-1"></span>
+          <span class="steam-line steam-2"></span>
+        </div>
+        <div class="brand-info">
+          <span class="brand-title">Astro<span class="gold-accent">Brew</span></span>
+          <span class="brand-sub">Coffee Lab & Roastery • by Joendri</span>
+        </div>
+      </a>
+
+      <!-- Menú Desktop -->
+      <nav class="nav-links" id="nav-links" aria-label="Navegación del sitio">
+        <a href="#hero" class="nav-item active">Inicio</a>
+        <a href="#menu" class="nav-item">Menú Especial</a>
+        <a href="#lab" class="nav-item highlight-link"><i class="fa-solid fa-flask"></i> Laboratorio de Bebidas</a>
+        <a href="#roastery" class="nav-item">Tostaduría</a>
+        <a href="#reserve" class="nav-item">Reservar Mesa</a>
+        <a href="#subscription" class="nav-item">Suscripción</a>
+      </nav>
+
+      <!-- Acciones de Cabecera -->
+      <div class="header-actions">
+        <!-- Generador de Sonido Ambiental de Cafetería (Lo-Fi Cafe Vibe) -->
+        <button id="ambient-sound-btn" class="action-btn ambient-btn" title="Ambiente sonoro de cafetería Lo-Fi" aria-label="Activar sonido ambiental">
+          <i class="fa-solid fa-headphones" id="ambient-icon"></i>
+          <span class="ambient-label">Lo-Fi Café</span>
+        </button>
+
+        <!-- Carrito de Compras Desplegable -->
+        <button id="cart-toggle-btn" class="action-btn cart-btn" aria-label="Abrir carrito de compras">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-count-badge" id="cart-counter">0</span>
+        </button>
+
+        <!-- Botón Menú Móvil -->
+        <button id="mobile-toggle-btn" class="mobile-toggle" aria-label="Abrir menú" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <main id="content">
+    <section class="hero-section" id="hero">
+      <div class="hero-bg-overlay" aria-hidden="true"></div>
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="hero-pill">
+            <span class="pill-dot"></span>
+            <span>Experiencia de Café de Tercera Generación</span>
+          </div>
+
+          <h1 class="hero-heading">
+            El Arte del Buen Café, <br>
+            <span class="gold-text">Elevado a la Perfección</span>
+          </h1>
+
+          <p class="hero-lead">
+            En <strong>AstroBrew</strong> seleccionamos microlotes de altura de productores locales e internacionales. 
+            Crea tu bebida personalizada en nuestro laboratorio digital o degusta recetas de autor preparadas por baristas certificados.
+          </p>
+
+          <div class="hero-btns-row">
+            <a href="#lab" class="btn btn-gold btn-lg">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>Diseñar Mi Bebida en Vivo</span>
+            </a>
+            <a href="#menu" class="btn btn-outline-light btn-lg">
+              <i class="fa-solid fa-book-open"></i>
+              <span>Ver Menú & Postres</span>
+            </a>
+          </div>
+
+          <!-- Puntos Clave / Métricas -->
+          <div class="hero-features-strip">
+            <div class="strip-item">
+              <i class="fa-solid fa-seedling gold-accent"></i>
+              <div>
+                <strong>100% Arábica</strong>
+                <span>Granos de especialidad +84 SCA</span>
+              </div>
+            </div>
+            <div class="strip-item">
+              <i class="fa-solid fa-droplet gold-accent"></i>
+              <div>
+                <strong>Filtrados V60 & Chemex</strong>
+                <span>Extracciones precisas</span>
+              </div>
+            </div>
+            <div class="strip-item">
+              <i class="fa-solid fa-truck-fast gold-accent"></i>
+              <div>
+                <strong>Delivery & Pick-up</strong>
+                <span>Entregas calientes en 30 min</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual Hero: Taza de Café Flotante & Notas de Cata -->
+        <div class="hero-visual-card">
+          <div class="coffee-showcase-box">
+            <div class="badge-featured">Recomendación del Barista</div>
+            
+            <div class="cup-illustration-wrapper">
+              <div class="cup-glow"></div>
+              <div class="artisan-cup">
+                <div class="cup-top-crema">
+                  <div class="latte-art">
+                    <span class="art-petal p1"></span>
+                    <span class="art-petal p2"></span>
+                    <span class="art-petal p3"></span>
+                    <span class="art-stem"></span>
+                  </div>
+                </div>
+                <div class="cup-body">
+                  <div class="cup-handle"></div>
+                </div>
+                <div class="saucer"></div>
+              </div>
+            </div>
+
+            <div class="showcase-details">
+              <h3 class="showcase-title">Nebula Velvet Flat White</h3>
+              <p class="showcase-notes">
+                <i class="fa-solid fa-palette"></i> Notas: <em>Cacao trufado, avellana tostada y miel silvestre.</em>
+              </p>
+              <div class="intensity-bar">
+                <span>Intensidad:</span>
+                <div class="intensity-dots">
+                  <span class="dot filled"></span>
+                  <span class="dot filled"></span>
+                  <span class="dot filled"></span>
+                  <span class="dot filled"></span>
+                  <span class="dot"></span>
+                </div>
+                <span class="intensity-value">4 / 5</span>
+              </div>
+              <div class="showcase-footer">
+                <div class="showcase-price" data-usd="4.50">$4.50 <small class="currency-tag">USD</small></div>
+                <button class="btn btn-gold btn-sm quick-add-btn" data-id="nebula-flat-white" data-name="Nebula Velvet Flat White" data-price="4.50" data-img="☕">
+                  <i class="fa-solid fa-plus"></i> Ordenar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== MENU SECTION ==================== -->
+    <section class="section menu-section" id="menu">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="section-badge"><i class="fa-solid fa-mug-saucer"></i> Nuestra Carta</span>
+          <h2 class="section-heading">Menú de Especialidad & <span class="gold-text">Pastelería Fina</span></h2>
+          <p class="section-description">
+            Bebidas extraídas al milímetro con balanzas digitales, control de temperatura y leche microtexturizada a punto de seda.
+          </p>
+        </div>
+
+        <!-- Filtros de Categorías -->
+        <div class="menu-categories-tabs" role="tablist">
+          <button class="cat-tab-btn active" data-category="all"><i class="fa-solid fa-star"></i> Todos</button>
+          <button class="cat-tab-btn" data-category="classics"><i class="fa-solid fa-mug-hot"></i> Clásicos Espresso</button>
+          <button class="cat-tab-btn" data-category="signature"><i class="fa-solid fa-sparkles"></i> Bebidas de Autor</button>
+          <button class="cat-tab-btn" data-category="cold"><i class="fa-solid fa-cube"></i> Cold Brew & Iced</button>
+          <button class="cat-tab-btn" data-category="bakery"><i class="fa-solid fa-cookie-bite"></i> Repostería & Bakery</button>
+        </div>
+
+        <!-- Grid de Productos -->
+        <div class="menu-items-grid" id="menu-items-grid">
+          <!-- Item 1: Espresso Doble -->
+          <article class="menu-card" data-category="classics">
+            <div class="card-thumb-box">
+              <span class="item-emoji">☕</span>
+              <span class="roast-type-badge">Tueste Medio</span>
+            </div>
+            <div class="card-body-content">
+              <div class="card-top-info">
+                <h3 class="item-title">Espresso Doble Ristretto</h3>
+                <div class="item-price" data-usd="2.50">$2.50</div>
+              </div>
+              <p class="item-desc">Extracción concentrada de 38ml con crema dorada y persistente. Acidez balanceada con notas frutales.</p>
+              <div class="item-tags">
+                <span class="tag">Origen Mérida</span>
+                <span class="tag">100% Arábica</span>
+              </div>
+              <div class="card-action-row">
+                <button class="btn btn-add-cart quick-add-btn" data-id="espresso-doble" data-name="Espresso Doble Ristretto" data-price="2.50" data-img="☕">
+                  <i class="fa-solid fa-plus"></i> Añadir a Orden
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 2: Cappuccino Supremo -->
+          <article class="menu-card" data-category="classics">
+            <div class="card-thumb-box">
+              <span class="item-emoji">🫖</span>
+              <span class="roast-type-badge">Más Pedido</span>
+            </div>
+            <div class="card-body-content">
+              <div class="card-top-info">
+                <h3 class="item-title">Cappuccino Cremoso Italiano</h3>
+                <div class="item-price" data-usd="3.50">$3.50</div>
+              </div>
+              <p class="item-desc">Espresso doble, leche vaporizada aterciopelada y corona de microespuma con toque de cacao en polvo.</p>
+              <div class="item-tags">
+                <span class="tag">Latte Art</span>
+                <span class="tag">Opción Avena</span>
+              </div>
+              <div class="card-action-row">
+                <button class="btn btn-add-cart quick-add-btn" data-id="cappuccino-cremoso" data-name="Cappuccino Cremoso Italiano" data-price="3.50" data-img="🫖">
+                  <i class="fa-solid fa-plus"></i> Añadir a Orden
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 3: Nitro Cold Brew Vanilla -->
+          <article class="menu-card" data-category="cold">
+            <div class="card-thumb-box">
+              <span class="item-emoji">🧊</span>
+              <span class="roast-type-badge">Infusión 18h</span>
+            </div>
+            <div class="card-body-content">
+              <div class="card-top-info">
+                <h3 class="item-title">Nitro Cold Brew & Vainilla</h3>
+                <div class="item-price" data-usd="4.80">$4.80</div>
+              </div>
+              <p class="item-desc">Café infusionado en frío durante 18 horas inyectado con nitrógeno para una textura similar a cerveza negra stout.</p>
+              <div class="item-tags">
+                <span class="tag">Ultra Refrescante</span>
+                <span class="tag">Cero Acidez</span>
+              </div>
+              <div class="card-action-row">
+                <button class="btn btn-add-cart quick-add-btn" data-id="nitro-coldbrew" data-name="Nitro Cold Brew & Vainilla" data-price="4.80" data-img="🧊">
+                  <i class="fa-solid fa-plus"></i> Añadir a Orden
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 4: Caramelo Salado Macchiato -->
+          <article class="menu-card" data-category="signature">
+            <div class="card-thumb-box">
+              <span class="item-emoji">🍯</span>
+              <span class="roast-type-badge">Firma del Chef</span>
+            </div>
+            <div class="card-body-content">
+              <div class="card-top-info">
+                <h3 class="item-title">Salted Caramel Cloud Latte</h3>
+                <div class="item-price" data-usd="5.20">$5.20</div>
+              </div>
+              <p class="item-desc">Caramelo toffee artesanal con flor de sal marina, espresso intenso, leche espumada y lluvia de praliné crocante.</p>
+              <div class="item-tags">
+                <span class="tag">Caramelo Casero</span>
+                <span class="tag">Favorito</span>
+              </div>
+              <div class="card-action-row">
+                <button class="btn btn-add-cart quick-add-btn" data-id="salted-caramel-latte" data-name="Salted Caramel Cloud Latte" data-price="5.20" data-img="🍯">
+                  <i class="fa-solid fa-plus"></i> Añadir a Orden
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 5: Matcha Latte Ceremonial -->
+          <article class="menu-card" data-category="signature">
+            <div class="card-thumb-box">
+              <span class="item-emoji">🍵</span>
+              <span class="roast-type-badge">Grado Uji</span>
+            </div>
+            <div class="card-body-content">
+              <div class="card-top-info">
+                <h3 class="item-title">Matcha Ceremonial & Vainilla</h3>
+                <div class="item-price" data-usd="4.50">$4.50</div>
+              </div>
+              <p class="item-desc">Té verde matcha puro batido con chasen de bambú, leche de almendras y toque de jarabe de agave orgánico.</p>
+              <div class="item-tags">
+                <span class="tag">Antioxidante</span>
+                <span class="tag">Energía Limpia</span>
+              </div>
+              <div class="card-action-row">
+                <button class="btn btn-add-cart quick-add-btn" data-id="matcha-ceremonial" data-name="Matcha Ceremonial & Vainilla" data-price="4.50" data-img="🍵">
+                  <i class="fa-solid fa-plus"></i> Añadir a Orden
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 6: Croissant de Almendras -->
+          <article class="menu-card" data-category="bakery">
+            <div class="card-thumb-box">
+              <span class="item-emoji">🥐</span>
+              <span class="roast-type-badge">Horneado Diario</span>
+            </div>
+            <div class="card-body-content">
+              <div class="card-top-info">
+                <h3 class="item-title">Croissant Francés de Almendras</h3>
+                <div class="item-price" data-usd="3.20">$3.20</div>
+              </div>
+              <p class="item-desc">Masa hojaldrada 100% mantequilla rellena de frangipane y cubierta con almendras fileteadas tostadas.</p>
+              <div class="item-tags">
+                <span class="tag">Mantequilla Pura</span>
+                <span class="tag">Crocante</span>
+              </div>
+              <div class="card-action-row">
+                <button class="btn btn-add-cart quick-add-btn" data-id="croissant-almendras" data-name="Croissant Francés de Almendras" data-price="3.20" data-img="🥐">
+                  <i class="fa-solid fa-plus"></i> Añadir a Orden
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 7: Tarta Vasca de Queso -->
+          <article class="menu-card" data-category="bakery">
+            <div class="card-thumb-box">
+              <span class="item-emoji">🍰</span>
+              <span class="roast-type-badge">Especialidad</span>
+            </div>
+            <div class="card-body-content">
+              <div class="card-top-info">
+                <h3 class="item-title">Cheesecake Vasco Tostado</h3>
+                <div class="item-price" data-usd="4.00">$4.00</div>
+              </div>
+              <p class="item-desc">Tarta quemada al estilo San Sebastián con centro cremoso semilíquido. Marida perfecto con espresso puro.</p>
+              <div class="item-tags">
+                <span class="tag">Sin Harina</span>
+                <span class="tag">Textura Crema</span>
+              </div>
+              <div class="card-action-row">
+                <button class="btn btn-add-cart quick-add-btn" data-id="cheesecake-vasco" data-name="Cheesecake Vasco Tostado" data-price="4.00" data-img="🍰">
+                  <i class="fa-solid fa-plus"></i> Añadir a Orden
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 8: Iced Dirty Chai -->
+          <article class="menu-card" data-category="cold">
+            <div class="card-thumb-box">
+              <span class="item-emoji">🧋</span>
+              <span class="roast-type-badge">Especias</span>
+            </div>
+            <div class="card-body-content">
+              <div class="card-top-info">
+                <h3 class="item-title">Iced Dirty Chai Latte</h3>
+                <div class="item-price" data-usd="4.60">$4.60</div>
+              </div>
+              <p class="item-desc">Infusión masala chai (cardamomo, canela, clavo y jengibre) con un shot de espresso y leche fría con hielo.</p>
+              <div class="item-tags">
+                <span class="tag">Especiado</span>
+                <span class="tag">Doble Energía</span>
+              </div>
+              <div class="card-action-row">
+                <button class="btn btn-add-cart quick-add-btn" data-id="iced-dirty-chai" data-name="Iced Dirty Chai Latte" data-price="4.60" data-img="🧋">
+                  <i class="fa-solid fa-plus"></i> Añadir a Orden
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== COFFEE LAB / CREADOR INTERACTIVO EN VIVO ==================== -->
+    <section class="section lab-section" id="lab">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="section-badge lab-badge"><i class="fa-solid fa-flask-vial"></i> Laboratorio Interactivo</span>
+          <h2 class="section-heading">Crea Tu Bebida de Autor <span class="gold-text">en Tiempo Real</span></h2>
+          <p class="section-description">
+            Personaliza cada capa de tu café: escoge la base, la leche, el nivel de dulzor y los syrups especiales. Observa cómo se llena tu vaso digital y ordénalo directamente.
+          </p>
+        </div>
+
+        <div class="coffee-builder-grid">
+          <!-- Columna Izquierda: Controles del Constructor -->
+          <div class="builder-controls-panel">
+            <!-- Paso 1: Base de Café -->
+            <div class="builder-group">
+              <label class="group-header">
+                <span class="step-circle">1</span>
+                <span>Selecciona la Base:</span>
+              </label>
+              <div class="builder-options-row">
+                <button class="option-pill active" data-type="base" data-val="espresso" data-color="#3b1d11" data-price="2.50" data-name="Espresso Clásico">
+                  <i class="fa-solid fa-mug-hot"></i> Espresso Doble ($2.50)
+                </button>
+                <button class="option-pill" data-type="base" data-val="coldbrew" data-color="#241108" data-price="3.00" data-name="Cold Brew 18h">
+                  <i class="fa-solid fa-cube"></i> Cold Brew Concentrado ($3.00)
+                </button>
+                <button class="option-pill" data-type="base" data-val="matcha" data-color="#4d7c0f" data-price="3.20" data-name="Matcha Uji">
+                  <i class="fa-solid fa-leaf"></i> Matcha Ceremonial ($3.20)
+                </button>
+                <button class="option-pill" data-type="base" data-val="chai" data-color="#78350f" data-price="2.80" data-name="Té Negro Chai">
+                  <i class="fa-solid fa-seedling"></i> Masala Chai ($2.80)
+                </button>
+              </div>
+            </div>
+
+            <!-- Paso 2: Tipo de Leche -->
+            <div class="builder-group">
+              <label class="group-header">
+                <span class="step-circle">2</span>
+                <span>Tipo de Leche / Texturizado:</span>
+              </label>
+              <div class="builder-options-row">
+                <button class="option-pill active" data-type="milk" data-val="entera" data-color="#fdfbf7" data-price="0.00" data-name="Leche Entera">
+                  Entera Cremosa (+ $0.00)
+                </button>
+                <button class="option-pill" data-type="milk" data-val="avena" data-color="#f5e6d3" data-price="0.60" data-name="Leche de Avena Barista">
+                  Avena Barista (+ $0.60)
+                </button>
+                <button class="option-pill" data-type="milk" data-val="almendras" data-color="#faeedd" data-price="0.60" data-name="Leche de Almendras">
+                  Almendras Sin Azúcar (+ $0.60)
+                </button>
+                <button class="option-pill" data-type="milk" data-val="ninguna" data-color="transparent" data-price="0.00" data-name="Sin Leche (Puro)">
+                  Negro / Solo Agua (+ $0.00)
+                </button>
+              </div>
+            </div>
+
+            <!-- Paso 3: Jarabes Artesanales (Syrups) -->
+            <div class="builder-group">
+              <label class="group-header">
+                <span class="step-circle">3</span>
+                <span>Jarabe Artesanal / Sabor:</span>
+              </label>
+              <div class="builder-options-row">
+                <button class="option-pill active" data-type="syrup" data-val="sin-jarabe" data-price="0.00" data-color="transparent" data-name="Sin Jarabe">
+                  Puro / Sin Jarabe
+                </button>
+                <button class="option-pill" data-type="syrup" data-val="caramelo" data-price="0.75" data-color="#b45309" data-name="Caramelo Salado">
+                  Caramelo Salado (+ $0.75)
+                </button>
+                <button class="option-pill" data-type="syrup" data-val="vainilla" data-price="0.75" data-color="#fef08a" data-name="Vainilla Bourbon">
+                  Vainilla Francesa (+ $0.75)
+                </button>
+                <button class="option-pill" data-type="syrup" data-val="avellana" data-price="0.75" data-color="#92400e" data-name="Avellana Tostada">
+                  Avellana Roasted (+ $0.75)
+                </button>
+              </div>
+            </div>
+
+            <!-- Paso 4: Temperatura & Hielo -->
+            <div class="builder-group">
+              <label class="group-header">
+                <span class="step-circle">4</span>
+                <span>Temperatura & Tamaño:</span>
+              </label>
+              <div class="builder-options-row">
+                <div class="temp-toggle-box">
+                  <button class="temp-btn active" data-temp="hot" id="temp-hot-btn"><i class="fa-solid fa-fire"></i> Caliente Vaporizado</button>
+                  <button class="temp-btn" data-temp="iced" id="temp-iced-btn"><i class="fa-solid fa-snowflake"></i> Helado con Hielo</button>
+                </div>
+                <div class="size-toggle-box">
+                  <button class="size-btn" data-size="12" data-extra="0.00">12 oz (Reg)</button>
+                  <button class="size-btn active" data-size="16" data-extra="0.50">16 oz (Med +$0.50)</button>
+                  <button class="size-btn" data-size="20" data-extra="1.00">20 oz (Max +$1.00)</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Vista Previa Visual del Vaso (Simulador de Capas) -->
+          <div class="builder-preview-card">
+            <div class="preview-header">
+              <span class="live-pill">● Simulación en Vivo</span>
+              <span class="cup-size-label" id="preview-size-display">Vaso 16 oz</span>
+            </div>
+
+            <!-- Vaso Interactivo con Capas Líquidas -->
+            <div class="interactive-cup-display">
+              <div class="cup-glass-container" id="cup-glass">
+                <!-- Hielos flotantes (visibles en iced) -->
+                <div class="ice-cubes-wrapper" id="ice-cubes">
+                  <span class="ice-cube c1"></span>
+                  <span class="ice-cube c2"></span>
+                  <span class="ice-cube c3"></span>
+                </div>
+
+                <!-- Capa 3: Espuma / Topping -->
+                <div class="liquid-layer layer-foam" id="layer-foam">
+                  <span class="foam-bubble b1"></span>
+                  <span class="foam-bubble b2"></span>
+                  <span class="foam-text" id="foam-text">Microespuma de Leche</span>
+                </div>
+
+                <!-- Capa 2: Leche / Dilución -->
+                <div class="liquid-layer layer-milk" id="layer-milk">
+                  <span class="milk-text" id="milk-text">Leche Entera</span>
+                </div>
+
+                <!-- Capa 1: Base de Café -->
+                <div class="liquid-layer layer-base" id="layer-base">
+                  <span class="base-text" id="base-text">Espresso Clásico</span>
+                </div>
+
+                <!-- Capa Jarabe Fondo -->
+                <div class="liquid-layer layer-syrup" id="layer-syrup"></div>
+              </div>
+              <div class="cup-base-shadow"></div>
+            </div>
+
+            <!-- Resumen de la Creación -->
+            <div class="builder-summary-box">
+              <div class="summary-recipe-title" id="custom-drink-name">Latte Clásico Artesanal</div>
+              <p class="summary-recipe-details" id="custom-drink-details">
+                Espresso doble + Leche Entera + Temperatura Caliente (16 oz)
+              </p>
+              
+              <div class="summary-pricing-row">
+                <div class="price-stack">
+                  <span class="price-main" id="custom-drink-price">$3.00</span>
+                  <span class="price-ves" id="custom-drink-ves">~ 150.00 Bs</span>
+                </div>
+                <button class="btn btn-gold btn-block-sm" id="add-custom-drink-btn">
+                  <i class="fa-solid fa-cart-plus"></i> Agregar Esta Creación
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== RESERVA DE MESAS & ESPACIO COWORKING ==================== -->
+    <section class="section reserve-section" id="reserve">
+      <div class="container">
+        <div class="reserve-card-wrapper">
+          <div class="reserve-grid">
+            <div class="reserve-info-col">
+              <span class="section-badge"><i class="fa-regular fa-calendar-check"></i> Espacios AstroBrew</span>
+              <h2 class="reserve-title">Reserva Tu Mesa o <span class="gold-text">Rincón Coworking</span></h2>
+              <p class="reserve-desc">
+                Disfruta de internet simétrico de alta velocidad, enchufes en cada mesa, iluminación natural y el aroma del café recién tostado.
+              </p>
+
+              <div class="reserve-perks">
+                <div class="perk-item">
+                  <i class="fa-solid fa-wifi gold-accent"></i>
+                  <span>WiFi 300 Mbps Gratis para clientes</span>
+                </div>
+                <div class="perk-item">
+                  <i class="fa-solid fa-plug gold-accent"></i>
+                  <span>Tomas de corriente 110V & USB en cada asiento</span>
+                </div>
+                <div class="perk-item">
+                  <i class="fa-solid fa-volume-xmark gold-accent"></i>
+                  <span>Zona tranquila aislada acústicamente para reuniones</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Formulario de Reserva -->
+            <div class="reserve-form-col">
+              <form id="reservation-form" class="reserve-form" novalidate>
+                <div class="form-row-2">
+                  <div class="form-field">
+                    <label for="res-name">Tu Nombre Completo *</label>
+                    <input type="text" id="res-name" name="name" placeholder="Ej: Mariana Rodríguez" required>
+                  </div>
+                  <div class="form-field">
+                    <label for="res-phone">Teléfono / WhatsApp *</label>
+                    <input type="tel" id="res-phone" name="phone" placeholder="+58 412 1234567" required>
+                  </div>
+                </div>
+
+                <div class="form-row-3">
+                  <div class="form-field">
+                    <label for="res-date">Fecha *</label>
+                    <input type="date" id="res-date" name="date" required>
+                  </div>
+                  <div class="form-field">
+                    <label for="res-time">Hora *</label>
+                    <select id="res-time" name="time" required>
+                      <option value="">Selecciona hora</option>
+                      <option value="08:30 AM">08:30 AM</option>
+                      <option value="10:00 AM">10:00 AM</option>
+                      <option value="12:00 PM">12:00 PM</option>
+                      <option value="02:30 PM">02:30 PM</option>
+                      <option value="04:30 PM">04:30 PM</option>
+                      <option value="06:30 PM">06:30 PM</option>
+                    </select>
+                  </div>
+                  <div class="form-field">
+                    <label for="res-guests">Personas *</label>
+                    <select id="res-guests" name="guests" required>
+                      <option value="1">1 Persona (Solo)</option>
+                      <option value="2" selected>2 Personas</option>
+                      <option value="3">3 a 4 Personas</option>
+                      <option value="6">Mesa Grupal (5-8)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-field">
+                  <label for="res-zone">Ambiente Preferido:</label>
+                  <select id="res-zone" name="zone">
+                    <option value="Barra Barista">Barra de Baristas (Frente a la máquina Synesso)</option>
+                    <option value="Terraza al Aire Libre">Terraza Verde al Aire Libre</option>
+                    <option value="Zona Coworking">Zona Silenciosa Coworking con Enchufes</option>
+                    <option value="Lounge Sillones">Lounge con Sillones Acolchados</option>
+                  </select>
+                </div>
+
+                <button type="submit" class="btn btn-gold btn-block btn-lg" id="submit-reserve-btn">
+                  <i class="fa-solid fa-check"></i>
+                  <span>Confirmar Mi Reserva Instantánea</span>
+                </button>
+
+                <div id="reserve-feedback" class="form-feedback-box" role="alert"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SUSCRIPCIÓN DE CAFÉ EN GRANO ==================== -->
+    <section class="section roastery-section" id="subscription">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="section-badge"><i class="fa-solid fa-box-open"></i> Club del Café</span>
+          <h2 class="section-heading">Suscripción de Granos a Tu Puerta <span class="gold-text">por Mes</span></h2>
+          <p class="section-description">
+            Recibe bolsas de 250g o 500g recién tostadas con molienda personalizada para tu método favorito.
+          </p>
+        </div>
+
+        <div class="subscription-plans-grid">
+          <!-- Plan Explorador -->
+          <div class="plan-card">
+            <div class="plan-header">
+              <span class="plan-badge">Para Aficionados</span>
+              <h3 class="plan-title">Plan Explorador</h3>
+              <div class="plan-price">
+                <span class="price-val">$14.00</span>
+                <span class="price-period">/ mes</span>
+              </div>
+            </div>
+            <ul class="plan-features">
+              <li><i class="fa-solid fa-check gold-accent"></i> 1 Bolsa de 250g de Microlote Nacional</li>
+              <li><i class="fa-solid fa-check gold-accent"></i> Tostado máximo 48h antes del envío</li>
+              <li><i class="fa-solid fa-check gold-accent"></i> Ficha técnica de cata con perfil aromático</li>
+              <li><i class="fa-solid fa-check gold-accent"></i> Molienda a elección (o en grano)</li>
+            </ul>
+            <button class="btn btn-outline-gold btn-block quick-add-btn" data-id="plan-explorador" data-name="Suscripción Plan Explorador (250g)" data-price="14.00" data-img="📦">
+              Suscribirme Ahora
+            </button>
+          </div>
+
+          <!-- Plan Barista Master (Destacado) -->
+          <div class="plan-card popular-plan">
+            <div class="popular-ribbon">MÁS ELEGIDO</div>
+            <div class="plan-header">
+              <span class="plan-badge gold-bg">Amantes del Café</span>
+              <h3 class="plan-title">Plan Barista Master</h3>
+              <div class="plan-price">
+                <span class="price-val">$24.00</span>
+                <span class="price-period">/ mes</span>
+              </div>
+            </div>
+            <ul class="plan-features">
+              <li><i class="fa-solid fa-check gold-accent"></i> 2 Bolsas de 250g (1 Nacional + 1 Internacional)</li>
+              <li><i class="fa-solid fa-check gold-accent"></i> Envíos gratis a todo el país</li>
+              <li><i class="fa-solid fa-check gold-accent"></i> 10% de descuento en todo el menú presencial</li>
+              <li><i class="fa-solid fa-check gold-accent"></i> Acceso a catas mensuales exclusivas</li>
+            </ul>
+            <button class="btn btn-gold btn-block quick-add-btn" data-id="plan-master" data-name="Suscripción Plan Barista Master (500g)" data-price="24.00" data-img="⭐">
+              Suscribirme Ahora
+            </button>
+          </div>
+
+          <!-- Plan Oficina & Cowork -->
+          <div class="plan-card">
+            <div class="plan-header">
+              <span class="plan-badge">Empresas & Equipos</span>
+              <h3 class="plan-title">Plan Corporativo</h3>
+              <div class="plan-price">
+                <span class="price-val">$45.00</span>
+                <span class="price-period">/ mes</span>
+              </div>
+            </div>
+            <ul class="plan-features">
+              <li><i class="fa-solid fa-check gold-accent"></i> 1 Kilogramo de Café Premium en Grano</li>
+              <li><i class="fa-solid fa-check gold-accent"></i> Dosificador y mantenimiento de filtro</li>
+              <li><i class="fa-solid fa-check gold-accent"></i> Facturación fiscal para empresas</li>
+              <li><i class="fa-solid fa-check gold-accent"></i> Entrega quincenal programada</li>
+            </ul>
+            <button class="btn btn-outline-gold btn-block quick-add-btn" data-id="plan-corporativo" data-name="Suscripción Corporativa (1Kg)" data-price="45.00" data-img="🏢">
+              Suscribirme Ahora
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== CARRITO DE COMPRAS SLIDE-OVER ==================== -->
+  <div class="cart-drawer-overlay" id="cart-drawer-overlay" aria-hidden="true">
+    <div class="cart-drawer" role="dialog" aria-modal="true" aria-label="Carrito de compras">
+      <div class="cart-drawer-header">
+        <div class="cart-title-box">
+          <i class="fa-solid fa-bag-shopping gold-accent"></i>
+          <h3>Tu Orden de Café</h3>
+          <span class="cart-badge-count" id="drawer-counter">0 items</span>
+        </div>
+        <button class="close-cart-btn" id="close-cart-btn" aria-label="Cerrar carrito">&times;</button>
+      </div>
+
+      <div class="cart-drawer-body" id="cart-items-container">
+        <!-- Vacio por defecto -->
+        <div class="empty-cart-state" id="empty-cart-state">
+          <span class="empty-icon">☕</span>
+          <h4>Tu carrito está esperando por café</h4>
+          <p>Explora nuestro menú o construye tu bebida favorita en el laboratorio.</p>
+        </div>
+      </div>
+
+      <div class="cart-drawer-footer" id="cart-footer">
+        <div class="coupon-box">
+          <input type="text" id="coupon-code-input" placeholder="Código de descuento (ej: BARISTA10)">
+          <button id="apply-coupon-btn" class="btn btn-sm btn-gold">Aplicar</button>
+        </div>
+
+        <div class="cart-totals">
+          <div class="total-row">
+            <span>Subtotal:</span>
+            <span id="cart-subtotal">$0.00 USD</span>
+          </div>
+          <div class="total-row discount-row" id="discount-row" style="display: none;">
+            <span>Descuento (BARISTA10 -10%):</span>
+            <span id="cart-discount">-$0.00 USD</span>
+          </div>
+          <div class="total-row final-row">
+            <span>Total a Pagar:</span>
+            <div class="total-prices-wrapper">
+              <span class="usd-final" id="cart-total-usd">$0.00 USD</span>
+              <span class="ves-final" id="cart-total-ves">(~ 0.00 Bs)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cart-checkout-actions">
+          <a href="#" id="whatsapp-order-btn" class="btn btn-gold btn-block btn-lg" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>Pedir por WhatsApp</span>
+          </a>
+          <button id="clear-cart-btn" class="btn btn-ghost btn-sm btn-block">
+            <i class="fa-solid fa-trash-can"></i> Vaciar Carrito
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notifications Container -->
+  <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-content-grid">
+      <div class="footer-about">
+        <div class="brand-brand">
+          <div class="brand-cup-icon"><i class="fa-solid fa-mug-hot"></i></div>
+          <span class="brand-title">Astro<span class="gold-accent">Brew</span></span>
+        </div>
+        <p class="footer-bio">
+          Cafetería de especialidad, tostaduría artesanal y laboratorio de bebidas creado con dedicación por <strong>Joendri Albarran</strong>. Elevando la cultura del café con diseño y tecnología.
+        </p>
+        <div class="social-links-footer">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="col-title">Horarios de Atención</h4>
+        <ul class="col-list">
+          <li><strong>Lunes a Viernes:</strong> 7:30 AM – 8:30 PM</li>
+          <li><strong>Sábados:</strong> 8:00 AM – 10:00 PM</li>
+          <li><strong>Domingos:</strong> 9:00 AM – 7:00 PM</li>
+          <li class="open-status"><span class="open-dot"></span> Abierto ahora para órdenes</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="col-title">Ubicación & Contacto</h4>
+        <ul class="col-list">
+          <li><i class="fa-solid fa-location-dot gold-accent"></i> Av. Principal de Las Delicias, Maracay / Caracas, Venezuela</li>
+          <li><i class="fa-solid fa-phone gold-accent"></i> +58 412 123 4567</li>
+          <li><i class="fa-solid fa-envelope gold-accent"></i> hola@astrobrew.coffee</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <div class="container bottom-wrapper">
+        <p>© <span id="year-copy">2026</span> <strong>AstroBrew Coffee Lab</strong>. Diseñado y Desarrollado por <strong>Joendri Albarran</strong>.</p>
+        <a href="#hero" class="back-top-link"><i class="fa-solid fa-arrow-up"></i> Volver arriba</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
