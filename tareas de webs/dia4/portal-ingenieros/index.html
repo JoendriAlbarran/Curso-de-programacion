@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ALBARRAN NEXUS - Portal Internacional y Red Global de Ingenieros de todas las disciplinas. Software, Civil, Mecánica, Eléctrica, Aeroespacial, Biomédica y más. Fundado y dirigido por Joendri Albarran.">
+    <meta name="keywords" content="Ingeniería, Portal de Ingenieros, Joendri Albarran, Ingeniería Civil, Ingeniería de Software, Ingeniería Mecánica, Aeroespacial, Calculadoras Técnicas, Carnet de Ingeniero">
+    <meta name="author" content="Joendri Albarran">
+    <title>ALBARRAN NEXUS | Portal Global de Ingenieros - Joendri Albarran</title>
+
+    <!-- Google Fonts: Syne / Space Grotesk / Outfit & JetBrains Mono para datos técnicos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Estilos de la Plataforma -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-blueprint">
+
+    <!-- Canvas de fondo técnico con grilla CAD interactiva -->
+    <canvas id="cad-grid-canvas" class="cad-bg-canvas"></canvas>
+
+    <!-- 1. Barra de Telemetría y Normativas Técnicas (Top Status Ribbon) -->
+    <div class="top-telemetry-bar">
+        <div class="container telemetry-flex">
+            <div class="telemetry-left">
+                <span class="status-indicator"><span class="pulse-ring"></span> RED GLOBAL ACTIVA</span>
+                <span class="telemetry-item"><strong class="highlight-code">PORTAL-NEXUS // VER. 4.8.2</strong></span>
+                <span class="telemetry-sep">|</span>
+                <span class="telemetry-item" id="utc-clock">UTC: 00:00:00</span>
+                <span class="telemetry-sep">|</span>
+                <span class="telemetry-item">ESTÁNDARES: <strong>ISO 9001 · IEEE · ASME · ACI</strong></span>
+            </div>
+            <div class="telemetry-right">
+                <div class="server-node">
+                    <span class="node-dot"></span>
+                    <span>SERVIDOR CENTRAL: <strong>CARACAS / LATAM HUB</strong></span>
+                </div>
+                <button id="audio-toggle-btn" class="hud-mini-btn" title="Activar/Desactivar efectos sonoros de ingeniería">
+                    <span id="audio-icon">🔈</span> <span class="audio-label">FX OFF</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Encabezado y Navegación Principal -->
+    <header class="main-header" id="header">
+        <div class="container header-content">
+            <a href="#inicio" class="brand-logo" id="logo-anchor">
+                <div class="brand-symbol">
+                    <div class="symbol-inner">
+                        <svg viewBox="0 0 40 40" class="logo-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="20,2 38,12 38,28 20,38 2,28 2,12" stroke="currentColor" stroke-width="2" fill="rgba(0, 240, 255, 0.08)"/>
+                            <circle cx="20" cy="20" r="7" stroke="currentColor" stroke-width="2" fill="rgba(59, 130, 246, 0.3)"/>
+                            <line x1="20" y1="2" x2="20" y2="13" stroke="currentColor" stroke-width="1.5"/>
+                            <line x1="20" y1="27" x2="20" y2="38" stroke="currentColor" stroke-width="1.5"/>
+                            <line x1="2" y1="12" x2="14" y2="17" stroke="currentColor" stroke-width="1.5"/>
+                            <line x1="26" y1="23" x2="38" y2="28" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="brand-identity">
+                    <div class="brand-title">ALBARRAN <span class="accent-text">NEXUS</span></div>
+                    <div class="brand-subtitle">PORTAL INTERNACIONAL DE INGENIERÍA · JOENDRI ALBARRAN</div>
+                </div>
+            </a>
+
+            <!-- Menú de Navegación -->
+            <nav class="nav-bar" id="main-nav">
+                <ul class="nav-links">
+                    <li><a href="#especialidades" class="nav-link active">Especialidades</a></li>
+                    <li><a href="#laboratorio" class="nav-link">Calculadoras Lab</a></li>
+                    <li><a href="#cad-simulator" class="nav-link">Blueprint CAD</a></li>
+                    <li><a href="#directorio" class="nav-link">Directorio Top</a></li>
+                    <li><a href="#proyectos" class="nav-link">Licitaciones</a></li>
+                    <li><a href="#carnet" class="nav-link">Carnet Digital</a></li>
+                </ul>
+            </nav>
+
+            <!-- Acciones de Encabezado -->
+            <div class="header-actions">
+                <button id="theme-toggle" class="icon-btn" title="Cambiar tema (Blueprint / Dark Titan / Cyber Grid)">
+                    <span class="theme-icon">📐</span>
+                </button>
+                <a href="#carnet" class="btn-primary-glow">
+                    <span class="btn-icon">⚡</span>
+                    <span>Colegiarme</span>
+                </a>
+                <button class="mobile-toggle" id="mobile-menu-toggle" aria-label="Abrir menú de navegación">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. HERO SECTION: Epicentro de la Ingeniería Mundial -->
+    <section class="hero-section" id="inicio">
+        <div class="container hero-layout">
+            <div class="hero-text-block">
+                <div class="badge-tag">
+                    <span class="pulse-chip"></span>
+                    <span>INICIATIVA INTERNACIONAL · DIRIGIDO POR JOENDRI ALBARRAN</span>
+                </div>
+                <h1 class="hero-heading">
+                    El Portal Definitivo para <span class="gradient-text">Ingenieros de Todo el Mundo</span> y Todas las Disciplinas.
+                </h1>
+                <p class="hero-description">
+                    Bienvenido a la plataforma central de la ingeniería contemporánea creada bajo la visión de <strong>Joendri Albarran</strong>. Conectamos software avanzado, cálculo estructural civil, robótica mecatrónica, propulsión aeroespacial, smart grids y biotecnología en un ecosistema unificado de cálculo, certificación y desarrollo de mega-proyectos.
+                </p>
+
+                <!-- Acciones Principales -->
+                <div class="hero-buttons">
+                    <a href="#especialidades" class="btn-action-primary">
+                        <span>Explorar 10 Ingenierías</span>
+                        <svg class="arrow-svg" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                    <a href="#laboratorio" class="btn-action-secondary">
+                        <span class="calc-symbol">ƒ(x)</span>
+                        <span>Abrir Suite de Cálculo</span>
+                    </a>
+                    <a href="#cad-simulator" class="btn-action-ghost">
+                        <span>Simulador CAD 3D</span>
+                    </a>
+                </div>
+
+                <!-- Métricas Técnicas en Vivo -->
+                <div class="hero-stats-strip">
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="10">10</div>
+                        <div class="stat-label">Ramas Fundamentales</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="14850">0</div>
+                        <div class="stat-label">Ingenieros Certificados</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="940">0</div>
+                        <div class="stat-label">Licitaciones Activas</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-card">
+                        <div class="stat-number">99.98%</div>
+                        <div class="stat-label">Confiabilidad de Cálculos</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel Holográfico Interactivo de Disciplinas (Hero Visual) -->
+            <div class="hero-visual-block">
+                <div class="holo-terminal-card">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <div class="terminal-title">CENTRO DE CONTROL MULTIDISCIPLINARIO // JOENDRI ALBARRAN</div>
+                        <div class="terminal-badge">LIVE SYS</div>
+                    </div>
+                    <div class="terminal-body">
+                        <!-- Nodo Central Giratorio -->
+                        <div class="tech-radar-display">
+                            <div class="radar-circle c1"></div>
+                            <div class="radar-circle c2"></div>
+                            <div class="radar-circle c3"></div>
+                            <div class="radar-sweep"></div>
+                            <div class="center-core">
+                                <span class="core-logo">JA</span>
+                                <span class="core-text">ALBARRAN<br>ENGINEERING</span>
+                            </div>
+
+                            <!-- Nodos Orbitales de Disciplinas -->
+                            <div class="radar-node node-sw" data-tip="Ing. Software & IA">💻</div>
+                            <div class="radar-node node-civil" data-tip="Ing. Civil & Estructuras">🏗️</div>
+                            <div class="radar-node node-mec" data-tip="Ing. Mecánica & Fluidos">⚙️</div>
+                            <div class="radar-node node-aero" data-tip="Ing. Aeroespacial">🚀</div>
+                            <div class="radar-node node-elec" data-tip="Ing. Eléctrica & Energía">⚡</div>
+                            <div class="radar-node node-bio" data-tip="Ing. Biomédica">🧬</div>
+                            <div class="radar-node node-chem" data-tip="Ing. Química & Materiales">🧪</div>
+                            <div class="radar-node node-mct" data-tip="Ing. Mecatrónica & Drones">🤖</div>
+                        </div>
+
+                        <!-- Panel de Datos Técnicos en Tiempo Real -->
+                        <div class="terminal-diagnostics">
+                            <div class="diag-row">
+                                <span class="diag-label">DIRECTOR GENERAL:</span>
+                                <span class="diag-val highlight">Ing. Joendri Albarran</span>
+                            </div>
+                            <div class="diag-row">
+                                <span class="diag-label">MATRIZ ACTIVA:</span>
+                                <span class="diag-val">Multi-Disciplinary Synthesis Engine</span>
+                            </div>
+                            <div class="diag-row">
+                                <span class="diag-label">NODOS CONECTADOS:</span>
+                                <span class="diag-val" id="connected-nodes-count">84 Países · 342 Universidades</span>
+                            </div>
+                            <div class="diag-progress-bar">
+                                <div class="diag-fill" style="width: 88%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SECCIÓN: EXPLORADOR DE DISCIPLINAS DE LA INGENIERÍA -->
+    <section class="section-container" id="especialidades">
+        <div class="container">
+            <div class="section-head text-center">
+                <div class="section-tag">CATÁLOGO INTEGRAL DE DISCIPLINAS</div>
+                <h2 class="section-title">Todas las Ingenierías en un Solo Portal</h2>
+                <p class="section-subtitle">
+                    Descubre los campos de aplicación, el stack tecnológico de vanguardia, software estándar de la industria y métricas de cada especialidad impulsada en Albarran Nexus.
+                </p>
+            </div>
+
+            <!-- Barra de Filtros y Búsqueda Dinámica -->
+            <div class="filter-controls-wrapper">
+                <div class="search-input-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="engineering-search" placeholder="Buscar por rama, tecnología (ej. ANSYS, Python, BIM, PLC)...">
+                    <button id="clear-search-btn" class="clear-btn" style="display:none;">✕</button>
+                </div>
+                <div class="filter-chips" id="discipline-filters">
+                    <button class="chip active" data-filter="all">Todas (10)</button>
+                    <button class="chip" data-filter="computacion">Computación & IA</button>
+                    <button class="chip" data-filter="infraestructura">Infraestructura & Obra</button>
+                    <button class="chip" data-filter="mecanica-aero">Mecánica & Espacial</button>
+                    <button class="chip" data-filter="energia-electronica">Energía & Señales</button>
+                    <button class="chip" data-filter="ciencias-vida">Biotecnología & Procesos</button>
+                </div>
+            </div>
+
+            <!-- Grilla Dinámica de Ingenierías -->
+            <div class="disciplines-grid" id="disciplines-container">
+                <!-- Se inyectan las 10 tarjetas mediante JavaScript con interactividad total -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SECCIÓN: SUITE DE CÁLCULO Y LABORATORIO TÉCNICO VIRTUAL -->
+    <section class="section-container bg-blueprint-tint" id="laboratorio">
+        <div class="container">
+            <div class="section-head text-center">
+                <div class="section-tag">LABORATORIO DE CÁLCULO MATEMÁTICO & FÍSICO</div>
+                <h2 class="section-title">Suite de Herramientas Técnicas de Ingeniería</h2>
+                <p class="section-subtitle">
+                    Motores de cálculo en tiempo real creados para ingenieros en campo, diseño de estructuras, análisis de fluidos, dimensionamiento eléctrico y arquitectura de software.
+                </p>
+            </div>
+
+            <div class="calc-workbench">
+                <!-- Pestañas de Herramientas -->
+                <div class="calc-tabs">
+                    <button class="calc-tab-btn active" data-tab="tab-civil-mecanica">
+                        <span class="tab-icon">🏗️</span>
+                        <span>Resistencia de Materiales (Hooke & Esfuerzo)</span>
+                    </button>
+                    <button class="calc-tab-btn" data-tab="tab-fluidos">
+                        <span class="tab-icon">🌊</span>
+                        <span>Mecánica de Fluidos (Reynolds Re)</span>
+                    </button>
+                    <button class="calc-tab-btn" data-tab="tab-electrica">
+                        <span class="tab-icon">⚡</span>
+                        <span>Sistemas Eléctricos & Trifásica (Ohm & Potencia)</span>
+                    </button>
+                    <button class="calc-tab-btn" data-tab="tab-software">
+                        <span class="tab-icon">💻</span>
+                        <span>Software SLA & Capacidad de Cómputo</span>
+                    </button>
+                </div>
+
+                <!-- Contenido de las Pestañas -->
+                <div class="calc-panel-container">
+
+                    <!-- Panel 1: Resistencia de Materiales -->
+                    <div class="calc-panel active" id="tab-civil-mecanica">
+                        <div class="calc-grid-2col">
+                            <div class="calc-form">
+                                <h3 class="panel-subtitle">Cálculo de Tensión ($\sigma$), Deformación Unitaria ($\varepsilon$) y Alargamiento ($\Delta L$)</h3>
+                                <p class="panel-note">Modelo elástico de Hooke unidireccional: $\sigma = \frac{F}{A}$, $\varepsilon = \frac{\sigma}{E}$, $\Delta L = \frac{F \cdot L}{A \cdot E}$</p>
+
+                                <div class="form-row">
+                                    <label for="mat-select">Material Estándar:</label>
+                                    <select id="mat-select" class="form-input">
+                                        <option value="200000">Acero Estructural A36 (E = 200 GPa)</option>
+                                        <option value="70000">Aluminio Estructural 6061-T6 (E = 70 GPa)</option>
+                                        <option value="110000">Titanio Grado 5 Ti-6Al-4V (E = 110 GPa)</option>
+                                        <option value="30000">Hormigón / Concreto H-30 (E = 30 GPa)</option>
+                                        <option value="13000">Madera de Pino Estructural (E = 13 GPa)</option>
+                                        <option value="custom">Personalizado...</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-row" id="custom-e-wrap" style="display:none;">
+                                    <label for="custom-e">Módulo de Young E (MPa):</label>
+                                    <input type="number" id="custom-e" class="form-input" value="200000" min="100">
+                                </div>
+
+                                <div class="form-row-2">
+                                    <div class="form-group">
+                                        <label for="force-load">Fuerza Aplicada F (kN):</label>
+                                        <input type="number" id="force-load" class="form-input" value="45" step="1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="area-section">Área Transversal A (mm²):</label>
+                                        <input type="number" id="area-section" class="form-input" value="650" step="10">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <label for="length-initial">Longitud Inicial de la Pieza L (metros):</label>
+                                    <input type="number" id="length-initial" class="form-input" value="3.5" step="0.1">
+                                </div>
+
+                                <button id="btn-calc-materials" class="btn-calculate">
+                                    <span>Ejecutar Análisis Estructural</span>
+                                </button>
+                            </div>
+
+                            <div class="calc-results-display">
+                                <div class="results-header">
+                                    <h4>Telemetría de Tensión & Deformación</h4>
+                                    <span class="status-pill safe" id="stress-safety-pill">ESTADO: SEGURO</span>
+                                </div>
+                                <div class="result-metrics">
+                                    <div class="metric-box">
+                                        <span class="m-label">Esfuerzo Normal ($\sigma$):</span>
+                                        <span class="m-val" id="res-stress">69.23 MPa</span>
+                                    </div>
+                                    <div class="metric-box">
+                                        <span class="m-label">Deformación Unitaria ($\varepsilon$):</span>
+                                        <span class="m-val" id="res-strain">0.000346</span>
+                                    </div>
+                                    <div class="metric-box">
+                                        <span class="m-label">Alargamiento Total ($\Delta L$):</span>
+                                        <span class="m-val" id="res-delta-l">1.21 mm</span>
+                                    </div>
+                                    <div class="metric-box">
+                                        <span class="m-label">Carga en Newtons:</span>
+                                        <span class="m-val" id="res-newtons">45,000 N</span>
+                                    </div>
+                                </div>
+
+                                <!-- Visualización Gráfica Animada de la Viga -->
+                                <div class="beam-simulation-box">
+                                    <div class="beam-guide">Simulación Visual de Carga Axial:</div>
+                                    <div class="beam-wrapper">
+                                        <div class="beam-fixed-support"></div>
+                                        <div class="beam-element" id="sim-beam-element">
+                                            <span class="beam-text">Viga Sometida a Tracción</span>
+                                        </div>
+                                        <div class="beam-force-arrow" id="sim-beam-arrow">
+                                            <span class="arrow-symbol">➔</span>
+                                            <span class="arrow-label">F = <span id="arrow-force-val">45</span> kN</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel 2: Mecánica de Fluidos (Reynolds) -->
+                    <div class="calc-panel" id="tab-fluidos">
+                        <div class="calc-grid-2col">
+                            <div class="calc-form">
+                                <h3 class="panel-subtitle">Diagnóstico Hidráulico y Número de Reynolds (Re)</h3>
+                                <p class="panel-note">Determina régimen de flujo (Laminar &lt; 2000, Transición 2000-4000, Turbulento &gt; 4000). $Re = \frac{\rho \cdot v \cdot D}{\mu}$</p>
+
+                                <div class="form-row">
+                                    <label for="fluid-select">Fluido:</label>
+                                    <select id="fluid-select" class="form-input">
+                                        <option value="water">Agua dulce (20°C) [ρ=998 kg/m³, μ=0.001002 Pa·s]</option>
+                                        <option value="oil">Aceite hidráulico ISO 46 [ρ=870 kg/m³, μ=0.0400 Pa·s]</option>
+                                        <option value="air">Aire atmosférico (20°C) [ρ=1.204 kg/m³, μ=0.000018 Pa·s]</option>
+                                        <option value="gasoline">Gasolina / Hidrocarburo [ρ=740 kg/m³, μ=0.00060 Pa·s]</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-row-2">
+                                    <div class="form-group">
+                                        <label for="fluid-velocity">Velocidad del Flujo v (m/s):</label>
+                                        <input type="number" id="fluid-velocity" class="form-input" value="1.8" step="0.1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pipe-diameter">Diámetro Interno D (mm):</label>
+                                        <input type="number" id="pipe-diameter" class="form-input" value="80" step="5">
+                                    </div>
+                                </div>
+
+                                <button id="btn-calc-reynolds" class="btn-calculate">
+                                    <span>Calcular Régimen de Fluido</span>
+                                </button>
+                            </div>
+
+                            <div class="calc-results-display">
+                                <div class="results-header">
+                                    <h4>Régimen Hidráulico Resultante</h4>
+                                    <span class="status-pill" id="reynolds-pill">TURBULENTO</span>
+                                </div>
+                                <div class="result-metrics">
+                                    <div class="metric-box">
+                                        <span class="m-label">Número de Reynolds (Re):</span>
+                                        <span class="m-val highlight" id="res-reynolds">143,417</span>
+                                    </div>
+                                    <div class="metric-box">
+                                        <span class="m-label">Caudal Volumétrico Q:</span>
+                                        <span class="m-val" id="res-caudal">9.05 L/s (32.6 m³/h)</span>
+                                    </div>
+                                    <div class="metric-box">
+                                        <span class="m-label">Área de Paso de Sección:</span>
+                                        <span class="m-val" id="res-pipe-area">0.00503 m²</span>
+                                    </div>
+                                    <div class="metric-box">
+                                        <span class="m-label">Comportamiento:</span>
+                                        <span class="m-val" id="res-fluid-desc">Vórtices y alta disipación</span>
+                                    </div>
+                                </div>
+
+                                <!-- Animación Canvas de Tubería -->
+                                <div class="pipe-canvas-container">
+                                    <canvas id="pipe-particles-canvas" width="400" height="90"></canvas>
+                                    <div class="pipe-indicator-legend">
+                                        <span>Entrada de Flujo ➔</span>
+                                        <span id="pipe-regime-text">Régimen Turbulento Activo</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel 3: Sistemas Eléctricos -->
+                    <div class="calc-panel" id="tab-electrica">
+                        <div class="calc-grid-2col">
+                            <div class="calc-form">
+                                <h3 class="panel-subtitle">Dimensionamiento de Potencia Eléctrica Trifásica & Caída</h3>
+                                <p class="panel-note">Cálculo de corriente de línea y sugerencia de calibre: $I = \frac{P}{\sqrt{3} \cdot V \cdot \cos\varphi}$</p>
+
+                                <div class="form-row-2">
+                                    <div class="form-group">
+                                        <label for="elec-power">Potencia Activa P (kW):</label>
+                                        <input type="number" id="elec-power" class="form-input" value="30" step="1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="elec-voltage">Voltaje entre Líneas V (Voltios):</label>
+                                        <select id="elec-voltage" class="form-input">
+                                            <option value="208">208 V (Red Comercial América)</option>
+                                            <option value="380">380 V (Industrial Europa/Chile)</option>
+                                            <option value="440">440 V / 480 V (Fuerza Industrial)</option>
+                                            <option value="120">120 V (Monofásico auxiliar)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-row-2">
+                                    <div class="form-group">
+                                        <label for="elec-pf">Factor de Potencia ($\cos\varphi$):</label>
+                                        <input type="number" id="elec-pf" class="form-input" value="0.88" step="0.01" min="0.5" max="1.0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="elec-dist">Longitud de Línea (metros):</label>
+                                        <input type="number" id="elec-dist" class="form-input" value="45" step="5">
+                                    </div>
+                                </div>
+
+                                <button id="btn-calc-electric" class="btn-calculate">
+                                    <span>Calcular Parámetros Eléctricos</span>
+                                </button>
+                            </div>
+
+                            <div class="calc-results-display">
+                                <div class="results-header">
+                                    <h4>Telemetría de Carga Eléctrica</h4>
+                                    <span class="status-pill safe" id="elec-safety-pill">PARÁMETROS ÓPTIMOS</span>
+                                </div>
+                                <div class="result-metrics">
+                                    <div class="metric-box">
+                                        <span class="m-label">Corriente de Línea nominal:</span>
+                                        <span class="m-val highlight" id="res-elec-current">94.7 A</span>
+                                    </div>
+                                    <div class="metric-box">
+                                        <span class="m-label">Potencia Aparente S:</span>
+                                        <span class="m-val" id="res-elec-s">34.09 kVA</span>
+                                    </div>
+                                    <div class="metric-box">
+                                        <span class="m-label">Potencia Reactiva Q:</span>
+                                        <span class="m-val" id="res-elec-q">16.19 kVAR</span>
+                                    </div>
+                                    <div class="metric-box">
+                                        <span class="m-label">Calibre de Conductor Sugerido:</span>
+                                        <span class="m-val" id="res-elec-gauge">AWG #1 Cu (75°C)</span>
+                                    </div>
+                                </div>
+
+                                <div class="technical-notice-box">
+                                    <strong>Norma NEC / Fondonorma:</strong> Caída de tensión estimada &lt; 2.2% para alimentador con aislamiento THHN en ducto conduit metálico.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel 4: Software SLA & Cómputo -->
+                    <div class="calc-panel" id="tab-software">
+                        <div class="calc-grid-2col">
+                            <div class="calc-form">
+                                <h3 class="panel-subtitle">Estimación de Disponibilidad SLA y Capacidad de Microservicios</h3>
+                                <p class="panel-note">Arquitectura de Alta Confiabilidad: Calcula tiempo de inactividad permitido (Downtime) según los 'Nueves de Disponibilidad'.</p>
+
+                                <div class="form-row">
+                                    <label for="sla-select">Nivel de Confiabilidad Objetivo (SLA):</label>
+                                    <select id="sla-select" class="form-input">
+                                        <option value="99.0">99.0% (Dos Nueves - Básico)</option>
+                                        <option value="99.9">99.9% (Tres Nueves - Comercial Estándar)</option>
+                                        <option value="99.95">99.95% (Alta Disponibilidad Web)</option>
+                                        <option value="99.99" selected>99.99% (Cuatro Nueves - Infraestructura Crítica)</option>
+                                        <option value="99.999">99.999% (Cinco Nueves - Telecom & Aeroespacial)</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-row-2">
+                                    <div class="form-group">
+                                        <label for="soft-rps">Peticiones por Segundo (RPS Pico):</label>
+                                        <input type="number" id="soft-rps" class="form-input" value="12500" step="500">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="soft-payload">Tamaño Promedio Payload (KB):</label>
+                                        <input type="number" id="soft-payload" class="form-input" value="48" step="2">
+                                    </div>
+                                </div>
+
+                                <button id="btn-calc-software" class="btn-calculate">
+                                    <span>Analizar Métricas de Infraestructura</span>
+                                </button>
+                            </div>
+
+                            <div class="calc-results-display">
+                                <div class="results-header">
+                                    <h4>Tolerancia de Caída y Ancho de Banda</h4>
+                                    <span class="status-pill safe" id="sla-pill">TIER 4 READY</span>
+                                </div>
+                                <div class="result-metrics">
+                                    <div class="metric-box">
+                                        <span class="m-label">Downtime Máximo al Año:</span>
+                                        <span class="m-val highlight" id="res-downtime-year">52 min 35 seg</span>
+                                    </div>
+                                    <div class="metric-box">
+                                        <span class="m-label">Downtime Máximo al Mes:</span>
+                                        <span class="m-val" id="res-downtime-month">4 min 21 seg</span>
+                                    </div>
+                                    <div class="metric-box">
+                                        <span class="m-label">Throughput / Ancho de Banda:</span>
+                                        <span class="m-val" id="res-soft-bandwidth">4.80 Gbps</span>
+                                    </div>
+                                    <div class="metric-box">
+                                        <span class="m-label">Instancias K8s Recomendadas:</span>
+                                        <span class="m-val" id="res-soft-nodes">18 Pods (c6i.2xlarge)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. SECCIÓN: SIMULADOR BLUEPRINT CAD INTERACTIVO -->
+    <section class="section-container" id="cad-simulator">
+        <div class="container">
+            <div class="section-head text-center">
+                <div class="section-tag">HERRAMIENTA CAD VIRTUAL</div>
+                <h2 class="section-title">Mesa de Trabajo & Simulador de Planos Técnicos</h2>
+                <p class="section-subtitle">
+                    Interactúa en tiempo real con una matriz de diseño de ingeniería: selecciona capas de análisis de esfuerzo, trazado de tuberías o cableado estructural.
+                </p>
+            </div>
+
+            <div class="cad-viewport-card">
+                <!-- Barra de Herramientas CAD -->
+                <div class="cad-toolbar">
+                    <div class="tool-group">
+                        <span class="tool-group-label">CAPA TÉCNICA:</span>
+                        <button class="cad-tool-btn active" data-layer="structure">🏗️ Estructura & Cerchas</button>
+                        <button class="cad-tool-btn" data-layer="stress">🔥 Mapa de Esfuerzos (FEA)</button>
+                        <button class="cad-tool-btn" data-layer="fluids">🌊 Red Hidráulica</button>
+                        <button class="cad-tool-btn" data-layer="circuit">⚡ Diagrama Lógico</button>
+                    </div>
+
+                    <div class="tool-group">
+                        <span class="tool-group-label">VISTA:</span>
+                        <button class="cad-tool-btn" id="btn-cad-grid-toggle">Grilla ON/OFF</button>
+                        <button class="cad-tool-btn" id="btn-cad-nodes-toggle">Nodos Cargas</button>
+                        <button class="cad-tool-btn" id="btn-cad-reset">Reset</button>
+                    </div>
+
+                    <div class="tool-group slider-group">
+                        <label for="cad-load-slider">CARGA ACTIVA: <span id="cad-load-val">150</span> kN</label>
+                        <input type="range" id="cad-load-slider" min="10" max="500" value="150" class="tech-slider">
+                    </div>
+                </div>
+
+                <!-- Lienzo CAD Principal -->
+                <div class="cad-canvas-wrapper">
+                    <canvas id="interactive-cad-canvas" width="1100" height="520"></canvas>
+                    <div class="cad-hud-overlay">
+                        <div class="hud-box">
+                            <span class="h-title">SISTEMA:</span>
+                            <span class="h-value">Truss Analysis Engine 2D</span>
+                        </div>
+                        <div class="hud-box">
+                            <span class="h-title">DESPLAZAMIENTO MÁX:</span>
+                            <span class="h-value" id="hud-max-disp">2.41 mm</span>
+                        </div>
+                        <div class="hud-box">
+                            <span class="h-title">FACTOR DE SEGURIDAD:</span>
+                            <span class="h-value highlight" id="hud-fos">2.84 OK</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cad-footer-note">
+                    <span class="note-icon">ℹ️</span> Haz clic o arrastra sobre los nodos superiores para aplicar fuerzas puntuales directas y observar la redistribución de esfuerzos finitos en tiempo real.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. SECCIÓN: DIRECTORIO DE INGENIEROS COLEGIADOS TOP -->
+    <section class="section-container bg-blueprint-tint" id="directorio">
+        <div class="container">
+            <div class="section-head text-center">
+                <div class="section-tag">RED PROFESIONAL DE ÉLITE</div>
+                <h2 class="section-title">Directorio de Ingenieros Globales</h2>
+                <p class="section-subtitle">
+                    Miembros activos registrados en Albarran Nexus, avalados por experiencia técnica verificada, patentes registradas y mega-proyectos internacionales.
+                </p>
+            </div>
+
+            <!-- Controles de Filtro del Directorio -->
+            <div class="directory-filter-bar">
+                <input type="text" id="member-search" class="form-input member-search-input" placeholder="Buscar por nombre, país o especialidad...">
+                <select id="member-discipline-filter" class="form-input member-select">
+                    <option value="all">Todas las Ramas</option>
+                    <option value="Software">Ingeniería de Software / IA</option>
+                    <option value="Civil">Ingeniería Civil & Estructural</option>
+                    <option value="Mecánica">Ingeniería Mecánica & Robótica</option>
+                    <option value="Aeroespacial">Ingeniería Aeroespacial</option>
+                    <option value="Eléctrica">Ingeniería Eléctrica & Energía</option>
+                    <option value="Biomédica">Ingeniería Biomédica</option>
+                </select>
+                <select id="member-country-filter" class="form-input member-select">
+                    <option value="all">Todos los Países</option>
+                    <option value="Venezuela">Venezuela</option>
+                    <option value="España">España</option>
+                    <option value="México">México</option>
+                    <option value="Alemania">Alemania</option>
+                    <option value="Estados Unidos">Estados Unidos</option>
+                    <option value="Colombia">Colombia</option>
+                </select>
+            </div>
+
+            <!-- Grilla de Tarjetas de Ingenieros -->
+            <div class="engineers-grid" id="engineers-container">
+                <!-- Se llena dinámicamente con JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. SECCIÓN: BOLSA DE PROYECTOS Y LICITACIONES INTERNACIONALES -->
+    <section class="section-container" id="proyectos">
+        <div class="container">
+            <div class="section-head text-center">
+                <div class="section-tag">MERCADO GLOBAL DE PROYECTOS</div>
+                <h2 class="section-title">Licitaciones y Desafíos de Ingeniería</h2>
+                <p class="section-subtitle">
+                    Oportunidades de colaboración abierta y contratos de diseño técnico donde los miembros de la red Joendri Albarran pueden postular equipos multidisciplinarios.
+                </p>
+            </div>
+
+            <div class="projects-list-container" id="projects-feed">
+                <!-- Proyectos inyectados con JavaScript -->
+            </div>
+
+            <div class="submit-project-banner">
+                <div class="banner-text">
+                    <h3>¿Tu empresa requiere un equipo de ingeniería de alto calibre?</h3>
+                    <p>Publica un requerimiento técnico o licitación abierta en Albarran Nexus para ser analizada por especialistas certificados.</p>
+                </div>
+                <button id="btn-open-tender-modal" class="btn-action-primary">
+                    <span>Publicar Licitación Técnica</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. SECCIÓN: GENERADOR Y EMISIÓN DE CARNET DIGITAL DE INGENIERO -->
+    <section class="section-container bg-blueprint-tint" id="carnet">
+        <div class="container">
+            <div class="section-head text-center">
+                <div class="section-tag">ACREDITACIÓN & CREDENCIAL OFICIAL</div>
+                <h2 class="section-title">Carnet Digital de Ingeniero Colegiado</h2>
+                <p class="section-subtitle">
+                    Regístrate en la red de <strong>Joendri Albarran</strong> y genera de forma instantánea tu tarjeta digital con código QR de verificación, holograma técnico y número de registro internacional.
+                </p>
+            </div>
+
+            <div class="badge-creator-layout">
+                <!-- Formulario de Registro -->
+                <div class="badge-form-panel">
+                    <h3 class="form-title">Formulario de Afiliación Profesional</h3>
+                    <form id="engineer-register-form">
+                        <div class="form-row">
+                            <label for="reg-name">Nombre y Apellido Completo:</label>
+                            <input type="text" id="reg-name" class="form-input" placeholder="Ej: Ing. Carlos Méndez" required value="Ing. Joendri Albarran">
+                        </div>
+
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label for="reg-discipline">Rama de Ingeniería Principal:</label>
+                                <select id="reg-discipline" class="form-input" required>
+                                    <option value="Ingeniería de Software & IA" selected>Ingeniería de Software & IA</option>
+                                    <option value="Ingeniería Civil & Estructural">Ingeniería Civil & Estructural</option>
+                                    <option value="Ingeniería Mecánica & Robótica">Ingeniería Mecánica & Robótica</option>
+                                    <option value="Ingeniería Aeroespacial & Satelital">Ingeniería Aeroespacial & Satelital</option>
+                                    <option value="Ingeniería Eléctrica & Potencia">Ingeniería Eléctrica & Potencia</option>
+                                    <option value="Ingeniería Biomédica & Biónica">Ingeniería Biomédica & Biónica</option>
+                                    <option value="Ingeniería Química & Nanotecnología">Ingeniería Química & Nanotecnología</option>
+                                    <option value="Ingeniería Mecatrónica & IoT">Ingeniería Mecatrónica & IoT</option>
+                                    <option value="Ingeniería Industrial & Operaciones">Ingeniería Industrial & Operaciones</option>
+                                    <option value="Ingeniería Ambiental & Renovables">Ingeniería Ambiental & Renovables</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-country">País de Ejercicio:</label>
+                                <select id="reg-country" class="form-input" required>
+                                    <option value="Venezuela" selected>Venezuela</option>
+                                    <option value="España">España</option>
+                                    <option value="México">México</option>
+                                    <option value="Colombia">Colombia</option>
+                                    <option value="Estados Unidos">Estados Unidos</option>
+                                    <option value="Alemania">Alemania</option>
+                                    <option value="Chile">Chile</option>
+                                    <option value="Argentina">Argentina</option>
+                                    <option value="Canadá">Canadá</option>
+                                    <option value="Internacional">Otro / Global</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label for="reg-license">Número de Matrícula / Colegio (CIV / PE / IEEE):</label>
+                                <input type="text" id="reg-license" class="form-input" placeholder="Ej. CIV-294819" value="JA-DIRECTOR-001">
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-level">Grado / Nivel de Experiencia:</label>
+                                <select id="reg-level" class="form-input">
+                                    <option value="Director General & Fundador" selected>Director General & Fundador</option>
+                                    <option value="Ingeniero Principal / Senior (+10 años)">Ingeniero Principal / Senior (+10 años)</option>
+                                    <option value="Especialista / Proyectista (+5 años)">Especialista / Proyectista (+5 años)</option>
+                                    <option value="Ingeniero Junior / Residente">Ingeniero Junior / Residente</option>
+                                    <option value="Investigador / Ph.D. / M.Sc.">Investigador / Ph.D. / M.Sc.</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="reg-specialty">Especialidad Secundaria o Tecnologías Clave:</label>
+                            <input type="text" id="reg-specialty" class="form-input" placeholder="Ej. Arquitectura Distribuida, Diseño Sismorresistente, ANSYS FEA" value="Sistemas Distribuidos, Robótica & Simulación CAD">
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-calculate" id="btn-generate-badge">
+                                <span>⚡ Generar Credencial Oficial</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Visualización 3D Holográfica del Carnet -->
+                <div class="badge-preview-panel">
+                    <div class="badge-card-3d-wrapper">
+                        <div class="id-card-hologram" id="official-id-card">
+                            <!-- Efecto de brillo metalizado -->
+                            <div class="holo-shimmer"></div>
+
+                            <!-- Cabecera de la Credencial -->
+                            <div class="id-header">
+                                <div class="id-logo-wrap">
+                                    <span class="id-logo-symbol">📐</span>
+                                    <div>
+                                        <div class="id-nexus-title">ALBARRAN NEXUS</div>
+                                        <div class="id-nexus-sub">INTERNATIONAL ENGINEERING COUNCIL</div>
+                                    </div>
+                                </div>
+                                <div class="id-chip-sim">
+                                    <div class="chip-line"></div>
+                                    <div class="chip-line"></div>
+                                </div>
+                            </div>
+
+                            <!-- Cuerpo del Carnet -->
+                            <div class="id-body">
+                                <div class="id-avatar-box">
+                                    <div class="id-avatar-placeholder" id="badge-avatar-display">
+                                        <span>JA</span>
+                                    </div>
+                                    <span class="id-verified-seal">✓ VERIFICADO</span>
+                                </div>
+
+                                <div class="id-info-box">
+                                    <div class="id-name" id="badge-display-name">Ing. Joendri Albarran</div>
+                                    <div class="id-role" id="badge-display-discipline">Ingeniería de Software & IA</div>
+                                    <div class="id-rank" id="badge-display-rank">Director General & Fundador</div>
+
+                                    <div class="id-meta-grid">
+                                        <div class="id-meta-item">
+                                            <span class="meta-k">MATRÍCULA:</span>
+                                            <span class="meta-v" id="badge-display-id">JA-DIRECTOR-001</span>
+                                        </div>
+                                        <div class="id-meta-item">
+                                            <span class="meta-k">PAÍS:</span>
+                                            <span class="meta-v" id="badge-display-country">Venezuela</span>
+                                        </div>
+                                        <div class="id-meta-item">
+                                            <span class="meta-k">VÁLIDO HASTA:</span>
+                                            <span class="meta-v">2030 // PERMANENTE</span>
+                                        </div>
+                                        <div class="id-meta-item">
+                                            <span class="meta-k">SEGURIDAD:</span>
+                                            <span class="meta-v highlight-code">SHA-256 SECURED</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Pie de Credencial con QR generado dinámicamente -->
+                            <div class="id-footer">
+                                <div class="id-signature-area">
+                                    <div class="sig-script">Joendri Albarran</div>
+                                    <div class="sig-label">FIRMA DE CONSEJO DIRECTIVO</div>
+                                </div>
+                                <div class="id-barcode-qr" id="badge-qr-container">
+                                    <!-- QR Vectorial / SVG en tiempo real -->
+                                    <svg viewBox="0 0 50 50" class="qr-svg" id="badge-qr-svg">
+                                        <rect width="50" height="50" fill="#ffffff"/>
+                                        <rect x="5" y="5" width="12" height="12" fill="#000000"/>
+                                        <rect x="7" y="7" width="8" height="8" fill="#ffffff"/>
+                                        <rect x="9" y="9" width="4" height="4" fill="#000000"/>
+
+                                        <rect x="33" y="5" width="12" height="12" fill="#000000"/>
+                                        <rect x="35" y="7" width="8" height="8" fill="#ffffff"/>
+                                        <rect x="37" y="9" width="4" height="4" fill="#000000"/>
+
+                                        <rect x="5" y="33" width="12" height="12" fill="#000000"/>
+                                        <rect x="7" y="35" width="8" height="8" fill="#ffffff"/>
+                                        <rect x="9" y="37" width="4" height="4" fill="#000000"/>
+
+                                        <!-- Patrón de datos aleatorio realista -->
+                                        <rect x="20" y="8" width="4" height="6" fill="#000000"/>
+                                        <rect x="26" y="14" width="4" height="4" fill="#000000"/>
+                                        <rect x="20" y="20" width="8" height="8" fill="#000000"/>
+                                        <rect x="10" y="22" width="4" height="6" fill="#000000"/>
+                                        <rect x="32" y="22" width="6" height="4" fill="#000000"/>
+                                        <rect x="22" y="34" width="6" height="6" fill="#000000"/>
+                                        <rect x="34" y="34" width="8" height="8" fill="#000000"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="badge-actions-row">
+                        <button id="btn-print-badge" class="hud-mini-btn">
+                            <span>🖨️ Imprimir Credencial</span>
+                        </button>
+                        <button id="btn-download-badge" class="hud-mini-btn">
+                            <span>💾 Guardar como Imagen / PDF</span>
+                        </button>
+                        <button id="btn-share-badge" class="hud-mini-btn">
+                            <span>🔗 Compartir Enlace Verificado</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. SECCIÓN: GUÍA DE NORMAS TÉCNICAS INTERNACIONALES -->
+    <section class="section-container" id="normativas">
+        <div class="container">
+            <div class="section-head text-center">
+                <div class="section-tag">COMPENDIO NORMATIVO TÉCNICO</div>
+                <h2 class="section-title">Manual de Estándares & Códigos de Diseño</h2>
+                <p class="section-subtitle">
+                    Acceso rápido a las normativas universales de ingeniería consultadas por los comités de Joendri Albarran.
+                </p>
+            </div>
+
+            <div class="standards-grid">
+                <div class="standard-card">
+                    <div class="std-badge">ISO 9001 / 14001</div>
+                    <h3>Sistemas de Gestión de Calidad & Ambiental</h3>
+                    <p>Directrices globales para aseguramiento de calidad en procesos de fabricación, ciclo de vida y sustentabilidad industrial.</p>
+                    <span class="std-link">Ver Síntesis Técnica ➔</span>
+                </div>
+                <div class="standard-card">
+                    <div class="std-badge">ACI 318-19</div>
+                    <h3>Requisitos de Concreto Estructural</h3>
+                    <p>Código del American Concrete Institute para diseño de vigas, columnas, losas y sismorresistencia en estructuras de hormigón.</p>
+                    <span class="std-link">Ver Síntesis Técnica ➔</span>
+                </div>
+                <div class="standard-card">
+                    <div class="std-badge">IEEE 802.3 / 829</div>
+                    <h3>Estándares de Telecomunicaciones & Software QA</h3>
+                    <p>Normativas de Ethernet de ultra-alta velocidad, protocolos de señal y documentación formal de pruebas de software crítico.</p>
+                    <span class="std-link">Ver Síntesis Técnica ➔</span>
+                </div>
+                <div class="standard-card">
+                    <div class="std-badge">ASME Sección VIII</div>
+                    <h3>Recipientes a Presión & Calderas</h3>
+                    <p>Cálculo de espesor de pared, tensiones admisibles y tolerancias térmicas para plantas petroquímicas e industriales.</p>
+                    <span class="std-link">Ver Síntesis Técnica ➔</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. PIE DE PÁGINA (FOOTER INSTITUCIONAL) -->
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-col brand-col">
+                <div class="footer-logo">
+                    <span class="accent-text">ALBARRAN</span> NEXUS
+                </div>
+                <p class="footer-about">
+                    Portal Internacional de Ingeniería fundado y presidido por el <strong>Ing. Joendri Albarran</strong>. Una iniciativa dedicada a democratizar el conocimiento científico, conectar talentos de élite y fomentar la excelencia técnica en todas las ramas de la ingeniería.
+                </p>
+                <div class="engineer-oath">
+                    <em>"Hacer de la ciencia una fuerza viva al servicio de la humanidad y el progreso sostenible."</em>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Ramas Fundamentales</h4>
+                <ul class="footer-nav">
+                    <li><a href="#especialidades">Ingeniería de Software & IA</a></li>
+                    <li><a href="#especialidades">Ingeniería Civil & Estructural</a></li>
+                    <li><a href="#especialidades">Ingeniería Mecánica & Robótica</a></li>
+                    <li><a href="#especialidades">Ingeniería Aeroespacial & Satelital</a></li>
+                    <li><a href="#especialidades">Ingeniería Eléctrica & Energías</a></li>
+                    <li><a href="#especialidades">Ingeniería Biomédica & Nanotec</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Herramientas & Enlaces</h4>
+                <ul class="footer-nav">
+                    <li><a href="#laboratorio">Suite de Cálculos Matemáticos</a></li>
+                    <li><a href="#cad-simulator">Simulador Blueprint CAD 2D</a></li>
+                    <li><a href="#directorio">Directorio Internacional de Colegiados</a></li>
+                    <li><a href="#proyectos">Bolsa de Licitaciones Abiertas</a></li>
+                    <li><a href="#carnet">Generación de Carnet Digital</a></li>
+                    <li><a href="#normativas">Códigos ACI, IEEE, ASME, ISO</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Sede Central & Contacto</h4>
+                <div class="contact-info">
+                    <p>📍 <strong>División General:</strong> Joendri Albarran Engineering Council</p>
+                    <p>🌐 <strong>Cobertura:</strong> Red Internacional Multidisciplinaria</p>
+                    <p>✉️ <strong>Comité Directivo:</strong> contacto@albarran-nexus.eng</p>
+                    <p>🔒 <strong>Protocolo:</strong> Conexión Segura TLS 1.3</p>
+                </div>
+                <div class="footer-socials">
+                    <a href="#" class="social-icon" title="LinkedIn Engineering Hub">in</a>
+                    <a href="#" class="social-icon" title="GitHub Open Source Engineering">gh</a>
+                    <a href="#" class="social-icon" title="IEEE Xplore Research">ieee</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <div class="copy-text">
+                &copy; 2026 ALBARRAN NEXUS. Todos los derechos reservados. Desarrollado y concebido a nombre de <strong>Joendri Albarran</strong>.
+            </div>
+            <div class="footer-badges">
+                <span class="f-badge">ISO 9001 COMPLIANT</span>
+                <span class="f-badge">IEEE CORPORATE MEMBER</span>
+                <span class="f-badge">GLOBAL ENGINEERING ALLIANCE</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODALES INTERACTIVOS -->
+
+    <!-- Modal 1: Ficha Técnica Detallada de Especialidad -->
+    <div class="modal-backdrop" id="specialty-modal">
+        <div class="modal-dialog">
+            <button class="modal-close-btn" id="close-specialty-modal">✕</button>
+            <div class="modal-header">
+                <span class="modal-icon" id="spec-modal-icon">⚙️</span>
+                <div>
+                    <h3 id="spec-modal-title">Ingeniería de Software & IA</h3>
+                    <span class="spec-modal-category" id="spec-modal-category">COMPUTACIÓN & SISTEMAS</span>
+                </div>
+            </div>
+            <div class="modal-body" id="spec-modal-body">
+                <!-- Se llena dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Publicar Nueva Licitación / Proyecto -->
+    <div class="modal-backdrop" id="tender-modal">
+        <div class="modal-dialog">
+            <button class="modal-close-btn" id="close-tender-modal">✕</button>
+            <div class="modal-header">
+                <span class="modal-icon">📋</span>
+                <div>
+                    <h3>Publicar Nueva Licitación Técnica</h3>
+                    <span class="spec-modal-category">CONSEJO DE INGENIERÍA JOENDRI ALBARRAN</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form id="tender-submit-form">
+                    <div class="form-row">
+                        <label>Título del Proyecto / Licitación:</label>
+                        <input type="text" class="form-input" id="tender-title" placeholder="Ej: Diseño y Cálculo Estructural de Silos Graneleros" required>
+                    </div>
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label>Disciplina Principal:</label>
+                            <select class="form-input" id="tender-discipline">
+                                <option>Ingeniería Civil & Estructural</option>
+                                <option>Ingeniería de Software & IA</option>
+                                <option>Ingeniería Mecánica & Robótica</option>
+                                <option>Ingeniería Eléctrica & Energía</option>
+                                <option>Ingeniería Aeroespacial</option>
+                                <option>Ingeniería Biomédica</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Presupuesto Estimado ($ USD):</label>
+                            <input type="text" class="form-input" id="tender-budget" placeholder="Ej: $180,000 USD" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <label>Alcance Técnico y Requerimientos:</label>
+                        <textarea class="form-input" id="tender-desc" rows="4" placeholder="Describa el alcance, software requerido (AutoCAD, Revit, Python, etc.) y plazos de entrega..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-calculate" style="width:100%;">
+                        <span>Publicar Convocatoria en la Red</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast de Notificaciones de Alta Precisión -->
+    <div class="hud-toast" id="hud-toast">
+        <span class="toast-icon">⚡</span>
+        <span class="toast-msg" id="toast-msg">Operación completada exitosamente</span>
+    </div>
+
+    <!-- Scripts de la Plataforma -->
+    <script src="script.js"></script>
+</body>
+</html>

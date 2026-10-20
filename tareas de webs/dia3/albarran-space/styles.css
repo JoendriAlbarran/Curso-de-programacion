@@ -1,0 +1,2312 @@
+/* ==========================================================================
+   ALBARRAN-X AEROSPACE & INTERPLANETARY EXPLORATION
+   Dirección General & Diseño: Joendri Albarran
+   Estilo Aeroespacial Futurista / Telemetría Militar / Estética SpaceX
+   ========================================================================== */
+
+/* --- 1. Variables y Tokens de Diseño --- */
+:root {
+    /* Tipografías */
+    --font-display: 'Orbitron', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-tech: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-ui: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* Paleta Cromática Aeroespacial */
+    --space-void: #05070b;
+    --space-obsidian: #090c12;
+    --space-surface: #0f141f;
+    --space-elevated: #161d2d;
+    --space-hover: #1e273c;
+
+    /* Acentos y Neones */
+    --cyan-telemetry: #00e5ff;
+    --cyan-dim: rgba(0, 229, 255, 0.12);
+    --cyan-glow: 0 0 16px rgba(0, 229, 255, 0.45);
+
+    --flame-orange: #ff5722;
+    --flame-gold: #ffb300;
+    --flame-glow: 0 0 24px rgba(255, 87, 34, 0.6);
+
+    --status-green: #00e676;
+    --status-green-dim: rgba(0, 230, 118, 0.15);
+    --status-red: #ff1744;
+
+    /* Bordes y Estructuras */
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-medium: rgba(255, 255, 255, 0.18);
+    --border-tech: rgba(0, 229, 255, 0.35);
+
+    /* Textos */
+    --text-pure: #ffffff;
+    --text-lead: #e2e8f0;
+    --text-muted: #8492a6;
+    --text-tech: #94a3b8;
+
+    /* Transiciones */
+    --trans-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    --trans-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 14px;
+}
+
+/* --- 2. Reset y Fondo --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    background-color: var(--space-void);
+}
+
+body {
+    background-color: var(--space-void);
+    color: var(--text-lead);
+    font-family: var(--font-ui);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Canvas de estrellas de fondo */
+.space-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--trans-fast);
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: inherit;
+}
+
+.container {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* --- 3. Barra de Telemetría Superior (HUD Topbar) --- */
+.hud-topbar {
+    background-color: rgba(5, 7, 11, 0.95);
+    border-bottom: 1px solid var(--border-subtle);
+    font-family: var(--font-tech);
+    font-size: 0.75rem;
+    padding: 0.45rem 0;
+    position: relative;
+    z-index: 50;
+    letter-spacing: 0.05em;
+}
+
+.hud-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.hud-left {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    color: var(--text-tech);
+}
+
+.hud-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--status-green);
+    background-color: var(--status-green-dim);
+    padding: 0.15rem 0.55rem;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+}
+
+.pulse-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--status-green);
+    border-radius: 50%;
+    animation: radarPulse 1.5s infinite;
+}
+
+@keyframes radarPulse {
+    0% { transform: scale(0.9); opacity: 1; }
+    50% { transform: scale(1.6); opacity: 0.3; }
+    100% { transform: scale(0.9); opacity: 1; }
+}
+
+.hud-code {
+    color: var(--text-muted);
+}
+
+.hud-divider {
+    color: var(--border-medium);
+}
+
+.hud-telemetry {
+    color: var(--cyan-telemetry);
+    font-weight: 600;
+}
+
+.hud-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.countdown-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cd-label {
+    color: var(--text-muted);
+    font-size: 0.7rem;
+}
+
+.cd-timer {
+    font-family: var(--font-display);
+    color: var(--flame-gold);
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+}
+
+.hud-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--text-tech);
+    background-color: var(--space-surface);
+    border: 1px solid var(--border-subtle);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.72rem;
+    transition: all var(--trans-fast);
+}
+
+.hud-btn:hover {
+    color: var(--cyan-telemetry);
+    border-color: var(--cyan-telemetry);
+}
+
+/* --- 4. Encabezado Principal (SpaceX Style Header) --- */
+.main-header {
+    background-color: rgba(9, 12, 18, 0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border-subtle);
+    position: sticky;
+    top: 0;
+    z-index: 45;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.5rem;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo-mark {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 900;
+    color: var(--space-void);
+    background: linear-gradient(135deg, var(--cyan-telemetry), #ffffff);
+    padding: 0.25rem 0.55rem;
+    border-radius: var(--radius-sm);
+    letter-spacing: 0.05em;
+    box-shadow: 0 0 12px rgba(0, 229, 255, 0.5);
+}
+
+.logo-text-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-name {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    color: #ffffff;
+    line-height: 1.1;
+}
+
+.accent-x {
+    color: var(--cyan-telemetry);
+    text-shadow: 0 0 10px var(--cyan-telemetry);
+}
+
+.brand-sub {
+    font-family: var(--font-tech);
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+.nav-item {
+    font-family: var(--font-tech);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--text-tech);
+    position: relative;
+    padding: 0.3rem 0;
+    transition: color var(--trans-fast);
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--cyan-telemetry);
+    transition: width var(--trans-smooth);
+    box-shadow: var(--cyan-glow);
+}
+
+.nav-item:hover {
+    color: #ffffff;
+}
+
+.nav-item:hover::after {
+    width: 100%;
+}
+
+.btn-primary-launch {
+    font-family: var(--font-tech);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 0.6rem 1.3rem;
+    border-radius: var(--radius-sm);
+    color: var(--space-void);
+    background-color: var(--cyan-telemetry);
+    box-shadow: var(--cyan-glow);
+    transition: all var(--trans-fast);
+}
+
+.btn-primary-launch:hover {
+    background-color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.7);
+}
+
+/* --- 5. Hero Section --- */
+.hero-section {
+    position: relative;
+    padding: 5.5rem 0 6rem;
+    background: radial-gradient(circle at 75% 30%, rgba(0, 229, 255, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 20% 70%, rgba(255, 87, 34, 0.06) 0%, transparent 50%);
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.mission-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 1.25rem;
+}
+
+.mission-badge {
+    font-family: var(--font-tech);
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    background-color: var(--flame-orange);
+    color: #ffffff;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 0 14px rgba(255, 87, 34, 0.4);
+}
+
+.mission-status {
+    font-family: var(--font-tech);
+    font-size: 0.75rem;
+    color: var(--flame-gold);
+    letter-spacing: 0.08em;
+    font-weight: 600;
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: 3.1rem;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: 0.04em;
+    color: #ffffff;
+    margin-bottom: 1.4rem;
+    text-transform: uppercase;
+}
+
+.highlight-text {
+    background: linear-gradient(90deg, var(--cyan-telemetry), #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+}
+
+.hero-desc {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--text-lead);
+    margin-bottom: 2rem;
+    max-width: 640px;
+}
+
+.hero-desc strong {
+    color: var(--cyan-telemetry);
+}
+
+.hero-cta-group {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+.btn-cta-primary {
+    font-family: var(--font-tech);
+    font-size: 0.92rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    background: linear-gradient(135deg, var(--cyan-telemetry), #00b0ff);
+    color: var(--space-void);
+    padding: 0.85rem 1.8rem;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 0 24px rgba(0, 229, 255, 0.4);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: all var(--trans-fast);
+}
+
+.btn-cta-primary:hover {
+    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 35px rgba(0, 229, 255, 0.8);
+}
+
+.btn-cta-secondary {
+    font-family: var(--font-tech);
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-pure);
+    border: 1px solid var(--border-medium);
+    padding: 0.85rem 1.6rem;
+    border-radius: var(--radius-sm);
+    background-color: rgba(255, 255, 255, 0.03);
+    transition: all var(--trans-fast);
+}
+
+.btn-cta-secondary:hover {
+    border-color: var(--cyan-telemetry);
+    background-color: var(--cyan-dim);
+}
+
+.hero-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.metric-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.metric-value {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+.metric-label {
+    font-family: var(--font-tech);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+}
+
+/* Panel de Misión Rápida HUD en el Hero */
+.hero-hud-card {
+    background-color: rgba(15, 20, 31, 0.8);
+    border: 1px solid var(--border-tech);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(0, 229, 255, 0.05);
+    backdrop-filter: blur(12px);
+    position: relative;
+}
+
+.hero-hud-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--cyan-telemetry);
+    box-shadow: var(--cyan-glow);
+}
+
+.hud-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.25rem;
+}
+
+.hud-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--flame-gold);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--flame-gold);
+}
+
+.hud-card-title {
+    font-family: var(--font-tech);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: var(--text-pure);
+}
+
+.hud-countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.6rem;
+    margin-bottom: 1.4rem;
+}
+
+.time-block {
+    background-color: var(--space-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 0.4rem;
+    text-align: center;
+}
+
+.time-num {
+    font-family: var(--font-display);
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: var(--cyan-telemetry);
+    display: block;
+    line-height: 1;
+}
+
+.time-unit {
+    font-family: var(--font-tech);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-top: 0.35rem;
+    display: block;
+}
+
+.hud-mission-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    font-size: 0.78rem;
+    margin-bottom: 1.4rem;
+    border-top: 1px dashed var(--border-subtle);
+    border-bottom: 1px dashed var(--border-subtle);
+    padding: 1rem 0;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.info-k {
+    color: var(--text-muted);
+    font-family: var(--font-tech);
+}
+
+.info-v {
+    color: #ffffff;
+    font-weight: 600;
+    text-align: right;
+}
+
+.btn-hud-action {
+    width: 100%;
+    font-family: var(--font-tech);
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--cyan-telemetry);
+    border: 1px solid var(--cyan-telemetry);
+    background-color: var(--cyan-dim);
+    padding: 0.75rem;
+    border-radius: var(--radius-sm);
+    transition: all var(--trans-fast);
+}
+
+.btn-hud-action:hover {
+    background-color: var(--cyan-telemetry);
+    color: var(--space-void);
+    box-shadow: var(--cyan-glow);
+}
+
+/* --- 6. Sección Simulador de Vuelo --- */
+.simulator-section {
+    padding: 5rem 0 6rem;
+    background-color: var(--space-obsidian);
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.section-title-wrap {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3.5rem;
+}
+
+.section-sub {
+    font-family: var(--font-tech);
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    color: var(--cyan-telemetry);
+    display: block;
+    margin-bottom: 0.6rem;
+}
+
+.section-heading {
+    font-family: var(--font-display);
+    font-size: 2.3rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    margin-bottom: 0.9rem;
+}
+
+.section-lead {
+    font-size: 0.95rem;
+    color: var(--text-tech);
+    line-height: 1.6;
+}
+
+.sim-dashboard {
+    display: grid;
+    grid-template-columns: 1.6fr 1.1fr;
+    gap: 1.75rem;
+    background-color: var(--space-surface);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8);
+}
+
+/* Pantalla Gráfica del Simulador */
+.sim-viewport {
+    position: relative;
+    height: 600px;
+    background-color: #020305;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.sim-sky {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #020306 0%, #061124 55%, #0f3056 82%, #4a88b5 100%);
+    transition: background 1.5s ease;
+}
+
+.sim-sky.in-space {
+    background: radial-gradient(circle at 50% 100%, #040814 0%, #010204 100%);
+}
+
+.sim-earth-horizon {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: linear-gradient(180deg, #163624 0%, #08160c 100%);
+    border-top: 2px solid rgba(0, 229, 255, 0.4);
+    transition: transform 1.2s ease, opacity 1s ease;
+}
+
+.sim-sky.in-space .sim-earth-horizon {
+    transform: translateY(100px);
+    opacity: 0;
+}
+
+/* Representación del Cohete Albarran Heavy */
+.rocket-vehicle {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: bottom 0.8s ease, transform 0.8s ease;
+    z-index: 10;
+}
+
+.rocket-fairing {
+    width: 28px;
+    height: 52px;
+    background: linear-gradient(90deg, #d8dee9, #ffffff, #8892b0);
+    border-radius: 50% 50% 4px 4px / 80% 80% 4px 4px;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fairing-logo {
+    font-family: var(--font-display);
+    font-size: 0.55rem;
+    font-weight: 900;
+    color: var(--space-void);
+}
+
+.rocket-stage-two {
+    width: 26px;
+    height: 65px;
+    background: linear-gradient(90deg, #2b303c, #4c566a, #2b303c);
+    border-left: 1px solid rgba(255,255,255,0.2);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stage-label {
+    font-family: var(--font-tech);
+    font-size: 0.45rem;
+    color: rgba(255,255,255,0.6);
+    transform: rotate(-90deg);
+}
+
+.thruster-s2 {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 6px;
+    background-color: #1e222b;
+    border-radius: 0 0 3px 3px;
+}
+
+.interstage-ring {
+    width: 28px;
+    height: 8px;
+    background-color: #11141a;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+
+.rocket-booster {
+    width: 32px;
+    height: 180px;
+    background: linear-gradient(90deg, #1b212f, #3b4252, #1b212f);
+    border-radius: 2px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+.booster-label {
+    font-family: var(--font-display);
+    font-size: 0.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    margin-top: 20px;
+    letter-spacing: 0.1em;
+}
+
+.grid-fins {
+    position: absolute;
+    top: 6px;
+    width: 100%;
+}
+
+.grid-fins .fin {
+    position: absolute;
+    width: 8px;
+    height: 10px;
+    background-color: #8892b0;
+    border: 1px solid #000;
+}
+
+.grid-fins .fin.left { left: -7px; }
+.grid-fins .fin.right { right: -7px; }
+
+.landing-legs {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.landing-legs .leg {
+    position: absolute;
+    bottom: 0;
+    width: 4px;
+    height: 28px;
+    background-color: #ffffff;
+    transition: transform 0.6s ease;
+}
+
+.landing-legs .leg.left {
+    left: -2px;
+    transform-origin: bottom right;
+}
+
+.landing-legs .leg.right {
+    right: -2px;
+    transform-origin: bottom left;
+}
+
+/* Patas desplegadas en fase de aterrizaje */
+.landing-legs.deployed .leg.left {
+    transform: rotate(-35deg);
+}
+
+.landing-legs.deployed .leg.right {
+    transform: rotate(35deg);
+}
+
+/* Fuego y Penacho de Propulsión Raptor */
+.engine-exhaust {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transition: height 0.3s ease, opacity 0.2s ease;
+}
+
+.engine-exhaust.ignited {
+    height: 90px;
+    opacity: 1;
+}
+
+.flame-core {
+    width: 8px;
+    height: 40px;
+    background: linear-gradient(180deg, #ffffff, #00e5ff, #ff9100);
+    border-radius: 50% 50% 30% 30%;
+    filter: drop-shadow(0 0 10px #00e5ff);
+    animation: flameFlicker 0.08s infinite alternate;
+}
+
+.flame-plume {
+    width: 18px;
+    height: 55px;
+    background: linear-gradient(180deg, rgba(255, 145, 0, 0.9), rgba(255, 61, 0, 0.7), transparent);
+    border-radius: 40% 40% 50% 50%;
+    filter: blur(2px);
+    margin-top: -15px;
+}
+
+@keyframes flameFlicker {
+    0% { transform: scaleY(0.9) scaleX(0.95); }
+    100% { transform: scaleY(1.1) scaleX(1.05); }
+}
+
+/* Barcaza Droneship */
+.droneship {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 24px;
+    background-color: #2e3440;
+    border: 1px solid var(--cyan-telemetry);
+    border-radius: 3px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+}
+
+.droneship-deck {
+    font-family: var(--font-tech);
+    font-size: 0.62rem;
+    font-weight: 800;
+    color: var(--cyan-telemetry);
+    letter-spacing: 0.1em;
+}
+
+/* Overlay de Fase en Pantalla */
+.phase-overlay {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    z-index: 20;
+}
+
+.phase-badge {
+    font-family: var(--font-tech);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    background-color: var(--cyan-telemetry);
+    color: var(--space-void);
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-sm);
+    display: inline-block;
+    margin-bottom: 0.35rem;
+}
+
+.phase-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+/* Indicadores de Telemetría Inferiores */
+.sim-telemetry-hud {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(9, 12, 18, 0.92);
+    border-top: 1px solid var(--border-medium);
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    z-index: 25;
+}
+
+.telemetry-pill {
+    display: flex;
+    flex-direction: column;
+}
+
+.tp-label {
+    font-family: var(--font-tech);
+    font-size: 0.64rem;
+    color: var(--text-muted);
+}
+
+.tp-val {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.tp-val.status-green {
+    color: var(--status-green);
+}
+
+/* Consola Lateral de Lanzamiento */
+.sim-console {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background-color: var(--space-surface);
+}
+
+.console-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 0.75rem;
+}
+
+.console-title {
+    font-family: var(--font-tech);
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: #ffffff;
+}
+
+.console-badge {
+    font-family: var(--font-tech);
+    font-size: 0.68rem;
+    color: var(--cyan-telemetry);
+    background-color: var(--cyan-dim);
+    padding: 0.15rem 0.45rem;
+    border-radius: var(--radius-sm);
+}
+
+.btn-launch-big {
+    width: 100%;
+    background: linear-gradient(135deg, var(--flame-orange), #d84315);
+    color: #ffffff;
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: var(--flame-glow);
+    transition: all var(--trans-fast);
+}
+
+.btn-launch-big:hover {
+    background: linear-gradient(135deg, #ff7043, var(--flame-orange));
+    transform: translateY(-2px);
+    box-shadow: 0 0 35px rgba(255, 87, 34, 0.8);
+}
+
+.btn-launch-big:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    filter: grayscale(1);
+}
+
+.btn-main-txt {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+}
+
+.btn-sub-txt {
+    font-family: var(--font-tech);
+    font-size: 0.72rem;
+    color: #ffe0b2;
+    margin-top: 0.2rem;
+}
+
+.sub-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.btn-abort {
+    background-color: rgba(255, 23, 68, 0.15);
+    border: 1px solid var(--status-red);
+    color: var(--status-red);
+    font-family: var(--font-tech);
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 0.65rem;
+    border-radius: var(--radius-sm);
+    transition: all var(--trans-fast);
+}
+
+.btn-abort:hover:not(:disabled) {
+    background-color: var(--status-red);
+    color: #ffffff;
+}
+
+.btn-reset-sim {
+    background-color: var(--space-elevated);
+    border: 1px solid var(--border-medium);
+    color: var(--text-pure);
+    font-family: var(--font-tech);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.65rem;
+    border-radius: var(--radius-sm);
+    transition: all var(--trans-fast);
+}
+
+.btn-reset-sim:hover {
+    background-color: var(--space-hover);
+    border-color: var(--cyan-telemetry);
+}
+
+/* Barra de Etapas del Vuelo */
+.flight-stages-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.stages-title {
+    font-family: var(--font-tech);
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--text-muted);
+}
+
+.stage-step-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.stage-step {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background-color: var(--space-obsidian);
+    border: 1px solid var(--border-subtle);
+    padding: 0.45rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    transition: all var(--trans-fast);
+}
+
+.stage-step.active {
+    border-color: var(--cyan-telemetry);
+    background-color: var(--cyan-dim);
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.stage-step.done {
+    border-color: var(--status-green);
+    color: var(--status-green);
+}
+
+.step-num {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+.stage-step.active .step-num {
+    color: var(--cyan-telemetry);
+}
+
+.stage-step.done .step-num {
+    color: var(--status-green);
+}
+
+/* Terminal de Logs en Tiempo Real */
+.console-terminal {
+    background-color: #030508;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 140px;
+    overflow: hidden;
+}
+
+.terminal-header {
+    background-color: var(--space-obsidian);
+    padding: 0.4rem 0.75rem;
+    font-family: var(--font-tech);
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.term-clear {
+    cursor: pointer;
+}
+
+.term-clear:hover {
+    color: #ffffff;
+}
+
+.terminal-body {
+    padding: 0.6rem 0.75rem;
+    font-family: monospace;
+    font-size: 0.72rem;
+    color: #a0aec0;
+    overflow-y: auto;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.log-line {
+    line-height: 1.35;
+}
+
+.log-line.info {
+    color: var(--cyan-telemetry);
+}
+
+.log-line.success {
+    color: var(--status-green);
+}
+
+.log-line.warn {
+    color: var(--flame-gold);
+}
+
+.log-line.abort {
+    color: var(--status-red);
+}
+
+/* --- 7. Flota de Vehículos (SpaceX-style Vehicle Showcase) --- */
+.vehicles-section {
+    padding: 6rem 0;
+    position: relative;
+}
+
+.vehicle-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.v-tab {
+    font-family: var(--font-tech);
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    padding: 0.65rem 1.4rem;
+    border-radius: var(--radius-sm);
+    color: var(--text-tech);
+    border: 1px solid var(--border-medium);
+    background-color: var(--space-surface);
+    transition: all var(--trans-fast);
+}
+
+.v-tab:hover {
+    color: #ffffff;
+    border-color: var(--cyan-telemetry);
+}
+
+.v-tab.active {
+    color: var(--space-void);
+    background-color: var(--cyan-telemetry);
+    border-color: var(--cyan-telemetry);
+    box-shadow: var(--cyan-glow);
+}
+
+.vehicle-showcase-card {
+    background-color: var(--space-surface);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2.5rem;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    margin-bottom: 3.5rem;
+}
+
+.vehicle-media {
+    position: relative;
+    height: 480px;
+    background-color: #05080e;
+    overflow: hidden;
+}
+
+.vehicle-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.vehicle-showcase-card:hover .vehicle-media img {
+    transform: scale(1.03);
+}
+
+.vehicle-details {
+    padding: 2.5rem 2.5rem 2.5rem 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.v-subheading {
+    font-family: var(--font-tech);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: var(--cyan-telemetry);
+    margin-bottom: 0.4rem;
+}
+
+.v-title {
+    font-family: var(--font-display);
+    font-size: 2.1rem;
+    font-weight: 900;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.v-desc {
+    font-size: 0.95rem;
+    color: var(--text-lead);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.specs-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.spec-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.84rem;
+    border-bottom: 1px dashed var(--border-subtle);
+    padding-bottom: 0.5rem;
+}
+
+.spec-name {
+    color: var(--text-muted);
+    font-family: var(--font-tech);
+}
+
+.spec-val {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* Anatomía del Cohete */
+.rocket-anatomy-box {
+    background-color: var(--space-obsidian);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+}
+
+.anatomy-heading {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.anatomy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.anatomy-item {
+    display: flex;
+    gap: 1rem;
+    background-color: var(--space-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 1.25rem;
+    transition: all var(--trans-fast);
+}
+
+.anatomy-item:hover {
+    border-color: var(--cyan-telemetry);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 229, 255, 0.15);
+}
+
+.anatomy-num {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--cyan-telemetry);
+}
+
+.anatomy-info h4 {
+    font-family: var(--font-tech);
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 0.35rem;
+}
+
+.anatomy-info p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+}
+
+/* --- 8. Destinos Interplanetarios --- */
+.destinations-section {
+    padding: 6rem 0;
+    background-color: var(--space-obsidian);
+    border-top: 1px solid var(--border-subtle);
+}
+
+.destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.destination-card {
+    background-color: var(--space-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    transition: transform var(--trans-fast), border-color var(--trans-fast);
+}
+
+.destination-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-medium);
+}
+
+.destination-card.highlight-mars {
+    border-color: rgba(255, 87, 34, 0.4);
+}
+
+.dest-img-wrap {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+}
+
+.dest-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.destination-card:hover .dest-img-wrap img {
+    transform: scale(1.05);
+}
+
+.dest-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-family: var(--font-tech);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--radius-sm);
+    background-color: rgba(5, 7, 11, 0.85);
+    color: var(--cyan-telemetry);
+    border: 1px solid var(--cyan-telemetry);
+    backdrop-filter: blur(4px);
+}
+
+.dest-badge.badge-gold {
+    color: var(--flame-gold);
+    border-color: var(--flame-gold);
+}
+
+.dest-badge.badge-red {
+    color: var(--flame-orange);
+    border-color: var(--flame-orange);
+}
+
+.dest-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.dest-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+}
+
+.dest-desc {
+    font-size: 0.86rem;
+    color: var(--text-tech);
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+    flex: 1;
+}
+
+.dest-specs {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 0.85rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: 0.78rem;
+}
+
+.dest-specs .spec-row {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-muted);
+}
+
+.dest-specs strong {
+    color: #ffffff;
+}
+
+.btn-dest-explore {
+    width: 100%;
+    font-family: var(--font-tech);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #ffffff;
+    background-color: var(--space-elevated);
+    border: 1px solid var(--border-medium);
+    padding: 0.65rem;
+    border-radius: var(--radius-sm);
+    transition: all var(--trans-fast);
+}
+
+.btn-dest-explore:hover {
+    background-color: var(--cyan-telemetry);
+    color: var(--space-void);
+    border-color: var(--cyan-telemetry);
+}
+
+/* --- 9. Calculadora de Carga y Misión --- */
+.calculator-section {
+    padding: 6rem 0;
+}
+
+.calc-card {
+    background-color: var(--space-surface);
+    border: 1px solid var(--border-tech);
+    border-radius: var(--radius-lg);
+    padding: 3rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+.calc-header {
+    margin-bottom: 2.5rem;
+    text-align: center;
+    max-width: 780px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.calc-tag {
+    font-family: var(--font-tech);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    color: var(--cyan-telemetry);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.calc-title {
+    font-family: var(--font-display);
+    font-size: 2.1rem;
+    font-weight: 900;
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+}
+
+.calc-desc {
+    font-size: 0.95rem;
+    color: var(--text-tech);
+}
+
+.calc-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    font-family: var(--font-tech);
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: #ffffff;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-select {
+    width: 100%;
+    background-color: var(--space-obsidian);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem;
+    color: #ffffff;
+    font-family: var(--font-tech);
+    font-size: 0.88rem;
+    outline: none;
+    transition: border-color var(--trans-fast);
+}
+
+.form-select:focus {
+    border-color: var(--cyan-telemetry);
+}
+
+.slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.slider-display {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--cyan-telemetry);
+}
+
+.range-slider {
+    width: 100%;
+    margin-top: 0.5rem;
+    accent-color: var(--cyan-telemetry);
+    cursor: pointer;
+}
+
+.slider-limits {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+}
+
+.mission-type-radios {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.radio-option, .checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.84rem;
+    color: var(--text-lead);
+    cursor: pointer;
+}
+
+/* Resultados Telemetrizados de la Calculadora */
+.result-hud-card {
+    background-color: var(--space-obsidian);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.rhud-label {
+    font-family: var(--font-tech);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+}
+
+.rhud-vehicle-name {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--cyan-telemetry);
+    line-height: 1.3;
+}
+
+.result-metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 1.25rem 0;
+}
+
+.rm-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.rm-k {
+    font-family: var(--font-tech);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+.rm-v {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-top: 0.2rem;
+}
+
+.rm-v.highlight-green {
+    color: var(--status-green);
+}
+
+.rm-v.highlight-gold {
+    color: var(--flame-gold);
+}
+
+.payload-envelope {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.pe-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.pe-bar {
+    width: 100%;
+    height: 8px;
+    background-color: var(--space-surface);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.pe-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--cyan-telemetry), var(--status-green));
+    transition: width 0.3s ease;
+}
+
+.pe-text {
+    font-size: 0.72rem;
+    color: var(--text-tech);
+}
+
+.btn-calc-request {
+    font-family: var(--font-tech);
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    background-color: var(--cyan-telemetry);
+    color: var(--space-void);
+    padding: 0.85rem;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--cyan-glow);
+    transition: all var(--trans-fast);
+}
+
+.btn-calc-request:hover {
+    background-color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* --- 10. Visión y Liderazgo: Joendri Albarran --- */
+.vision-section {
+    padding: 6rem 0;
+    background-color: var(--space-obsidian);
+    border-top: 1px solid var(--border-subtle);
+}
+
+.vision-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+}
+
+.vision-tag {
+    font-family: var(--font-tech);
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    color: var(--cyan-telemetry);
+    display: block;
+    margin-bottom: 0.6rem;
+}
+
+.vision-title {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 1.4rem;
+}
+
+.vision-quote {
+    font-family: var(--font-tech);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text-lead);
+    border-left: 3px solid var(--cyan-telemetry);
+    padding: 0.85rem 1.4rem;
+    background-color: var(--space-surface);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.vision-author-card {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.author-badge-large {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, var(--cyan-telemetry), #0066cc);
+    color: var(--space-void);
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+    flex-shrink: 0;
+}
+
+.author-name {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.author-role {
+    font-family: var(--font-tech);
+    font-size: 0.82rem;
+    color: var(--cyan-telemetry);
+    display: block;
+    font-weight: 700;
+}
+
+.author-meta {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.vision-parr {
+    font-size: 0.95rem;
+    color: var(--text-tech);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+}
+
+.vision-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 1.5rem;
+}
+
+.v-stat strong {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #ffffff;
+    display: block;
+}
+
+.v-stat span {
+    font-family: var(--font-tech);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+.vision-media-side {
+    position: relative;
+}
+
+.vision-img-frame {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border-medium);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+    position: relative;
+}
+
+.vision-main-img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+}
+
+.frame-tag {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(5, 7, 11, 0.85);
+    backdrop-filter: blur(8px);
+    font-family: var(--font-tech);
+    font-size: 0.7rem;
+    color: var(--cyan-telemetry);
+    padding: 0.6rem 1rem;
+    border-top: 1px solid var(--border-subtle);
+}
+
+/* --- 11. Galería Aeroespacial --- */
+.gallery-section {
+    padding: 6rem 0;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    height: 320px;
+    background-color: var(--space-surface);
+}
+
+.gallery-item.large {
+    grid-column: span 1;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.06);
+}
+
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.25rem;
+    background: linear-gradient(180deg, transparent, rgba(5, 7, 11, 0.95));
+    display: flex;
+    flex-direction: column;
+}
+
+.gallery-caption strong {
+    font-family: var(--font-tech);
+    font-size: 0.88rem;
+    color: #ffffff;
+}
+
+.gallery-caption span {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* --- 12. Modal de Reserva de Vuelo --- */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(5, 7, 11, 0.88);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--trans-smooth);
+}
+
+.modal-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-card {
+    background-color: var(--space-surface);
+    border: 1px solid var(--border-tech);
+    border-radius: var(--radius-md);
+    width: 95%;
+    max-width: 650px;
+    padding: 2.25rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+    transform: scale(0.95);
+    transition: transform var(--trans-smooth);
+}
+
+.modal-backdrop.active .modal-card {
+    transform: scale(1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.modal-sub {
+    font-family: var(--font-tech);
+    font-size: 0.7rem;
+    color: var(--cyan-telemetry);
+    font-weight: 800;
+    letter-spacing: 0.1em;
+}
+
+.modal-title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: #ffffff;
+    font-weight: 800;
+}
+
+.btn-close-modal {
+    color: var(--text-muted);
+    font-size: 1.25rem;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-close-modal:hover {
+    color: #ffffff;
+}
+
+.modal-desc {
+    font-size: 0.86rem;
+    color: var(--text-tech);
+    margin-bottom: 1.5rem;
+}
+
+.modal-desc strong {
+    color: #ffffff;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.form-field label {
+    font-family: var(--font-tech);
+    font-size: 0.75rem;
+    color: var(--text-lead);
+    font-weight: 600;
+}
+
+.form-field input, .form-field select, .form-field textarea {
+    background-color: var(--space-obsidian);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-sm);
+    padding: 0.65rem 0.85rem;
+    color: #ffffff;
+    font-size: 0.84rem;
+    outline: none;
+}
+
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+    border-color: var(--cyan-telemetry);
+}
+
+.btn-submit-booking {
+    margin-top: 0.75rem;
+    background-color: var(--cyan-telemetry);
+    color: var(--space-void);
+    font-family: var(--font-tech);
+    font-size: 0.86rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    padding: 0.85rem;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--cyan-glow);
+    transition: all var(--trans-fast);
+}
+
+.btn-submit-booking:hover {
+    background-color: #ffffff;
+}
+
+/* --- 13. Toast Notifications --- */
+.toast-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    z-index: 120;
+    pointer-events: none;
+}
+
+.toast {
+    background-color: var(--space-surface);
+    border: 1px solid var(--border-tech);
+    border-left: 4px solid var(--cyan-telemetry);
+    color: #ffffff;
+    padding: 0.85rem 1.4rem;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    font-family: var(--font-tech);
+    font-size: 0.82rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    pointer-events: auto;
+    animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toastIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- 14. Pie de Página SpaceX Minimalista --- */
+.space-footer {
+    background-color: var(--space-obsidian);
+    border-top: 1px solid var(--border-subtle);
+    padding: 3rem 0;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.fb-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    color: #ffffff;
+    display: block;
+}
+
+.fb-tag {
+    font-family: var(--font-tech);
+    font-size: 0.64rem;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+}
+
+.footer-copy {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-links a {
+    font-family: var(--font-tech);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+}
+
+.footer-links a:hover {
+    color: var(--cyan-telemetry);
+}
+
+.footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 0.74rem;
+    color: var(--text-muted);
+}
+
+.footer-signature strong {
+    color: var(--cyan-telemetry);
+}
+
+/* --- 15. Responsive Queries --- */
+@media (max-width: 1080px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+    }
+
+    .sim-dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .vehicle-showcase-card {
+        grid-template-columns: 1fr;
+    }
+
+    .vehicle-details {
+        padding: 0 2rem 2rem;
+    }
+
+    .calc-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .vision-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .destinations-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .anatomy-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-right {
+        align-items: flex-start;
+    }
+}

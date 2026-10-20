@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="El Faro Global - Periódico digital independiente de actualidad, ciencia, cultura, planeta y grandes expediciones. Fundado y dirigido por Joendri Albarran.">
+    <meta name="author" content="Joendri Albarran">
+    <title>El Faro Global | Gran Portal de Noticias - Joendri Albarran</title>
+    
+    <!-- Google Fonts: Playfair Display (Titulares editoriales de gran prestigio) & Plus Jakarta Sans (Lectura moderna y nítida) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+    
+    <!-- Hoja de estilos del portal -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Barra Superior: Fecha, Clima, Selector de Ciudad y Acciones -->
+    <div class="top-bar">
+        <div class="container top-bar-container">
+            <div class="top-bar-left">
+                <span class="live-indicator"><span class="live-dot"></span> EN VIVO</span>
+                <span id="current-date" class="date-display">Cargando fecha...</span>
+                <span class="divider">|</span>
+                <!-- Widget de Clima -->
+                <div class="weather-widget" id="weather-widget">
+                    <span id="weather-icon" class="weather-icon">☀️</span>
+                    <span id="weather-temp" class="weather-temp">24°C</span>
+                    <select id="city-selector" class="city-selector" aria-label="Seleccionar ciudad meteorológica">
+                        <option value="Madrid">Madrid</option>
+                        <option value="Caracas" selected>Caracas</option>
+                        <option value="Buenos Aires">Buenos Aires</option>
+                        <option value="Bogotá">Bogotá</option>
+                        <option value="Ciudad de México">Cd. de México</option>
+                        <option value="Tokio">Tokio</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="top-bar-right">
+                <button id="btn-open-saved" class="top-btn" title="Ver artículos guardados para más tarde">
+                    <span class="top-btn-icon">🔖</span>
+                    <span class="top-btn-text">Mis Guardados</span>
+                    <span id="saved-badge" class="badge-count">0</span>
+                </button>
+                <button id="theme-toggle" class="top-btn theme-toggle" aria-label="Cambiar a modo claro u oscuro" title="Cambiar tema">
+                    <span id="theme-icon">🌙</span>
+                    <span id="theme-text" class="top-btn-text">Modo Oscuro</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cintillo de Última Hora (Breaking News Ticker) -->
+    <div class="breaking-banner" id="breaking-banner">
+        <div class="container breaking-container">
+            <div class="breaking-tag">
+                <span class="pulse-icon">⚡</span> ÚLTIMA HORA
+            </div>
+            <div class="breaking-content" id="breaking-content">
+                <p id="breaking-text" class="breaking-text">Cargando reportes urgentes de la redacción...</p>
+            </div>
+            <div class="breaking-controls">
+                <button id="btn-prev-breaking" class="ticker-btn" title="Noticia anterior">‹</button>
+                <button id="btn-pause-breaking" class="ticker-btn" title="Pausar / Reanudar">⏸</button>
+                <button id="btn-next-breaking" class="ticker-btn" title="Siguiente noticia">›</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Encabezado Principal / Cabecera de Prensa (Masthead) -->
+    <header class="masthead">
+        <div class="container masthead-container">
+            <div class="masthead-meta left">
+                <span class="edition-label">EDICIÓN INTERNACIONAL</span>
+                <span class="meta-desc">Publicación Diaria Independiente</span>
+                <span class="volume-badge">AÑO XVI • N° 5.842</span>
+            </div>
+
+            <div class="masthead-center">
+                <a href="#" class="brand-link" id="brand-home">
+                    <h1 class="portal-title">EL FARO GLOBAL</h1>
+                </a>
+                <p class="portal-motto">«Rigurosidad, Mirada Crítica y Crónica del Mundo Contemporáneo»</p>
+                <div class="director-seal">
+                    <span class="seal-line"></span>
+                    <span class="director-text">Dirección General y Edición: <strong>Joendri Albarran</strong></span>
+                    <span class="seal-line"></span>
+                </div>
+            </div>
+
+            <div class="masthead-meta right">
+                <span class="meta-quote">“La información veraz es el pilar de una sociedad consciente.”</span>
+                <span class="meta-quote-author">— Joendri Albarran</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Barra de Navegación Principal y Filtros -->
+    <nav class="nav-bar" id="main-nav">
+        <div class="container nav-container">
+            <div class="category-tabs" id="category-tabs">
+                <button class="nav-tab active" data-category="all">
+                    <span class="tab-icon">🌐</span> Portada Principal
+                </button>
+                <button class="nav-tab" data-category="ciencia">
+                    <span class="tab-icon">🔭</span> Ciencia y Cosmos
+                </button>
+                <button class="nav-tab" data-category="planeta">
+                    <span class="tab-icon">🌿</span> Planeta y Naturaleza
+                </button>
+                <button class="nav-tab" data-category="cultura">
+                    <span class="tab-icon">🏛️</span> Cultura y Sociedad
+                </button>
+                <button class="nav-tab" data-category="futuro">
+                    <span class="tab-icon">⚡</span> Innovación y Futuro
+                </button>
+                <button class="nav-tab" data-category="expediciones">
+                    <span class="tab-icon">🧭</span> Grandes Expediciones
+                </button>
+            </div>
+
+            <!-- Buscador en tiempo real -->
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="search-input" placeholder="Buscar reportajes, temas..." autocomplete="off">
+                <button id="search-clear" class="search-clear" title="Limpiar búsqueda" style="display: none;">✕</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <div class="container">
+
+            <!-- Mensaje de estado de búsqueda o filtro activo -->
+            <div id="filter-indicator" class="filter-indicator" style="display: none;">
+                <span id="filter-indicator-text">Mostrando resultados para: <strong></strong></span>
+                <button id="btn-reset-filter" class="btn-reset-filter">Restablecer portada</button>
+            </div>
+
+            <!-- Sección Hero: Noticia Destacada Principal + Noticias de Impacto Inmediato -->
+            <section class="lead-section" id="lead-section">
+                <!-- Noticia Principal (Gran Portada) -->
+                <article class="lead-article" id="hero-article-slot">
+                    <!-- Se inyecta dinámicamente con JS para máxima interactividad -->
+                </article>
+
+                <!-- Columna Secundaria de Portada -->
+                <div class="lead-substories" id="hero-substories-slot">
+                    <!-- Se inyecta dinámicamente con JS -->
+                </div>
+            </section>
+
+            <!-- Disposición General: Rejilla de Artículos + Barra Lateral Editorial -->
+            <div class="editorial-layout">
+
+                <!-- Columna Principal: Rejilla de Reportajes y Noticias -->
+                <div class="articles-column">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <span class="title-bullet">■</span>
+                            <span id="section-category-name">Crónicas y Reportajes del Día</span>
+                        </h2>
+                        <span class="section-counter" id="articles-count">Mostrando artículos</span>
+                    </div>
+
+                    <!-- Cuadrícula de artículos -->
+                    <div class="articles-grid" id="articles-grid">
+                        <!-- Generado dinámicamente desde script.js -->
+                    </div>
+
+                    <!-- Mensaje si no hay resultados -->
+                    <div id="no-results" class="no-results-card" style="display: none;">
+                        <span class="no-results-icon">🔎</span>
+                        <h3>No se encontraron publicaciones</h3>
+                        <p>No encontramos artículos que coincidan con tu criterio de búsqueda. Prueba con otras palabras o selecciona una categoría.</p>
+                        <button id="btn-clear-empty-search" class="btn-primary">Ver todas las noticias</button>
+                    </div>
+                </div>
+
+                <!-- Barra Lateral: Opinión, Lo Más Leído, Resumen en Audio y Boletín -->
+                <aside class="sidebar-column">
+
+                    <!-- Columna de Opinión Editorial de Joendri Albarran -->
+                    <div class="sidebar-widget editorial-widget">
+                        <div class="widget-header">
+                            <span class="widget-tag">LA FIRMA</span>
+                            <h3 class="widget-title">Tribuna de Opinión</h3>
+                        </div>
+                        <div class="director-card">
+                            <div class="director-avatar-wrapper">
+                                <div class="director-avatar">JA</div>
+                                <div class="director-info">
+                                    <h4 class="director-name">Joendri Albarran</h4>
+                                    <span class="director-role">Director de El Faro Global</span>
+                                </div>
+                            </div>
+                            <blockquote class="director-quote">
+                                «Vivimos en una época saturada de ruido donde lo urgente suele eclipsar lo esencial. Nuestra misión periodística es devolverle el tiempo a la reflexión y la precisión a cada historia.»
+                            </blockquote>
+                            <a href="#modal-opinion" id="btn-read-opinion" class="btn-read-essay">Leer columna completa →</a>
+                        </div>
+                    </div>
+
+                    <!-- Ranking: Lo Más Leído del Día -->
+                    <div class="sidebar-widget trending-widget">
+                        <div class="widget-header">
+                            <span class="widget-tag">TENDENCIA</span>
+                            <h3 class="widget-title">Lo Más Leído</h3>
+                        </div>
+                        <ol class="trending-list" id="trending-list">
+                            <!-- Inyectado por JS con métricas interactivas -->
+                        </ol>
+                    </div>
+
+                    <!-- Sección Multimedia / Audio Resumen Informativo -->
+                    <div class="sidebar-widget audio-widget">
+                        <div class="widget-header">
+                            <span class="widget-tag">EL FARO AUDIO</span>
+                            <h3 class="widget-title">Minuto Global</h3>
+                        </div>
+                        <p class="audio-desc">Escucha el boletín en voz alta de 3 minutos curado por Joendri Albarran.</p>
+                        <div class="audio-player-card">
+                            <div class="audio-waveform" id="audio-waveform">
+                                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                            </div>
+                            <div class="audio-controls">
+                                <button id="btn-toggle-podcast" class="btn-podcast-play">
+                                    <span id="podcast-play-icon">▶</span>
+                                    <span id="podcast-play-text">Escuchar Resumen</span>
+                                </button>
+                                <span class="podcast-time" id="podcast-time">03:15 min</span>
+                            </div>
+                            <div id="audio-player-status" class="audio-status">Listo para reproducir síntesis de voz</div>
+                        </div>
+                    </div>
+
+                    <!-- Fotografía del Día -->
+                    <div class="sidebar-widget photo-widget">
+                        <div class="widget-header">
+                            <span class="widget-tag">IMAGEN DEL DÍA</span>
+                            <h3 class="widget-title">Mirada Fotográfica</h3>
+                        </div>
+                        <div class="photo-card">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Reflejo del atardecer sobre lago en parque nacional" class="photo-img" loading="lazy">
+                            <div class="photo-caption">
+                                <strong>Valle del Silencio, Cordillera Austral.</strong>
+                                <p>Capturada durante la expedición botánica de primavera. Fotografiado por el equipo de exploración internacional.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Caja de Suscripción al Boletín Matutino -->
+                    <div class="sidebar-widget newsletter-widget">
+                        <div class="widget-header">
+                            <span class="widget-tag">BOLETÍN MATUTINO</span>
+                            <h3 class="widget-title">El Faro en tu Correo</h3>
+                        </div>
+                        <p class="newsletter-desc">Recibe cada amanecer la selección curada de noticias de Joendri Albarran sin algoritmos ni publicidad invasiva.</p>
+                        <form id="newsletter-form" class="newsletter-form">
+                            <input type="email" id="newsletter-email" placeholder="Ingresa tu correo electrónico..." required>
+                            <button type="submit" class="btn-newsletter">Suscribirme Gratis</button>
+                        </form>
+                        <span class="newsletter-disclaimer">🔒 Privacidad garantizada. Puedes cancelar cuando quieras.</span>
+                    </div>
+
+                </aside>
+            </div>
+
+            <!-- Gran Franja de Crónica Especial / Reportaje de Fondo -->
+            <section class="special-report-banner">
+                <div class="special-content">
+                    <span class="special-tag">GRAN INVESTIGACIÓN ESPECIAL</span>
+                    <h3 class="special-title">El Secreto de las Fosas Abisales: Nuevas especies halladas a 8.000 metros bajo el mar</h3>
+                    <p class="special-excerpt">Una expedición científica internacional desciende a la fosa de las Marianas con tecnología de vanguardia y documenta formas de vida que redefinen la biología terrestre.</p>
+                    <div class="special-meta">
+                        <span>Por <strong>Redacción Científica de Joendri Albarran</strong></span>
+                        <span>•</span>
+                        <span>Lectura profunda: 9 min</span>
+                    </div>
+                    <button class="btn-read-special" id="btn-read-special-report">Explorar Crónica Completa</button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Modal para Leer Artículos Completos -->
+    <div id="article-modal" class="modal-backdrop" aria-hidden="true" role="dialog">
+        <!-- Barra de progreso de lectura en la parte superior del modal -->
+        <div id="reading-progress-bar" class="reading-progress-bar"></div>
+
+        <div class="modal-sheet">
+            <!-- Barra de herramientas superior del lector -->
+            <div class="modal-toolbar">
+                <div class="toolbar-left">
+                    <button id="modal-speech-btn" class="toolbar-btn" title="Escuchar este artículo en voz alta">
+                        <span id="speech-icon">🔊</span>
+                        <span id="speech-text">Escuchar Artículo</span>
+                    </button>
+                    <!-- Ajuste de tamaño de fuente para accesibilidad -->
+                    <div class="font-size-controls">
+                        <span class="fs-label">Texto:</span>
+                        <button id="btn-font-decrease" class="btn-fs" title="Reducir tamaño de letra">A-</button>
+                        <button id="btn-font-increase" class="btn-fs" title="Aumentar tamaño de letra">A+</button>
+                    </div>
+                </div>
+
+                <div class="toolbar-right">
+                    <button id="modal-bookmark-btn" class="toolbar-btn" title="Guardar artículo">
+                        <span id="modal-bookmark-icon">🔖</span>
+                        <span id="modal-bookmark-text">Guardar</span>
+                    </button>
+                    <button id="modal-close-btn" class="modal-close-btn" aria-label="Cerrar artículo" title="Cerrar (Esc)">✕</button>
+                </div>
+            </div>
+
+            <!-- Contenedor del Artículo con Scroll -->
+            <div class="modal-scrollable" id="modal-scrollable">
+                <div class="modal-article-container" id="modal-article-content">
+                    <!-- Contenido inyectado dinámicamente con JavaScript -->
+                </div>
+
+                <!-- Bloque de Reacciones al final del artículo -->
+                <div class="modal-reactions-wrapper">
+                    <h4 class="reactions-title">¿Qué te ha parecido este reportaje?</h4>
+                    <div class="reaction-buttons">
+                        <button class="reaction-btn" data-reaction="love">
+                            <span class="rx-icon">❤️</span>
+                            <span class="rx-label">Fascinante</span>
+                            <span class="rx-count" id="count-love">124</span>
+                        </button>
+                        <button class="reaction-btn" data-reaction="insight">
+                            <span class="rx-icon">💡</span>
+                            <span class="rx-label">Revelador</span>
+                            <span class="rx-count" id="count-insight">89</span>
+                        </button>
+                        <button class="reaction-btn" data-reaction="applause">
+                            <span class="rx-icon">👏</span>
+                            <span class="rx-label">Gran Crónica</span>
+                            <span class="rx-count" id="count-applause">210</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sección Interactiva de Comentarios -->
+                <div class="modal-comments-section">
+                    <div class="comments-header">
+                        <h4 class="comments-title">Comentarios de los Lectores (<span id="comments-total-count">0</span>)</h4>
+                        <span class="comments-note">Modera: Joendri Albarran</span>
+                    </div>
+
+                    <form id="comment-form" class="comment-form">
+                        <div class="form-row">
+                            <input type="text" id="comment-author" placeholder="Tu nombre o alias..." required>
+                            <input type="email" id="comment-email" placeholder="Tu correo electrónico (no será público)..." required>
+                        </div>
+                        <textarea id="comment-text" rows="3" placeholder="Escribe tu reflexión o aporte a este artículo..." required></textarea>
+                        <button type="submit" class="btn-submit-comment">Publicar Comentario</button>
+                    </form>
+
+                    <div class="comments-list" id="modal-comments-list">
+                        <!-- Comentarios inyectados dinámicamente -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Panel Lateral Deslizable: Artículos Guardados (Reading List Drawer) -->
+    <div id="saved-drawer" class="drawer-backdrop" aria-hidden="true">
+        <div class="drawer-panel">
+            <div class="drawer-header">
+                <div class="drawer-header-title">
+                    <span class="drawer-icon">🔖</span>
+                    <h3>Mis Artículos Guardados</h3>
+                </div>
+                <button id="btn-close-saved" class="drawer-close-btn" title="Cerrar panel">✕</button>
+            </div>
+            <div class="drawer-body">
+                <p class="drawer-sub">Tus lecturas pendientes guardadas en este dispositivo.</p>
+                <div id="saved-articles-list" class="saved-articles-list">
+                    <!-- Inyectado por JS -->
+                </div>
+            </div>
+            <div class="drawer-footer">
+                <button id="btn-clear-all-saved" class="btn-clear-saved">Vaciar lista de guardados</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Específico: Columna de Opinión Completa de Joendri Albarran -->
+    <div id="opinion-modal" class="modal-backdrop" aria-hidden="true" role="dialog">
+        <div class="modal-sheet opinion-sheet">
+            <div class="modal-toolbar">
+                <span class="opinion-pill">COLUMNA DE OPINIÓN EDITORIAL</span>
+                <button id="opinion-close-btn" class="modal-close-btn" title="Cerrar (Esc)">✕</button>
+            </div>
+            <div class="modal-scrollable">
+                <div class="modal-article-container">
+                    <header class="opinion-article-header">
+                        <span class="article-category">Tribuna y Sociedad</span>
+                        <h2 class="opinion-full-title">El Regreso a lo Lento: Por qué la sociedad necesita noticias que no caduquen en diez minutos</h2>
+                        <div class="opinion-author-header">
+                            <div class="director-avatar large">JA</div>
+                            <div>
+                                <span class="opinion-author-name">Por Joendri Albarran</span>
+                                <span class="opinion-author-role">Fundador y Director Editorial de El Faro Global</span>
+                                <time class="opinion-date">Publicado en la Edición Especial de Otoño</time>
+                            </div>
+                        </div>
+                    </header>
+                    <div class="article-body-text">
+                        <p class="lead-paragraph">Hubo un tiempo en que abrir el periódico era un ritual matutino de pausa, café y contemplación pausada del destino colectivo de la humanidad. Hoy, nos encontramos bombardeados por notificaciones efímeras pensadas para generar sobresaltos antes que conocimiento.</p>
+                        <p>Cuando fundé <em>El Faro Global</em>, lo hice con una convicción inquebrantable: las historias trascendentales de nuestro siglo —el avance de los telescopios hacia las fronteras del universo, la recuperación de ecosistemas que creíamos perdidos, o las excavaciones arqueológicas que reescriben civilizaciones enteras— no pueden condensarse en un titular de cebo de clics.</p>
+                        <blockquote>
+                            «El verdadero periodismo no compite por ser el primero en un segundo, sino por ser el más lúcido en diez años.»
+                        </blockquote>
+                        <p>Nuestra redacción busca iluminar los rincones donde la ciencia, la naturaleza y la cultura florecen sin hacer estrépito. No vendemos urgencias vacías; cultivamos el entendimiento de un planeta fascinante y complejo que todavía nos queda por descubrir.</p>
+                        <p>Gracias a cada lector que elige detenerse, leer y pensar con nosotros.</p>
+                        <div class="opinion-signature">
+                            <span class="signature-name">Joendri Albarran</span>
+                            <span class="signature-title">Director de El Faro Global</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor Flotante de Notificaciones Toast -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Pie de Página Institucional (Newspaper Footer) -->
+    <footer class="portal-footer">
+        <div class="footer-top">
+            <div class="container footer-grid">
+                <!-- Columna 1: Identidad del Medio -->
+                <div class="footer-col brand-col">
+                    <div class="footer-brand">
+                        <h2 class="footer-title">EL FARO GLOBAL</h2>
+                        <span class="footer-tagline">Diario de Exploración, Ciencia y Sociedad</span>
+                    </div>
+                    <p class="footer-about">
+                        Portal de noticias y periodismo de fondo de libre acceso, dedicado a la divulgación científica, cultural y ambiental más rigurosa del panorama hispanohablante.
+                    </p>
+                    <div class="editorial-credit">
+                        <strong>Dirección & Edición General:</strong>
+                        <span>Joendri Albarran</span>
+                    </div>
+                </div>
+
+                <!-- Columna 2: Secciones Principales -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Secciones</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-category-link" data-category="ciencia">Ciencia y Cosmos</a></li>
+                        <li><a href="#" class="footer-category-link" data-category="planeta">Planeta y Ecología</a></li>
+                        <li><a href="#" class="footer-category-link" data-category="cultura">Cultura y Patrimonio</a></li>
+                        <li><a href="#" class="footer-category-link" data-category="futuro">Ciudades e Innovación</a></li>
+                        <li><a href="#" class="footer-category-link" data-category="expediciones">Grandes Expediciones</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3: Información y Redacción -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Redacción y Ética</h4>
+                    <ul class="footer-links">
+                        <li><a href="#opinion-modal" id="footer-manifesto-link">Manifiesto Editorial de Joendri Albarran</a></li>
+                        <li><a href="#">Código de Verificación de Datos</a></li>
+                        <li><a href="#">Archivo Histórico de Crónicas</a></li>
+                        <li><a href="#">Comité de Ética Periodística</a></li>
+                        <li><a href="#">Edición Impresa Digital (PDF)</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 4: Suscripción y Contacto Editorial -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Contacto Editorial</h4>
+                    <p class="footer-contact-info">
+                        ¿Tienes una pista científica, reporte o sugerencia para la redacción?
+                    </p>
+                    <div class="contact-box">
+                        <span class="contact-email">redaccion@elfaroglobal.org</span>
+                        <span class="contact-office">Sede de Redacción: Joendri Albarran Media Group</span>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-icon" title="Twitter / X">𝕏</a>
+                        <a href="#" class="social-icon" title="Canal de Telegram">✈</a>
+                        <a href="#" class="social-icon" title="Boletín RSS">📡</a>
+                        <a href="#" class="social-icon" title="Podcasts">🎙️</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p class="copyright-text">
+                    © 2026 <strong>El Faro Global</strong>. Todos los derechos reservados. Fundado, editado y dirigido por <strong>Joendri Albarran</strong>.
+                </p>
+                <div class="footer-legal-links">
+                    <a href="#">Aviso Legal</a>
+                    <span>•</span>
+                    <a href="#">Política de Privacidad</a>
+                    <span>•</span>
+                    <a href="#">Términos de Uso</a>
+                    <span>•</span>
+                    <a href="#" id="btn-scroll-top">Subir al Inicio ↑</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script de Interactividad -->
+    <script src="script.js"></script>
+</body>
+</html>

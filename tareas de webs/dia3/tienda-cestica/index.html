@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="La Cestica Digital de Joendri Albarran - Tienda interactiva y simulador de compras con carrito en tiempo real, filtros dinámicos, buscador y cupones de descuento.">
+    <meta name="author" content="Joendri Albarran">
+    <title>La Cestica Digital | Tienda de Joendri Albarran</title>
+
+    <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Hoja de Estilos -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- 1. Encabezado y Barra de Navegación -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#inicio" class="brand-logo">
+                <div class="logo-icon">🛒</div>
+                <div class="brand-text">
+                    <span class="brand-title">La Cestica Digital</span>
+                    <span class="brand-subtitle">por Joendri Albarran</span>
+                </div>
+            </a>
+
+            <!-- Barra de búsqueda instantánea -->
+            <div class="search-wrapper">
+                <span class="search-icon">🔍</span>
+                <input 
+                    type="text" 
+                    id="search-input" 
+                    class="search-input" 
+                    placeholder="Buscar productos (ej. laptop, café, teclado)..." 
+                    autocomplete="off"
+                    aria-label="Buscar productos"
+                >
+                <button id="clear-search-btn" class="clear-search-btn" title="Limpiar búsqueda" style="display: none;">✕</button>
+            </div>
+
+            <!-- Acciones de cabecera -->
+            <div class="nav-actions">
+                <button id="btn-theme-toggle" class="icon-btn" title="Cambiar tema de luz" aria-label="Cambiar tema">
+                    <span id="theme-icon">🌙</span>
+                </button>
+
+                <!-- Botón de apertura de la cesta con contador -->
+                <button id="btn-open-cart" class="btn-cart" aria-label="Abrir cestica de compras">
+                    <span class="cart-btn-icon">🛍️</span>
+                    <span class="cart-btn-text">Mi Cestica</span>
+                    <span id="cart-counter" class="cart-badge">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. Contenido Principal -->
+    <main class="main-content">
+        <!-- Banner Hero Promocional -->
+        <section id="inicio" class="hero-banner">
+            <div class="hero-inner">
+                <div class="hero-text-side">
+                    <div class="badge-promo">⚡ OFERTAS DEL DÍA & SIMULADOR WEB</div>
+                    <h1 class="hero-heading">
+                        Bienvenido a <span class="highlight-text">La Cestica</span> de Joendri
+                    </h1>
+                    <p class="hero-subtext">
+                        Una experiencia de compras interactiva creada con <strong>HTML</strong>, <strong>CSS</strong> y <strong>JavaScript</strong>.
+                        Agrega productos, aplica cupones de descuento, crea tus propios artículos y simula tu factura en tiempo real.
+                    </p>
+                    <div class="hero-coupon-banner">
+                        <span>🏷️ ¡Usa el cupón secreto <strong>CHAMO10</strong> para un 10% de descuento en tu total!</span>
+                    </div>
+                </div>
+
+                <div class="hero-stats-side">
+                    <div class="mini-stat-box">
+                        <span class="stat-number" id="total-catalog-count">0</span>
+                        <span class="stat-desc">Productos en catálogo</span>
+                    </div>
+                    <div class="mini-stat-box">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-desc">Interactivo y dinámico</span>
+                    </div>
+                    <div class="mini-stat-box">
+                        <span class="stat-number" id="total-cart-items-stat">0</span>
+                        <span class="stat-desc">Artículos en tu cesta</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Barra de Filtros y Ordenamiento -->
+        <section class="controls-section">
+            <div class="controls-container">
+                <!-- Categorías -->
+                <div class="category-pills" id="category-pills">
+                    <button class="pill active" data-category="todos">Todos los productos</button>
+                    <button class="pill" data-category="tecnologia">💻 Tecnología</button>
+                    <button class="pill" data-category="snacks">🍔 Snacks & Café</button>
+                    <button class="pill" data-category="accesorios">🎧 Accesorios</button>
+                    <button class="pill" data-category="personalizados">✨ Creados por ti</button>
+                </div>
+
+                <!-- Ordenar por precio -->
+                <div class="sort-wrapper">
+                    <label for="sort-select" class="sort-label">Ordenar:</label>
+                    <select id="sort-select" class="sort-select">
+                        <option value="default">Recomendados</option>
+                        <option value="price-asc">Precio: Menor a Mayor</option>
+                        <option value="price-desc">Precio: Mayor a Menor</option>
+                        <option value="name-asc">Nombre (A-Z)</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cuadrícula de Productos -->
+        <section class="catalog-section">
+            <div class="catalog-container">
+                <div id="catalog-grid" class="products-grid">
+                    <!-- Los productos se inyectan dinámicamente con JavaScript -->
+                </div>
+
+                <!-- Estado sin resultados -->
+                <div id="no-results" class="no-results" style="display: none;">
+                    <div class="no-results-icon">🔎</div>
+                    <h3>No se encontraron productos</h3>
+                    <p>No hay artículos que coincidan con tu búsqueda o filtro actual.</p>
+                    <button id="btn-reset-filters" class="btn btn-secondary">Restablecer filtros</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Agregar tu propio producto (Homenaje al Carrito_Compras.py de Joendri) -->
+        <section class="custom-product-section">
+            <div class="custom-product-card">
+                <div class="custom-card-header">
+                    <div class="header-icon">➕</div>
+                    <div>
+                        <h2 class="custom-title">¿Deseas agregar un producto personalizado a la tienda?</h2>
+                        <p class="custom-desc">
+                            Igual que en tu script en Python <code>Carrito_Compras.py</code>, agrega cualquier producto con su nombre y precio para verlo en la tienda de inmediato.
+                        </p>
+                    </div>
+                </div>
+
+                <form id="custom-product-form" class="custom-form" novalidate>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="custom-name">Nombre del producto:</label>
+                            <input 
+                                type="text" 
+                                id="custom-name" 
+                                class="input-modern" 
+                                placeholder="Ej: Pizza Familiar, Teclado Mecánico..." 
+                                required
+                            >
+                        </div>
+
+                        <div class="form-field">
+                            <label for="custom-price">Precio ($ USD):</label>
+                            <input 
+                                type="number" 
+                                id="custom-price" 
+                                class="input-modern" 
+                                placeholder="Ej: 14.99" 
+                                step="0.01" 
+                                min="0.5" 
+                                required
+                            >
+                        </div>
+
+                        <div class="form-field">
+                            <label for="custom-category">Categoría:</label>
+                            <select id="custom-category" class="input-modern">
+                                <option value="tecnologia">💻 Tecnología</option>
+                                <option value="snacks">🍔 Snacks & Café</option>
+                                <option value="accesorios">🎧 Accesorios</option>
+                                <option value="personalizados">✨ Especial</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="custom-icon">Icono / Emoji:</label>
+                            <select id="custom-icon" class="input-modern">
+                                <option value="🚀">🚀 Cohete</option>
+                                <option value="🍕">🍕 Pizza</option>
+                                <option value="🎮">🎮 Control de juegos</option>
+                                <option value="📱">📱 Smartphone</option>
+                                <option value="☕">☕ Café</option>
+                                <option value="⚡">⚡ Gadget</option>
+                                <option value="📦">📦 Caja Sorpresa</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="btn-add-custom" class="btn btn-primary">
+                        <span>Agregar al Catálogo</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- 3. Carrito Lateral Deslizante (Slide-Over Drawer) -->
+    <div id="cart-overlay" class="cart-overlay"></div>
+    <aside id="cart-drawer" class="cart-drawer" aria-label="Carrito de compras de Joendri">
+        <div class="cart-header">
+            <div class="cart-title-wrap">
+                <span class="cart-drawer-icon">🛍️</span>
+                <h2>Tu Cestica de Compras</h2>
+            </div>
+            <button id="btn-close-cart" class="btn-close" aria-label="Cerrar cestica">✕</button>
+        </div>
+
+        <!-- Lista de productos en la cestica -->
+        <div class="cart-body">
+            <div id="cart-items-container" class="cart-items">
+                <!-- Los elementos del carrito se agregan con JavaScript -->
+            </div>
+
+            <!-- Estado de carrito vacío -->
+            <div id="cart-empty-state" class="cart-empty-state">
+                <span class="empty-emoji">🧺</span>
+                <h3>¡La cestica está vacía, chamo!</h3>
+                <p>No tienes productos agregados todavía. Explora el catálogo y añade tus favoritos.</p>
+                <button id="btn-start-shopping" class="btn btn-secondary">Ver Catálogo</button>
+            </div>
+        </div>
+
+        <!-- Pie del carrito: Resumen y Checkout -->
+        <div id="cart-footer" class="cart-footer">
+            <!-- Cupón de descuento -->
+            <div class="coupon-section">
+                <div class="coupon-input-group">
+                    <input 
+                        type="text" 
+                        id="coupon-input" 
+                        class="coupon-input" 
+                        placeholder="Código de cupón (CHAMO10)" 
+                        maxlength="15"
+                    >
+                    <button id="btn-apply-coupon" class="btn-coupon">Aplicar</button>
+                </div>
+                <div id="coupon-message" class="coupon-msg"></div>
+            </div>
+
+            <!-- Totales -->
+            <div class="cart-summary">
+                <div class="summary-line">
+                    <span>Subtotal:</span>
+                    <span id="summary-subtotal" class="amount">$0.00</span>
+                </div>
+                <div id="row-discount" class="summary-line discount-line" style="display: none;">
+                    <span>Descuento (10%):</span>
+                    <span id="summary-discount" class="amount discount-amount">-$0.00</span>
+                </div>
+                <div class="summary-line">
+                    <span>IVA / Impuesto estimado (16%):</span>
+                    <span id="summary-tax" class="amount">$0.00</span>
+                </div>
+                <div class="summary-line total-line">
+                    <strong>Total a pagar:</strong>
+                    <strong id="summary-total" class="total-amount">$0.00</strong>
+                </div>
+            </div>
+
+            <div class="cart-actions">
+                <button id="btn-checkout" class="btn btn-primary btn-checkout">
+                    <span>Finalizar Pedido / Pagar</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                </button>
+                <button id="btn-clear-cart" class="btn-clear-cart">Vaciar la cestica</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 4. Modal de Factura / Ticket de Compra -->
+    <div id="receipt-modal-backdrop" class="modal-backdrop">
+        <div class="receipt-card" role="dialog" aria-modal="true" aria-labelledby="receipt-title">
+            <div class="receipt-header">
+                <div class="receipt-check">✓</div>
+                <h2 id="receipt-title">¡Compra Exitosa, Chamo!</h2>
+                <p>Gracias por comprar en La Cestica Digital de Joendri Albarran</p>
+            </div>
+
+            <div class="receipt-body">
+                <div class="receipt-meta">
+                    <div><strong>No. de Factura:</strong> <span id="receipt-order-id">#ORD-0000</span></div>
+                    <div><strong>Fecha:</strong> <span id="receipt-date">--/--/----</span></div>
+                    <div><strong>Cliente:</strong> Amigo de la Programación</div>
+                </div>
+
+                <div class="receipt-items-table">
+                    <div class="receipt-table-header">
+                        <span>Producto</span>
+                        <span>Cant.</span>
+                        <span>Precio</span>
+                        <span>Subtotal</span>
+                    </div>
+                    <div id="receipt-items-list" class="receipt-table-body">
+                        <!-- Inyectado por JS -->
+                    </div>
+                </div>
+
+                <div class="receipt-totals">
+                    <div class="receipt-total-line">
+                        <span>Subtotal:</span>
+                        <span id="receipt-subtotal">$0.00</span>
+                    </div>
+                    <div id="receipt-discount-row" class="receipt-total-line discount-text" style="display: none;">
+                        <span>Descuento aplicado:</span>
+                        <span id="receipt-discount">-$0.00</span>
+                    </div>
+                    <div class="receipt-total-line">
+                        <span>IVA (16%):</span>
+                        <span id="receipt-tax">$0.00</span>
+                    </div>
+                    <div class="receipt-total-line receipt-grand-total">
+                        <strong>Total Pagado:</strong>
+                        <strong id="receipt-grand-total">$0.00</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="receipt-footer">
+                <button id="btn-print-receipt" class="btn btn-secondary">
+                    <span>🖨️ Imprimir / Guardar</span>
+                </button>
+                <button id="btn-close-receipt" class="btn btn-primary">
+                    <span>Seguir Comprando</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Notificación Toast Flotante -->
+    <div id="toast" class="toast-notification" role="status" aria-live="polite">
+        <span id="toast-icon">✨</span>
+        <span id="toast-msg">Notificación</span>
+    </div>
+
+    <!-- 6. Pie de Página -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <h3>La Cestica Digital</h3>
+                <p>Proyecto interactivo desarrollado por <strong>Joendri Albarran</strong> combinando lógica de Python con HTML5, CSS3 y JavaScript moderno.</p>
+            </div>
+            <div class="footer-right">
+                <p>© 2026 Joendri Albarran • Curso de Programación</p>
+                <div class="tech-pills">
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>JavaScript ES6+</span>
+                    <span>LocalStorage</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lógica JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ALBARRAN-X Aerospace - Empresa de exploración espacial, cohetería reutilizable y transporte interplanetario fundada y dirigida por Joendri Albarran.">
+    <meta name="author" content="Joendri Albarran">
+    <title>ALBARRAN-X Aerospace | Exploración Espacial & Cohetería - Joendri Albarran</title>
+
+    <!-- Google Fonts: Orbitron (Futurismo militar/aerospacial) + Space Grotesk & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Hoja de Estilos Aeroespacial -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Fondo Interactivo de Estrellas y Nebulosas (Canvas HTML5) -->
+    <canvas id="space-canvas" class="space-canvas"></canvas>
+
+    <!-- 1. Barra de Telemetría Superior (Top HUD Status) -->
+    <div class="hud-topbar">
+        <div class="container hud-container">
+            <div class="hud-left">
+                <span class="hud-status-badge"><span class="pulse-dot"></span> SISTEMAS EN LÍNEA</span>
+                <span class="hud-code">ORB-TRACK // NORAD #88492</span>
+                <span class="hud-divider">|</span>
+                <span class="hud-telemetry" id="live-hud-time">UTC: 00:00:00</span>
+            </div>
+            <div class="hud-right">
+                <div class="countdown-badge">
+                    <span class="cd-label">PRÓXIMO DESPEGUE:</span>
+                    <span class="cd-timer" id="header-countdown">T-02d : 14h : 36m : 12s</span>
+                </div>
+                <button id="btn-toggle-audio" class="hud-btn" title="Activar/Silenciar efectos de sonido aeroespaciales">
+                    <span id="audio-icon">🔊</span>
+                    <span class="hud-btn-text">Audio FX</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Navegación Principal (SpaceX Header Style) -->
+    <header class="main-header" id="main-header">
+        <div class="container header-container">
+            <a href="#inicio" class="logo-link">
+                <div class="logo-mark">AX</div>
+                <div class="logo-text-group">
+                    <span class="brand-name">ALBARRAN<span class="accent-x">X</span></span>
+                    <span class="brand-sub">AEROSPACE & EXPLORATION</span>
+                </div>
+            </a>
+
+            <!-- Navegación de Vehículos y Misiones -->
+            <nav class="nav-menu">
+                <a href="#vehiculos" class="nav-item">VEHÍCULOS</a>
+                <a href="#simulador" class="nav-item">SIMULADOR DE VUELO</a>
+                <a href="#destinos" class="nav-item">DESTINOS</a>
+                <a href="#telemetria" class="nav-item">TELEMETRÍA EN VIVO</a>
+                <a href="#calculadora" class="nav-item">COTIZAR CARGA</a>
+                <a href="#vision" class="nav-item">VISIÓN ALBARRAN</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="#simulador" class="btn-primary-launch" id="btn-quick-launch">LANZAR MISIÓN</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. Sección Hero: Despegue a Marte & Telemetría en Tiempo Real -->
+    <section class="hero-section" id="inicio">
+        <div class="hero-overlay"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="mission-tag">
+                    <span class="mission-badge">MISIÓN HISTÓRICA NOVA-IV</span>
+                    <span class="mission-status">DESTINO: PLANETA MARTE</span>
+                </div>
+
+                <h1 class="hero-title">
+                    HACIENDO DE LA HUMANIDAD UNA ESPECIE <span class="highlight-text">MULTIPLANETARIA</span>
+                </h1>
+
+                <p class="hero-desc">
+                    Desarrollamos la arquitectura de transporte orbital y cohetería totalmente reutilizable más avanzada de la historia. Diseñada, optimizada y dirigida por <strong>Joendri Albarran</strong>.
+                </p>
+
+                <div class="hero-cta-group">
+                    <button class="btn-cta-primary" id="btn-hero-launch-sim">
+                        <span class="icon-rocket">🚀</span> INICIAR SECUENCIA DE LANZAMIENTO
+                    </button>
+                    <a href="#vehiculos" class="btn-cta-secondary">
+                        EXPLORAR VEHÍCULOS DE VUELO →
+                    </a>
+                </div>
+
+                <!-- Métricas Clave de la Flota -->
+                <div class="hero-metrics">
+                    <div class="metric-item">
+                        <span class="metric-value">100%</span>
+                        <span class="metric-label">REUTILIZABILIDAD ORBITAL</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-value">150 Tn</span>
+                        <span class="metric-label">CARGA A ÓRBITA BAJA (LEO)</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-value">98.9%</span>
+                        <span class="metric-label">ATERRIZAJES EXITOSOS EN DRONE-SHIP</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-value">3.8x</span>
+                        <span class="metric-label">MENOR COSTO POR KILOGRAMO</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel de Misión Rápida HUD en el Hero -->
+            <div class="hero-hud-card">
+                <div class="hud-card-header">
+                    <span class="hud-dot"></span>
+                    <span class="hud-card-title">ESTADO DE CUENTA ATRÁS • TITÁN-IX</span>
+                </div>
+                <div class="hud-countdown-grid">
+                    <div class="time-block">
+                        <span class="time-num" id="cd-days">02</span>
+                        <span class="time-unit">DÍAS</span>
+                    </div>
+                    <div class="time-block">
+                        <span class="time-num" id="cd-hours">14</span>
+                        <span class="time-unit">HORAS</span>
+                    </div>
+                    <div class="time-block">
+                        <span class="time-num" id="cd-mins">36</span>
+                        <span class="time-unit">MINUTOS</span>
+                    </div>
+                    <div class="time-block">
+                        <span class="time-num" id="cd-secs">18</span>
+                        <span class="time-unit">SEGUNDOS</span>
+                    </div>
+                </div>
+                <div class="hud-mission-info">
+                    <div class="info-row">
+                        <span class="info-k">Vehículo:</span>
+                        <span class="info-v">Albarran Heavy Booster Mk.3</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-k">Carga útil:</span>
+                        <span class="info-v">Rover Geológico Ares-Alpha + Satélites StarNet</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-k">Complejo de Despegue:</span>
+                        <span class="info-v">Plataforma LC-39A // Cabo Cañaveral</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-k">Zona de Recuperación:</span>
+                        <span class="info-v">Barcaza Autónoma «Sin Gravedad» en Atlántico</span>
+                    </div>
+                </div>
+                <button class="btn-hud-action" id="btn-prelaunch-check">VERIFICAR SECUENCIA PRE-VUELO</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Simulador Interactivo de Lanzamiento Espacial (Flight Control Simulator) -->
+    <section class="simulator-section" id="simulador">
+        <div class="container">
+            <div class="section-title-wrap">
+                <span class="section-sub">CENTRO DE CONTROL DE MISIÓN ALBARRAN-X</span>
+                <h2 class="section-heading">SIMULADOR DE LANZAMIENTO & ETAPAS ORBITALES</h2>
+                <p class="section-lead">Experimenta en tiempo real la física de vuelo, el apagado de motores (MECO), la separación de etapas y el aterrizaje autónomo del propulsor sobre la barcaza marina.</p>
+            </div>
+
+            <div class="sim-dashboard">
+                <!-- Pantalla Visual del Lanzamiento -->
+                <div class="sim-viewport">
+                    <div class="sim-sky" id="sim-sky">
+                        <!-- Estrellas y atmósfera dinámica -->
+                        <div class="sim-stars"></div>
+                        <div class="sim-earth-horizon" id="sim-horizon"></div>
+                        
+                        <!-- Cohete Albarran Heavy animado -->
+                        <div class="rocket-vehicle" id="rocket-vehicle">
+                            <!-- Cofia / Cápsula -->
+                            <div class="rocket-fairing" id="rocket-fairing">
+                                <span class="fairing-logo">AX</span>
+                            </div>
+                            <!-- Segunda Etapa -->
+                            <div class="rocket-stage-two" id="rocket-stage-two">
+                                <div class="stage-label">ETAPA II</div>
+                                <div class="thruster-s2" id="thruster-s2"></div>
+                            </div>
+                            <!-- Anillo Interetapa -->
+                            <div class="interstage-ring" id="interstage-ring"></div>
+                            <!-- Primera Etapa (Booster Reutilizable) -->
+                            <div class="rocket-booster" id="rocket-booster">
+                                <div class="booster-label">ALBARRAN HEAVY</div>
+                                <div class="grid-fins">
+                                    <span class="fin left"></span>
+                                    <span class="fin right"></span>
+                                </div>
+                                <div class="landing-legs">
+                                    <span class="leg left" id="leg-left"></span>
+                                    <span class="leg right" id="leg-right"></span>
+                                </div>
+                                <!-- Fuego y Penacho de Propulsión Raptor -->
+                                <div class="engine-exhaust" id="engine-exhaust">
+                                    <div class="flame-core"></div>
+                                    <div class="flame-plume"></div>
+                                    <div class="smoke-cloud"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Barcaza Autónoma de Recuperación Marina (Droneship) -->
+                        <div class="droneship" id="droneship">
+                            <div class="droneship-deck">
+                                <span class="droneship-target">⌖ OCISLY // ALBARRAN-X</span>
+                            </div>
+                        </div>
+
+                        <!-- Overlay HUD de Fase -->
+                        <div class="phase-overlay" id="phase-overlay">
+                            <span class="phase-badge" id="phase-badge">SISTEMAS EN ESPERA</span>
+                            <h3 class="phase-title" id="phase-title">LISTO PARA LA SECUENCIA DE CUENTA REGRESIVA</h3>
+                        </div>
+                    </div>
+
+                    <!-- Indicadores de Telemetría Gráfica en Pantalla -->
+                    <div class="sim-telemetry-hud">
+                        <div class="telemetry-pill">
+                            <span class="tp-label">TIEMPO MISIÓN (T):</span>
+                            <span class="tp-val" id="tele-mission-time">T - 00:10</span>
+                        </div>
+                        <div class="telemetry-pill">
+                            <span class="tp-label">ALTITUD:</span>
+                            <span class="tp-val" id="tele-altitude">0.0 KM</span>
+                        </div>
+                        <div class="telemetry-pill">
+                            <span class="tp-label">VELOCIDAD:</span>
+                            <span class="tp-val" id="tele-velocity">0 KM/H</span>
+                        </div>
+                        <div class="telemetry-pill">
+                            <span class="tp-label">EMPUJE:</span>
+                            <span class="tp-val" id="tele-thrust">0%</span>
+                        </div>
+                        <div class="telemetry-pill">
+                            <span class="tp-label">ESTADO:</span>
+                            <span class="tp-val status-green" id="tele-status">HOLD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Consola Lateral de Controles de Despegue y Registro de Vuelo -->
+                <div class="sim-console">
+                    <div class="console-header">
+                        <span class="console-title">PANEL DE COMANDO Y SECUENCIA</span>
+                        <span class="console-badge">DIRECCIÓN: J. ALBARRAN</span>
+                    </div>
+
+                    <!-- Botones de Acción Principal -->
+                    <div class="console-actions">
+                        <button class="btn-launch-big" id="btn-start-countdown">
+                            <span class="btn-icon">⚡</span>
+                            <span class="btn-main-txt">INICIAR CUENTA ATRÁS</span>
+                            <span class="btn-sub-txt">T-10 Segundos hasta ignición</span>
+                        </button>
+
+                        <div class="sub-actions">
+                            <button class="btn-abort" id="btn-abort-mission" disabled>
+                                🛑 ABORTAR DESPEGUE (HOLD)
+                            </button>
+                            <button class="btn-reset-sim" id="btn-reset-sim">
+                                🔄 REINICIAR SIMULACIÓN
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Barra de Progreso de Etapas -->
+                    <div class="flight-stages-progress">
+                        <span class="stages-title">CRONOGRAMA DE VUELO:</span>
+                        <div class="stage-step-list">
+                            <div class="stage-step" id="step-ignition">
+                                <span class="step-num">01</span>
+                                <span class="step-name">Ignición de Motores (T-0s)</span>
+                            </div>
+                            <div class="stage-step" id="step-liftoff">
+                                <span class="step-num">02</span>
+                                <span class="step-name">Despegue y Max-Q (Máxima Presión)</span>
+                            </div>
+                            <div class="stage-step" id="step-meco">
+                                <span class="step-num">03</span>
+                                <span class="step-name">Corte Principal MECO & Separación</span>
+                            </div>
+                            <div class="stage-step" id="step-stage2">
+                                <span class="step-num">04</span>
+                                <span class="step-name">Encendido Etapa II & Inserción Orbital</span>
+                            </div>
+                            <div class="stage-step" id="step-landing">
+                                <span class="step-num">05</span>
+                                <span class="step-name">Aterrizaje Autónomo del Propulsor</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terminal de Registro en Tiempo Real (Flight Telemetry Log) -->
+                    <div class="console-terminal">
+                        <div class="terminal-header">
+                            <span>TERMINAL FLIGHT LOG // ALBARRAN-X</span>
+                            <span class="term-clear" id="btn-clear-log">LIMPIAR</span>
+                        </div>
+                        <div class="terminal-body" id="terminal-log">
+                            <p class="log-line">[SYS-INIT] Secuencia del simulador cargada en memoria.</p>
+                            <p class="log-line">[AUTONOMOUS] Propelentes Criogénicos CH4/LOX a temperatura óptima.</p>
+                            <p class="log-line">[CHIEF-ENG] Aprobación de vuelo firmada por Joendri Albarran.</p>
+                            <p class="log-line info">[READY] Esperando comando para iniciar ignición.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Flota de Vehículos Espaciales (SpaceX-style Vehicle Showcase) -->
+    <section class="vehicles-section" id="vehiculos">
+        <div class="container">
+            <div class="section-title-wrap">
+                <span class="section-sub">INGENIERÍA Y COHETERÍA AVANZADA</span>
+                <h2 class="section-heading">LA FLOTA ALBARRAN-X</h2>
+                <p class="section-lead">Naves diseñadas para operar en las condiciones más extremas del vacío espacial, la reentrada atmosférica y superficies extraterrestres.</p>
+            </div>
+
+            <!-- Selector de Vehículo -->
+            <div class="vehicle-tabs" id="vehicle-tabs">
+                <button class="v-tab active" data-vehicle="heavy">ALBARRAN HEAVY</button>
+                <button class="v-tab" data-vehicle="ares">ARES-I MARS SHIP</button>
+                <button class="v-tab" data-vehicle="valkyrie">VALKYRIE CREW CAPSULE</button>
+                <button class="v-tab" data-vehicle="lunar">LUNAR HOPPER ARTEMIS</button>
+            </div>
+
+            <!-- Contenedor Dinámico del Vehículo Seleccionado -->
+            <div class="vehicle-showcase-card" id="vehicle-card">
+                <!-- Se inyecta dinámicamente con JS -->
+            </div>
+
+            <!-- Desglose Interactivo de Anatomía del Cohete -->
+            <div class="rocket-anatomy-box">
+                <h3 class="anatomy-heading">ANATOMÍA DE UN PROPULSOR REUTILIZABLE ALBARRAN-X</h3>
+                <div class="anatomy-grid">
+                    <div class="anatomy-item">
+                        <span class="anatomy-num">01</span>
+                        <div class="anatomy-info">
+                            <h4>Cofia de Carga de Fibra de Carbono</h4>
+                            <p>Diámetro de 9 metros con escudos térmicos cerámicos y paracaídas orientables para recuperación oceánica autónoma.</p>
+                        </div>
+                    </div>
+                    <div class="anatomy-item">
+                        <span class="anatomy-num">02</span>
+                        <div class="anatomy-info">
+                            <h4>Aletas de Rejilla de Titanio Forjado</h4>
+                            <p>Control aerodinámico hipersónico durante la reentrada a Mach 7 para dirigir el cohete exactamente hacia el punto de descenso.</p>
+                        </div>
+                    </div>
+                    <div class="anatomy-item">
+                        <span class="anatomy-num">03</span>
+                        <div class="anatomy-info">
+                            <h4>Tanques Criogénicos Autógenos</h4>
+                            <p>Contienen metano líquido subenfriado y oxígeno líquido (LOX), eliminando helio externo y maximizando la densidad energética.</p>
+                        </div>
+                    </div>
+                    <div class="anatomy-item">
+                        <span class="anatomy-num">04</span>
+                        <div class="anatomy-info">
+                            <h4>Batería de Motores Raptor-X</h4>
+                            <p>Ciclo de combustión escalonada de flujo completo con más de 250 toneladas de empuje por motor y capacidad de reencendido múltiple.</p>
+                        </div>
+                    </div>
+                    <div class="anatomy-item">
+                        <span class="anatomy-num">05</span>
+                        <div class="anatomy-info">
+                            <h4>Patas de Aterrizaje Telescópicas</h4>
+                            <p>Fabricadas en fibra de carbono y aleaciones de niobio con amortiguadores hidráulicos de aluminio deformable para aterrizajes suaves.</p>
+                        </div>
+                    </div>
+                    <div class="anatomy-item">
+                        <span class="anatomy-num">06</span>
+                        <div class="anatomy-info">
+                            <h4>Computadora de Vuelo Cuádruple</h4>
+                            <p>Arquitectura tolerante a fallos con navegación inercial guiada por estrellas y GPS diferencial en tiempo real.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Destinos Interplanetarios (Interplanetary Destinations) -->
+    <section class="destinations-section" id="destinos">
+        <div class="container">
+            <div class="section-title-wrap">
+                <span class="section-sub">EXPANSIÓN HUMANA EN EL SISTEMA SOLAR</span>
+                <h2 class="section-heading">RUTAS Y DESTINOS COMERCIALES</h2>
+                <p class="section-lead">Desde satélites comerciales en órbita terrestre hasta las primeras colonias científicas en Marte.</p>
+            </div>
+
+            <div class="destinations-grid">
+                <!-- Destino 1: Órbita Baja -->
+                <div class="destination-card">
+                    <div class="dest-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80" alt="Órbita Terrestre Baja y Constelaciones">
+                        <span class="dest-badge">ÓRBITA TERRESTRE (LEO)</span>
+                    </div>
+                    <div class="dest-body">
+                        <h3 class="dest-title">Órbita Terrestre Baja & Laboratorios Espaciales</h3>
+                        <p class="dest-desc">Despliegue de constelaciones de comunicaciones de alta velocidad, manufactura en microgravedad y turismo orbital privado.</p>
+                        <div class="dest-specs">
+                            <div class="spec-row"><span>Distancia:</span> <strong>400 km</strong></div>
+                            <div class="spec-row"><span>Tiempo de tránsito:</span> <strong>10 minutos</strong></div>
+                            <div class="spec-row"><span>Capacidad de carga:</span> <strong>Hasta 150 Tn</strong></div>
+                        </div>
+                        <button class="btn-dest-explore" data-target="leo">Ver Plan de Vuelo LEO</button>
+                    </div>
+                </div>
+
+                <!-- Destino 2: Luna -->
+                <div class="destination-card">
+                    <div class="dest-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1522030299830-16b8d3d049fe?auto=format&fit=crop&w=800&q=80" alt="Superficie de la Luna">
+                        <span class="dest-badge badge-gold">BASE LUNAR ALFA</span>
+                    </div>
+                    <div class="dest-body">
+                        <h3 class="dest-title">Polo Sur Lunar & Cráter Shackleton</h3>
+                        <p class="dest-desc">Extracción de hielo de agua en cráteres perpetuamente sombreados para generar combustible y establecer una base de investigación permanente.</p>
+                        <div class="dest-specs">
+                            <div class="spec-row"><span>Distancia:</span> <strong>384.400 km</strong></div>
+                            <div class="spec-row"><span>Tiempo de tránsito:</span> <strong>3 días</strong></div>
+                            <div class="spec-row"><span>Ventana de despegue:</span> <strong>Semanal</strong></div>
+                        </div>
+                        <button class="btn-dest-explore" data-target="luna">Ver Plan de Vuelo Lunar</button>
+                    </div>
+                </div>
+
+                <!-- Destino 3: Marte -->
+                <div class="destination-card highlight-mars">
+                    <div class="dest-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1614728423169-3f65fd722b7e?auto=format&fit=crop&w=800&q=80" alt="Planeta Marte">
+                        <span class="dest-badge badge-red">OBJETIVO PRIMARIO</span>
+                    </div>
+                    <div class="dest-body">
+                        <h3 class="dest-title">Marte: Valle Marineris & Utopia Planitia</h3>
+                        <p class="dest-desc">Creación de una ciudad autosuficiente alimentada por energía solar y reactores modulares, utilizando recursos locales in situ (ISRU) para el retorno.</p>
+                        <div class="dest-specs">
+                            <div class="spec-row"><span>Distancia promedio:</span> <strong>225 Millones de km</strong></div>
+                            <div class="spec-row"><span>Tiempo de tránsito:</span> <strong>4 a 6 meses</strong></div>
+                            <div class="spec-row"><span>Ventana orbital:</span> <strong>Cada 26 meses</strong></div>
+                        </div>
+                        <button class="btn-dest-explore" data-target="marte">Ver Plan de Colonización</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Calculadora Interactiva de Carga Útil (Payload Mission Calculator) -->
+    <section class="calculator-section" id="calculadora">
+        <div class="container">
+            <div class="calc-card">
+                <div class="calc-header">
+                    <span class="calc-tag">COTIZADOR DE VUELO ESPACIAL</span>
+                    <h2 class="calc-title">CALCULADORA DE CARGA Y PLANIFICADOR DE LANZAMIENTO</h2>
+                    <p class="calc-desc">Calcula en tiempo real la configuración óptima de cohetes, el perfil de empuje y el costo por kilogramo estimado para tu satélite o misión tripulada.</p>
+                </div>
+
+                <div class="calc-grid">
+                    <!-- Formulario de Configuración -->
+                    <div class="calc-form">
+                        <div class="form-group">
+                            <label for="calc-destination" class="form-label">1. Destino Orbital deseado:</label>
+                            <select id="calc-destination" class="form-select">
+                                <option value="leo" selected>Órbita Terrestre Baja (LEO - 400 km)</option>
+                                <option value="gto">Órbita de Transferencia Geoestacionaria (GTO - 35.786 km)</option>
+                                <option value="lunar">Inyección Translunar (TLI - 384.000 km)</option>
+                                <option value="mars">Inyección Trans-Marte (TMI - Espacio Profundo)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="slider-header">
+                                <label for="calc-mass" class="form-label">2. Masa total de carga útil (kg):</label>
+                                <span class="slider-display" id="mass-display">12.500 kg</span>
+                            </div>
+                            <input type="range" id="calc-mass" min="500" max="100000" step="500" value="12500" class="range-slider">
+                            <div class="slider-limits">
+                                <span>500 kg (Cubesats)</span>
+                                <span>100.000 kg (Módulo Pesado)</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">3. Tipo de Misión:</label>
+                            <div class="mission-type-radios">
+                                <label class="radio-option">
+                                    <input type="radio" name="mission-type" value="cargo" checked>
+                                    <span>Satélites / Carga Científica</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="mission-type" value="crew">
+                                    <span>Misión Tripulada con Astronautas</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="mission-type" value="deepspace">
+                                    <span>Sonda de Exploración Profunda</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" id="calc-reusable" checked>
+                                <span>Priorizar Booster Reutilizado (Descuento del 40% y menor huella ecológica)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Resultado de la Cotización Telemetrizada -->
+                    <div class="calc-results" id="calc-results">
+                        <div class="result-hud-card">
+                            <span class="rhud-label">PERFIL DE MISIÓN GENERADO</span>
+                            <h3 class="rhud-vehicle-name" id="res-vehicle">ALBARRAN HEAVY • CONFIGURACIÓN REUTILIZABLE</h3>
+                            
+                            <div class="result-metrics-grid">
+                                <div class="rm-box">
+                                    <span class="rm-k">Empuje Necesario:</span>
+                                    <strong class="rm-v" id="res-thrust">22.800 kN</strong>
+                                </div>
+                                <div class="rm-box">
+                                    <span class="rm-k">Tiempo de Inserción:</span>
+                                    <strong class="rm-v" id="res-time">8 min 42 seg</strong>
+                                </div>
+                                <div class="rm-box">
+                                    <span class="rm-k">Costo Est. por Kg:</span>
+                                    <strong class="rm-v highlight-green" id="res-cost-kg">$ 1.850 USD / kg</strong>
+                                </div>
+                                <div class="rm-box">
+                                    <span class="rm-k">Ahorro Reutilización:</span>
+                                    <strong class="rm-v highlight-gold" id="res-savings">-$ 24.000.000 USD</strong>
+                                </div>
+                            </div>
+
+                            <div class="payload-envelope">
+                                <span class="pe-label">Capacidad de Carga Ocupada:</span>
+                                <div class="pe-bar">
+                                    <div class="pe-bar-fill" id="res-bar-fill" style="width: 25%;"></div>
+                                </div>
+                                <span class="pe-text" id="res-pe-text">25% del límite estructural del cohete</span>
+                            </div>
+
+                            <button class="btn-calc-request" id="btn-request-launch-slot">RESERVAR VENTANA DE LANZAMIENTO</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Visión y Liderazgo: Joendri Albarran (Founder & Chief Engineer) -->
+    <section class="vision-section" id="vision">
+        <div class="container">
+            <div class="vision-grid">
+                <div class="vision-text-side">
+                    <span class="vision-tag">DIRECCIÓN & VISIÓN AEROESPACIAL</span>
+                    <h2 class="vision-title">LA FRONTERA FINAL NO ES UN LUGAR, ES NUESTRO DESTINO</h2>
+                    
+                    <blockquote class="vision-quote">
+                        «Si nos limitamos a contemplar la Tierra desde el suelo, perderemos la mayor oportunidad que el cosmos nos ha otorgado. En Albarran-X no diseñamos cohetes simplemente para volar; los diseñamos como puentes hacia el futuro de la civilización humana.»
+                    </blockquote>
+
+                    <div class="vision-author-card">
+                        <div class="author-badge-large">JA</div>
+                        <div class="author-details">
+                            <h3 class="author-name">Joendri Albarran</h3>
+                            <span class="author-role">Fundador, Ingeniero Jefe & Director de Albarran-X</span>
+                            <span class="author-meta">Pionero en sistemas de propulsión hipersónica y estructuras orbitales</span>
+                        </div>
+                    </div>
+
+                    <p class="vision-parr">
+                        Bajo el liderazgo de Joendri Albarran, la compañía ha roto los paradigmas de la industria aeroespacial tradicional, logrando reducciones del 90% en tiempos de desarrollo y consolidando la recuperación vertical de propulsores en alta mar como una rutina operativa estándar.
+                    </p>
+
+                    <div class="vision-stats">
+                        <div class="v-stat">
+                            <strong>142</strong>
+                            <span>Misiones Completadas</span>
+                        </div>
+                        <div class="v-stat">
+                            <strong>118</strong>
+                            <span>Booster Landings</span>
+                        </div>
+                        <div class="v-stat">
+                            <strong>36</strong>
+                            <span>Astronautas en Órbita</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vision-media-side">
+                    <div class="vision-img-frame">
+                        <img src="https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=900&q=80" alt="Plataforma de lanzamiento y cohete iluminado por la noche" class="vision-main-img">
+                        <div class="frame-tag">COMPLEJO LC-39A • HANGAR DE INTEGRACIÓN ALBARRAN-X</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Galería Aeroespacial de Alta Resolución -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="section-title-wrap">
+                <span class="section-sub">REGISTRO VISUAL DE MISIÓN</span>
+                <h2 class="section-heading">CRÓNICAS DEL ESPACIO PROFUNDO</h2>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item large">
+                    <img src="https://images.unsplash.com/photo-1517976487507-5b3b4b45f917?auto=format&fit=crop&w=1200&q=80" alt="Encendido nocturno de motores Raptor en banco de pruebas" loading="lazy">
+                    <div class="gallery-caption">
+                        <strong>Prueba Estática de Fuego Cruzado</strong>
+                        <span>33 Motores Raptor rugiendo a plena potencia en Starbase.</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=600&q=80" alt="Cápsula espacial en órbita con la Tierra de fondo" loading="lazy">
+                    <div class="gallery-caption">
+                        <strong>Valkyrie en Órbita Solar</strong>
+                        <span>Acople automatizado con la estación orbital a 420 km de altitud.</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=600&q=80" alt="Tierra vista desde la cúpula panorámica" loading="lazy">
+                    <div class="gallery-caption">
+                        <strong>Cúpula Panorámica de Cristal Templado</strong>
+                        <span>Vista de la curvatura terrestre para exploradores privados.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Interactivo: Solicitud de Reserva de Lanzamiento -->
+    <div id="booking-modal" class="modal-backdrop" aria-hidden="true" role="dialog">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <span class="modal-sub">ALBARRAN-X LAUNCH SERVICES</span>
+                    <h3 class="modal-title">RESERVA DE VENTANA DE LANZAMIENTO</h3>
+                </div>
+                <button id="btn-close-modal" class="btn-close-modal" title="Cerrar">✕</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-desc">
+                    Completa la manifestación de interés técnico para coordinar con la oficina de integración orbital de <strong>Joendri Albarran</strong>.
+                </p>
+                <form id="booking-form" class="booking-form">
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label>Nombre del Responsable / Investigador:</label>
+                            <input type="text" id="book-name" placeholder="Ej. Dra. Carmen Mendoza" required>
+                        </div>
+                        <div class="form-field">
+                            <label>Organización / Agencia / Empresa:</label>
+                            <input type="text" id="book-org" placeholder="Ej. Instituto Astrofísico" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label>Correo Electrónico Oficial:</label>
+                            <input type="email" id="book-email" placeholder="usuario@organizacion.org" required>
+                        </div>
+                        <div class="form-field">
+                            <label>Año Deseado de Despegue:</label>
+                            <select id="book-year">
+                                <option>2027 (Ventana Rápida)</option>
+                                <option selected>2028 (Ventana Estándar)</option>
+                                <option>2029 (Misión Interplanetaria)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label>Especificaciones de la Carga o Experimento:</label>
+                        <textarea id="book-notes" rows="3" placeholder="Detalles de masa, dimensiones del bus satelital o requerimientos de microgravedad..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit-booking">TRANSMITIR SOLICITUD AL EQUIPO DE JOENDRI ALBARRAN</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificaciones Flotantes (Toast) -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- 10. Pie de Página SpaceX Minimalista & Técnico -->
+    <footer class="space-footer">
+        <div class="container footer-container">
+            <div class="footer-left">
+                <div class="footer-brand">
+                    <span class="fb-title">ALBARRAN<span class="accent-x">X</span></span>
+                    <span class="fb-tag">AEROSPACE CORPORATION</span>
+                </div>
+                <p class="footer-copy">
+                    © 2026 <strong>ALBARRAN-X AEROSPACE</strong>. Todos los derechos reservados. Fundado y dirigido por <strong>Joendri Albarran</strong>.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <a href="#vehiculos">VEHÍCULOS</a>
+                <a href="#simulador">SIMULADOR</a>
+                <a href="#destinos">DESTINOS</a>
+                <a href="#calculadora">COTIZAR</a>
+                <a href="#vision">VISIÓN</a>
+                <a href="#" id="btn-footer-privacy">PRIVACIDAD</a>
+            </div>
+
+            <div class="footer-right">
+                <span class="footer-contact">Oficina Central de Ingeniería: Cabo Cañaveral // Starbase Complex</span>
+                <span class="footer-signature">Dirección General: <strong>Joendri Albarran</strong></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script de Lógica Aeroespacial & Web Audio API -->
+    <script src="script.js"></script>
+</body>
+</html>
