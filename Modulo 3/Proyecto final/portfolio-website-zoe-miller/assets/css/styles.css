@@ -171,6 +171,41 @@ textarea {
   opacity: 1;
 }
 
+.section-title{
+  font-size: var(--h1-font-size);
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.section-title::after{
+  content: attr(data-title);
+  display: block;
+  color:var(--first-color);
+  font-family: var(--body-font);
+  font-size:var(--large-font-size);
+}
+
+.link{
+  display: inline-flex;
+  align-items: center;
+  column-gap: 1.25rem;
+  color: var(--title-color);
+  font-weight: var(--font-bold);
+
+}
+
+.link-icon{
+  color:var(--first-color);
+  font-size: 1.25rem;
+  transition: transform 0.3s var(--transition);
+
+
+}
+
+.link:hover .link-icon{
+  transform: translateX(-0.5rem);
+}
+
 
 /*=============== LAYOUT ===============*/
 .container{
@@ -480,8 +515,85 @@ textarea {
 
 
 /*=============== SERVICES ===============*/
+.card{
+  background-color: var(--container-color);
+  padding: 2rem 2.25rem;
+  border-radius: 1.25rem;
+  position: relative;
+  overflow: hidden;
 
+
+}
+
+.card::before{
+  content: "";
+  position:absolute;
+  right: -1.5rem;
+  bottom: -1.5rem;
+  width: 120px;
+  height: 120px;
+  background-image: url(../img/shape-3.png);
+  background-size: cover;
+}
+
+.services-subtitle{
+  font-size: var(--smaller-font-size)
+}
+
+.service-title{
+  font-size: var(--h3-font-size);
+  margin-block: 4rem 1rem;
+
+}
+
+.services-description{
+  min-height: 175px;
+
+}
 /* Swiper */
+.swiper-pagination{
+  margin:initial;
+  margin-top: 3rem;
+
+}
+
+.swiper-pagination-bullets::before{
+  content:'';
+  position: absolute;
+  top: 0.75rem;
+  left:50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background-color: var(--border-color);
+}
+
+.swiper-pagination-bullet{
+  border: 2px var(--border-color) solid;
+  background-color: var(--container-color);
+  opacity: 1;
+  position:relative;
+  z-index:10;
+  transition: transform 0.3s var(--transition);
+  
+  
+}
+
+.swiper-pagination-bullet:not(:last-child) {
+  margin-right: 1.25rem !important
+
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--first-color);
+  transform: scale(1.7);
+  border-width: 1px;
+
+}
+
+
+
+
 
 /*=============== SKILLS ===============*/
 
