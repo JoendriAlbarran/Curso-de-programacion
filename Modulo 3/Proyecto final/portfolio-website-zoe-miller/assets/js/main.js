@@ -41,8 +41,26 @@ var servicesSwiper = new Swiper('.services-swiper', {
 });
 
 /*=============== MIXITUP FILTER PORTFOLIO ===============*/
+let mixer = mixitup('.work-container', {
+    selectors: {
+        target: '.mix'
+    },
+    animation: {
+        duration: 300
+    }
+});
 
 /* Active work */
+const linkWork=document.querySelectorAll('.work-item')
+
+function activeWork(){
+    linkWork.forEach((a) => {
+        a.classList.remove('active-work');
+    });
+    this.classList.add('active-work');
+}
+
+linkWork.forEach((a) => a.addEventListener('click', activeWork));
 
 /*=============== RESUME ===============*/
 
@@ -90,4 +108,6 @@ document.querySelectorAll('input[name="body-theme"]').forEach((input) => {
         document.body.className = currentTheme;
     })
 })
+
+
 
