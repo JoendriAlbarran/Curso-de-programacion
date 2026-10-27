@@ -93,7 +93,7 @@
       <div class="home-container container">
         <div class="home-content">
           <h2 class="home-subtitle">Hola, <span>mi nombre es</span></h2>
-          <h1 class="home-title"><span>Joendri</span> Albarran</h1>
+          <h1 class="home-title"><span>Joendri</span>Albarran</h1>
           <h3 class="home-job">Ingeniero y diseñador senior</h3>
 
           <div class="home-banner">
@@ -146,6 +146,10 @@
           </div>
 
 
+        </div>
+
+        <div class="section-deco deco-left">
+          <img src="assets/img/shape-1.png" alt="" class="shape">
         </div>
       </div>
     </section>
@@ -238,6 +242,10 @@
             <div class="swiper-pagination"></div>
             
           </div>
+
+          <div class="section-deco deco-right">
+          <img src="assets/img/shape-1.png" alt="" class="shape">
+        </div>
         </div>
       </div>
     </section>
@@ -336,6 +344,10 @@
             <span class="skills-percentage" style="width: 80%;"></span>
           </div>
         </div>
+
+        <div class="section-deco deco-left">
+          <img src="assets/img/shape-1.png" alt="" class="shape">
+        </div>
       </div>
     </section>
 
@@ -418,6 +430,10 @@
         </div>
       </div>
     </div>
+
+    <div class="section-deco deco-right">
+          <img src="assets/img/shape-1.png" alt="" class="shape">
+        </div>
   </div>
 </section>
 
@@ -545,6 +561,10 @@
             </div>
           </div>
         </div>
+
+        <div class="section-deco deco-left">
+          <img src="assets/img/shape-1.png" alt="" class="shape">
+        </div>
       </div>
 
     </section>
@@ -634,6 +654,10 @@
 
           <div class="swiper-pagination"></div>
         </div>
+
+        <div class="section-deco deco-right">
+          <img src="assets/img/shape-1.png" alt="" class="shape">
+        </div>
       </div>
     </section>
 
@@ -690,24 +714,85 @@
           </div>
         </div>
 
-        <form action="" class="contact-form grid">
+        <form action="" class="contact-form grid" id="contact-form">
           <div class="contact-form-grop grid">
             <div class="contact-form-div">
               <label for="" class="contact-form-label">Su nombre completo <b>*</b></label>
               <input 
-                type="text" 
+                type="text"
+                name="name" 
                 class="contact-form-input" 
                 id="contact-name">
             </div>
 
+            <div class="contact-form-div">
+              <label for="" class="contact-form-label">Su correo <b>*</b></label>
+              <input 
+                type="email"
+                name="email" 
+                class="contact-form-input" 
+                id="contact-email">
+            </div>
+
             
           </div>
+
+          <div class="contact-form-div">
+              <label for="" class="contact-form-label">Su asunto <b>*</b></label>
+              <input 
+                type="email"
+                name="subject" 
+                class="contact-form-input" 
+                id="contact-subject">
+            </div>
+
+            <div class="contact-form-div">
+              <label for="" class="contact-form-label">Su mensaje <b>*</b></label>
+              <textarea
+                name="message" 
+                class="contact-form-input contact-form-area" 
+                id="contact-message">
+              </textarea>
+            </div>
+
+            <div class="contact-submit">
+              <span>* Acepta los terminos y condiciones</span>
+              <button type="submit" class="btn">Enviar mensaje</button>
+            </div>
+
+            <p class="message" id="message"></p>
+        
         </form>
+
+        <div class="section-deco deco-left">
+          <img src="assets/img/shape-1.png" alt="" class="shape">
+        </div>
       </div>
     </section>
   </main>
 
   <!--=============== FOOTER ===============-->
+  <footer class="footer">
+    <div class="footer-container container">
+      <div class="footer-socials social-links">
+            <a href="https://www.facebook.com/Albxrrann/?locale=es_ES" target="_blank" class="social-link">
+              <i class="ri-facebook-fill"></i>
+            </a>
+
+            <a href="https://x.com/Joendri_A" target="_blank" class="social-link">
+              <i class="ri-twitter-x-fill"></i>
+            </a>
+
+            <a href="https://www.instagram.com/joendri.albarran/" target="_blank" class="social-link">
+              <i class="ri-instagram-fill"></i>
+            </a>
+          </div>
+
+          <p class="footer-copyright">© 2024 <span>Joendri</span>. Todos los derechos reservados</p>
+
+          <p class="footer-copyright">Desarrolado por<span> Albarran</span></p>
+    </div>
+  </footer>
 
   <!--=============== STYLE SWITCHER ===============-->
   <div class="style-switcher" id="style-switcher">
@@ -783,6 +868,9 @@
   <script src="assets/js/mixitup.min.js"></script>
 
   <!--=============== EMAIL JS ===============-->
+  <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@5/dist/email.min.js">
+</script>
 
   <!--=============== JS ===============-->
   <script src="assets/js/main.js"></script>

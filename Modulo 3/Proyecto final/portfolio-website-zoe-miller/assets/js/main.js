@@ -112,6 +112,46 @@ var servicesSwiper = new Swiper('.testimonials-swipe', {
 });
 
 /*=============== EMAIL JS ===============*/
+const contactForm = document.getElementById('contact-form'),
+      contactName = document.getElementById('contact-name'),
+      contactEmail = document.getElementById('contact-email'),
+      contactSubject = document.getElementById('contact-subject'),
+      contactMessage = document.getElementById('contact-message'),
+      message = document.getElementById('message');
+
+const sendEmail = async (e) => {
+    e.preventDefault();
+
+    if(contactName.value === '' || contactEmail.value === '' || contactSubject.value === '' || contactMessage.value === '') {
+        message.classList.add('color-red');
+        message.textContent = 'Write all the input fields';
+        
+        setTimeout(() => {
+            message.textContent = '';
+        }, 3000);
+    } else {
+        try {
+            await emailjs.sendForm('service_4tazo1b', 'template_0mawkzc', '#contact-form', 'p6BavvQUdoRlEqkGl');
+            
+            message.classList.remove('color-red');
+            message.classList.add('color-green');
+            message.textContent = 'Message sent successfully ';
+
+            setTimeout(() => {
+                message.textContent = '';
+            }, 5000);
+
+            contactForm.reset();
+
+        } catch (error) {
+            message.classList.add('color-red');
+            message.textContent = 'Mail service failed ';
+            console.error('Error sending email - ', error);
+        }
+    }
+}
+
+contactForm.addEventListener('submit', sendEmail);
 
 /*=============== STYLE SWITCHER ===============*/
 const styleSwitcher=document.getElementById("style-switcher"),
