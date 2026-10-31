@@ -312,8 +312,8 @@ textarea {
 }
 
 /*=============== HEADER & NAV ===============*/
-.header{
-  background-color: transparent;
+.header {
+  background-color: transparent !important;
   position: fixed;
   top: 0;
   width: 100%;
@@ -452,10 +452,10 @@ textarea {
 }
 
 /* Change background header */
-.bg-header{
-  background-color: var(--container-color);
+.bg-header {
+  background-color: transparent !important;
+  box-shadow: none !important;
 }
-
 /*=============== MAIN ===============*/
 .main{
   overflow: hidden;
@@ -469,6 +469,7 @@ textarea {
 
 .home-content {
   position: relative;
+  z-index: 100;
 
 }
 
@@ -486,10 +487,11 @@ textarea {
 
 .home-title {
   color: var(--white-color);
-  font-size:var(--big-font-size);
+  font-size: clamp(2.2rem, 3.8vw, 4.2rem); 
   font-weight: var(--font-black);
   -webkit-text-stroke: 2px hsl(0, 0%, 0%);
   text-shadow: 4px 4px var(--shadow-color);
+  white-space: nowrap; 
 }
 
 .home-job{
@@ -521,11 +523,13 @@ textarea {
 
 }
 
-.home-profile{
+.home-profile {
   position: relative;
-  z-indez:10;
+  z-index: 10;
   aspect-ratio: 21/25;
   object-fit: cover;
+  margin-inline: auto; 
+  object-position: center; 
 }
 .home-data{
   border: 2px solid var(--border-color);
