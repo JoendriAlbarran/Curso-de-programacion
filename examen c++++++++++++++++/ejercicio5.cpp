@@ -1,15 +1,22 @@
 #include <iostream>
 
-#define LIMITE 10
-
 int main() {
-    int numero;
+    int numeroSecreto = 42;
+    int intento = 0;
 
-    std::cout << "ingresa un numero: ";
-    std::cin >> numero;
+    std::cout << "adivina el numero secreto" << std::endl;
 
-    for (int i = 1; i <= LIMITE; ++i) {
-        std::cout << numero << " x " << i << " = " << (numero * i) << std::endl;
+    while (intento != numeroSecreto) {
+        std::cout << "ingresa tu numero: ";
+        std::cin >> intento;
+
+        if (intento > numeroSecreto) {
+            std::cout << "mas bajo" << std::endl;
+        } else if (intento < numeroSecreto) {
+            std::cout << "mas alto" << std::endl;
+        } else {
+            std::cout << "felicidadesss Adivinaste el numero" << std::endl;
+        }
     }
 
     return 0;
