@@ -1,16 +1,19 @@
 #include <iostream>
+
+const double PI = 3.14159;
+
 void calcularPerimetro(double radio) {
-    const double PI = 3.14159;
     double perimetro = 2 * PI * radio;
-    std::cout << "el perimetro del circulo es" << perimetro <<std::endl;
+    std::cout << "el perimetro del  " << perimetro << std::endl;
 }
+
 int main() {
-    double radio;
+    double radioUsuario;
 
-    std::cout << "ingresaa el radio del circulo";
-    std::cin >> radio;
+    std::cout << "Ingresa el radio ";
+    std::cin >> radioUsuario;
 
-    calcularPerimetro(radio);
+    calcularPerimetro(radioUsuario);
 
-    return 0
+    return 0;
 }

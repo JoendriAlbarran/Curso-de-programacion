@@ -1,9 +1,9 @@
 #include <iostream>
-void modificarPorValor(int n) {
-    n += 10;
+void modificarPorValor(int 7) {
+    7 += 10;
 }
-void modificarPorReferencia(int &n) {
-    n += 10;
+void modificarPorReferencia(int &6) {
+    6 += 10;
 }
 int main() {
     int numero = 20;

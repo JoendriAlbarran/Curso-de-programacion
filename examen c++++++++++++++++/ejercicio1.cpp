@@ -14,5 +14,5 @@ int main() {
     std::cout << "caracter (char): " << letraCaracter << std::endl;
     std::cout << "boleano (bool): " << valorBooleano << std::endl;
 
-    return 0
+    return 0;
 }
